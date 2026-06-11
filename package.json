@@ -1,0 +1,9 @@
+{
+  "name": "japan-route-guide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Japan city route guide static site for Vercel.",
+  "scripts": {
+    "deploy": "vercel --prod"
+  }
+}
