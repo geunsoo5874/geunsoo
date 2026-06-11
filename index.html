@@ -6176,7 +6176,7 @@
     let weatherController = null;
     let isDraggingMap = false;
     let dragStart = { x: 0, y: 0, centerPixel: null };
-    let touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel };
+    let touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel, startMidX: 0, startMidY: 0, startCenter: null };
 
     const courseGrid = document.querySelector("#courseGrid");
     const dayList = document.querySelector("#dayList");
@@ -7884,12 +7884,20 @@
       return Math.hypot(dx, dy);
     }
 
+    function getTouchMidpoint(touches) {
+      if (touches.length < 2) return { x: 0, y: 0 };
+      return {
+        x: (touches[0].clientX + touches[1].clientX) / 2,
+        y: (touches[0].clientY + touches[1].clientY) / 2
+      };
+    }
+
     routeMap.addEventListener("touchstart", event => {
       if (!event.touches.length) return;
       event.preventDefault();
       if (event.touches.length === 1) {
         const touch = event.touches[0];
-        touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel };
+        touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel, startMidX: touch.clientX, startMidY: touch.clientY, startCenter: { ...mapCenter } };
         dragStart = {
           x: touch.clientX,
           y: touch.clientY,
@@ -7897,10 +7905,14 @@
         };
         return;
       }
+      const midpoint = getTouchMidpoint(event.touches);
       touchMapState = {
         mode: "pinch",
         startDistance: getTouchDistance(event.touches),
-        startZoom: mapZoomLevel
+        startZoom: mapZoomLevel,
+        startMidX: midpoint.x,
+        startMidY: midpoint.y,
+        startCenter: { ...mapCenter }
       };
     }, { passive: false });
 
@@ -7917,19 +7929,23 @@
       }
       if (event.touches.length >= 2 && touchMapState.startDistance > 0) {
         const nextDistance = getTouchDistance(event.touches);
+        const midpoint = getTouchMidpoint(event.touches);
         const zoomDelta = Math.round(Math.log2(nextDistance / touchMapState.startDistance));
         const nextZoom = Math.max(9, Math.min(16, touchMapState.startZoom + zoomDelta));
-        if (nextZoom !== mapZoomLevel) {
-          mapZoomLevel = nextZoom;
-          renderMap();
-        }
+        const dx = midpoint.x - touchMapState.startMidX;
+        const dy = midpoint.y - touchMapState.startMidY;
+        const startCenter = touchMapState.startCenter || mapCenter;
+        const startCenterPixel = latLngToPixel(startCenter.lat, startCenter.lng, nextZoom);
+        mapZoomLevel = nextZoom;
+        mapCenter = pixelToLatLng(startCenterPixel.x - dx, startCenterPixel.y - dy, mapZoomLevel);
+        renderMap();
       }
     }, { passive: false });
 
     routeMap.addEventListener("touchend", event => {
       if (event.touches.length === 1) {
         const touch = event.touches[0];
-        touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel };
+        touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel, startMidX: touch.clientX, startMidY: touch.clientY, startCenter: { ...mapCenter } };
         dragStart = {
           x: touch.clientX,
           y: touch.clientY,
@@ -7937,7 +7953,7 @@
         };
         return;
       }
-      touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel };
+      touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel, startMidX: 0, startMidY: 0, startCenter: null };
     }, { passive: false });
 
     routeMap.addEventListener("wheel", event => {
