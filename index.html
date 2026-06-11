@@ -1544,6 +1544,10 @@
       border-radius: 8px;
       background: #dbeef7;
       box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.76);
+      overscroll-behavior: contain;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .tileLayer,
@@ -6172,6 +6176,7 @@
     let weatherController = null;
     let isDraggingMap = false;
     let dragStart = { x: 0, y: 0, centerPixel: null };
+    let touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel };
 
     const courseGrid = document.querySelector("#courseGrid");
     const dayList = document.querySelector("#dayList");
@@ -7871,6 +7876,69 @@
       isDraggingMap = false;
       routeMap.style.cursor = "";
     });
+
+    function getTouchDistance(touches) {
+      if (touches.length < 2) return 0;
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.hypot(dx, dy);
+    }
+
+    routeMap.addEventListener("touchstart", event => {
+      if (!event.touches.length) return;
+      event.preventDefault();
+      if (event.touches.length === 1) {
+        const touch = event.touches[0];
+        touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel };
+        dragStart = {
+          x: touch.clientX,
+          y: touch.clientY,
+          centerPixel: latLngToPixel(mapCenter.lat, mapCenter.lng, mapZoomLevel)
+        };
+        return;
+      }
+      touchMapState = {
+        mode: "pinch",
+        startDistance: getTouchDistance(event.touches),
+        startZoom: mapZoomLevel
+      };
+    }, { passive: false });
+
+    routeMap.addEventListener("touchmove", event => {
+      if (!touchMapState.mode) return;
+      event.preventDefault();
+      if (touchMapState.mode === "pan" && event.touches.length === 1) {
+        const touch = event.touches[0];
+        const dx = touch.clientX - dragStart.x;
+        const dy = touch.clientY - dragStart.y;
+        mapCenter = pixelToLatLng(dragStart.centerPixel.x - dx, dragStart.centerPixel.y - dy, mapZoomLevel);
+        renderMap();
+        return;
+      }
+      if (event.touches.length >= 2 && touchMapState.startDistance > 0) {
+        const nextDistance = getTouchDistance(event.touches);
+        const zoomDelta = Math.round(Math.log2(nextDistance / touchMapState.startDistance));
+        const nextZoom = Math.max(9, Math.min(16, touchMapState.startZoom + zoomDelta));
+        if (nextZoom !== mapZoomLevel) {
+          mapZoomLevel = nextZoom;
+          renderMap();
+        }
+      }
+    }, { passive: false });
+
+    routeMap.addEventListener("touchend", event => {
+      if (event.touches.length === 1) {
+        const touch = event.touches[0];
+        touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel };
+        dragStart = {
+          x: touch.clientX,
+          y: touch.clientY,
+          centerPixel: latLngToPixel(mapCenter.lat, mapCenter.lng, mapZoomLevel)
+        };
+        return;
+      }
+      touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel };
+    }, { passive: false });
 
     routeMap.addEventListener("wheel", event => {
       event.preventDefault();
