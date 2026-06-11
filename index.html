@@ -7298,6 +7298,31 @@
       `;
     }
 
+    function getWeatherRequestUrls(params) {
+      const query = params.toString();
+      const urls = [];
+      if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+        urls.push(`/api/weather?${query}`);
+      }
+      urls.push(`https://api.open-meteo.com/v1/forecast?${query}`);
+      return urls;
+    }
+
+    async function fetchWeatherData(params, signal) {
+      let lastError = null;
+      for (const url of getWeatherRequestUrls(params)) {
+        try {
+          const response = await fetch(url, { signal });
+          if (!response.ok) throw new Error(`weather ${response.status}`);
+          return await response.json();
+        } catch (error) {
+          if (error.name === "AbortError") throw error;
+          lastError = error;
+        }
+      }
+      throw lastError || new Error("weather fetch failed");
+    }
+
     async function fetchWeeklyWeather() {
       const city = cityData[currentCityKey] || cityData.sapporo;
       const { lat, lng } = city.mapCenter;
@@ -7312,11 +7337,7 @@
         forecast_days: "7"
       });
       try {
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`, {
-          signal: weatherController.signal
-        });
-        if (!response.ok) throw new Error(`weather ${response.status}`);
-        const data = await response.json();
+        const data = await fetchWeatherData(params, weatherController.signal);
         const daily = data.daily;
         if (!daily?.time?.length) throw new Error("missing daily weather");
         const todayWeather = describeWeatherCode(Number(daily.weather_code[0]));
@@ -7346,10 +7367,10 @@
             </article>
           `;
         }).join("");
-        weeklyWeatherStatus.textContent = `${city.name} 기준 · 오늘 포함 7일 예보 · Open-Meteo 실시간 API`;
+        weeklyWeatherStatus.textContent = `${city.name} 기준 · 오늘 포함 7일 예보 · Vercel 프록시/Open-Meteo`;
       } catch (error) {
         if (error.name === "AbortError") return;
-        renderWeatherFallback(`${city.name} 날씨 정보를 불러오지 못했습니다. 잠시 뒤 다시 시도하세요.`);
+        renderWeatherFallback(`${city.name} 날씨 정보를 불러오지 못했습니다. Vercel 배포 후 다시 확인하세요.`);
       }
     }
 
