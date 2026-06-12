@@ -488,7 +488,7 @@
 
     .course-mode-tabs {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -759,10 +759,48 @@
       white-space: nowrap;
     }
 
+    .place-builder-search,
+    .attraction-search-field {
+      display: grid;
+      gap: 6px;
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .place-builder-search input,
+    .attraction-search-field input {
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 11px;
+      border: 2px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 850;
+      box-shadow: 3px 3px 0 rgba(16, 19, 25, 0.13);
+      outline: none;
+    }
+
+    .place-builder-search input:focus,
+    .attraction-search-field input:focus {
+      border-color: var(--blue);
+      box-shadow: 2px 2px 0 rgba(16, 19, 25, 0.22);
+    }
+
     .place-builder-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+    }
+
+    .place-builder-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .place-builder-card {
@@ -817,6 +855,17 @@
       font-size: 0.76rem;
       font-weight: 800;
       line-height: 1.2;
+    }
+
+    .place-builder-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .place-builder-badges em {
+      font-style: normal;
     }
 
     .auto-controls {
@@ -942,6 +991,54 @@
       min-width: 0;
     }
 
+    .hero-calculator-button {
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      min-width: 46px;
+      height: 46px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--ink);
+      box-shadow: none;
+      cursor: pointer;
+    }
+
+    .calculator-glyph {
+      position: relative;
+      display: block;
+      width: 24px;
+      height: 30px;
+      border: 3px solid var(--line);
+      border-radius: 5px;
+      background:
+        linear-gradient(#98e13d, #98e13d) 50% 5px / 14px 5px no-repeat,
+        radial-gradient(circle, var(--line) 0 2px, transparent 2.5px) 5px 16px / 7px 7px repeat,
+        #f8fbff;
+    }
+
+    .calculator-glyph::after {
+      content: "";
+      position: absolute;
+      right: 3px;
+      bottom: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      background: var(--blue);
+    }
+
+    .calculator-modal-panel {
+      width: min(760px, 100%);
+    }
+
+    .budget-reset-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+
     .attraction-filter-panel {
       display: grid;
       gap: 8px;
@@ -972,6 +1069,14 @@
       font-size: 0.88rem;
     }
 
+    .favorite-filter-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
     .attraction-filter-meta {
       display: flex;
       flex-wrap: wrap;
@@ -980,7 +1085,8 @@
       justify-content: space-between;
     }
 
-    .attraction-filter-panel select {
+    .attraction-filter-panel select,
+    .attraction-search-field input {
       min-height: 40px;
       padding: 8px 10px;
       border: 2px solid var(--line);
@@ -1413,6 +1519,10 @@
       z-index: 52;
     }
 
+    #favoriteAttractionModal {
+      z-index: 53;
+    }
+
     #stopPickerModal {
       z-index: 54;
     }
@@ -1482,6 +1592,50 @@
       color: var(--ink);
       font-weight: 900;
       font-size: 0.86rem;
+    }
+
+    .favorite-modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .favorite-modal-card {
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 2px solid var(--line);
+      border-radius: 14px 8px 12px 10px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .favorite-modal-card img {
+      width: 86px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: #f3f6fa;
+    }
+
+    .favorite-modal-info {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .favorite-modal-info strong {
+      font-size: 1rem;
+      line-height: 1.25;
+      word-break: keep-all;
+    }
+
+    .favorite-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .image-modal-panel {
@@ -1670,6 +1824,27 @@
     .saved-plan-info span {
       color: var(--muted);
       font-size: 0.74rem;
+    }
+
+    .saved-plan-edit {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 6px;
+      align-items: center;
+      width: min(100%, 520px);
+    }
+
+    .saved-plan-title-input {
+      width: 100%;
+      min-height: 32px;
+      padding: 6px 8px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 900;
     }
 
     .saved-plan-empty {
@@ -1961,6 +2136,7 @@
     }
 
     .stop-strength,
+    .stop-origin-badge,
     .attraction-strength,
     .day-intensity-note {
       display: inline-flex;
@@ -1975,6 +2151,18 @@
       font-size: 0.78rem;
       font-weight: 800;
       line-height: 1.2;
+    }
+
+    .stop-origin-badge {
+      border-color: rgba(32, 104, 67, 0.22);
+      background: rgba(226, 249, 234, 0.92);
+      color: #1f6e4d;
+    }
+
+    .stop-origin-badge.is-ai {
+      border-color: rgba(133, 92, 28, 0.22);
+      background: rgba(255, 244, 220, 0.94);
+      color: #8a5a10;
     }
 
     .attraction-meta-row {
@@ -2004,6 +2192,27 @@
       text-decoration: none;
       white-space: nowrap;
       cursor: pointer;
+    }
+
+    .attraction-chip-action.is-favorite {
+      border-color: rgba(241, 182, 0, 0.5);
+      background: #fff2a8;
+      color: #6b4a00;
+    }
+
+    .favorite-heart {
+      display: inline-flex;
+      width: 1em;
+      align-items: center;
+      justify-content: center;
+      margin-right: 3px;
+      color: #111827;
+      font-size: 0.92em;
+      line-height: 1;
+    }
+
+    .is-favorite .favorite-heart {
+      color: #e3324a;
     }
 
     .route-chip-action,
@@ -3436,7 +3645,16 @@
       color: var(--ink);
     }
 
+    .anti-brutal .topline {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
     .anti-brutal .hero-live-card {
+      position: relative;
       justify-self: start;
       display: grid;
       width: min(100%, 300px);
@@ -3882,6 +4100,10 @@
       .anti-brutal .attraction-grid {
         grid-template-columns: 1fr;
       }
+
+      .favorite-modal-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Request refinements: denser hero controls and one-line labels. */
@@ -4272,24 +4494,25 @@
     }
 
     .anti-brutal .workflow-tabs .tab-button > span:first-child::before {
-      content: counter(workflow-step);
+      content: "STEP." counter(workflow-step);
       position: absolute;
       left: 8px;
       top: 8px;
       display: grid;
-      width: 18px;
-      height: 18px;
+      width: 50px;
+      height: 20px;
       place-items: center;
       border: 2px solid var(--line);
-      border-radius: 50%;
+      border-radius: 999px;
       background: var(--cream);
       color: var(--ink);
       box-shadow: none;
-      font-size: 0.68rem;
+      font-size: 0.58rem;
       font-weight: 950;
-      line-height: 18px;
+      line-height: 1;
       text-align: center;
       padding: 0;
+      letter-spacing: 0;
     }
 
     .anti-brutal .workflow-tabs .tab-button.is-active > span:first-child::before {
@@ -4376,8 +4599,13 @@
 
       .anti-brutal .topline {
         grid-column: 1;
-        justify-content: flex-start;
+        width: 100%;
+        justify-content: space-between;
         margin: 0;
+      }
+
+      .anti-brutal .hero-calculator-button {
+        margin-left: auto;
       }
 
       .anti-brutal .hero-live-card {
@@ -4508,6 +4736,9 @@
     <div class="wrap hero-inner">
       <div class="topline" aria-label="사이트 정보">
         <div class="brand"><span class="brand-mark" id="brandMark">J</span> <span id="brandName">Japan Route Guide</span></div>
+        <button class="hero-calculator-button" type="button" id="openCalculatorModal" aria-label="계산기 열기" title="계산기 열기">
+          <span class="calculator-glyph" aria-hidden="true"></span>
+        </button>
       </div>
       <div class="hero-live-card" id="heroLiveCard" aria-live="polite">
         <div>
@@ -4599,16 +4830,12 @@
           <p class="slot-fill-notice" id="slotFillNotice"></p>
           <div class="selection-meter" id="selectionProgress" aria-live="polite"></div>
           <div class="course-mode-tabs" role="tablist" aria-label="코스 선택 방식">
-            <button class="course-mode-button is-active" type="button" data-course-mode="custom">코스로 조합하기</button>
-            <button class="course-mode-button" type="button" data-course-mode="places">장소로 조합하기</button>
+            <button class="course-mode-button is-active" type="button" data-course-mode="places">장소로 조합하기</button>
+            <button class="course-mode-button" type="button" data-course-mode="custom">코스로 조합하기</button>
             <button class="course-mode-button" type="button" data-course-mode="package">추천 패키지</button>
           </div>
 
-          <div class="course-mode-panel is-active" id="courseBuilderBody" data-course-panel="custom">
-            <div class="course-grid" id="courseGrid" aria-label="도시별 여행 코스 목록"></div>
-          </div>
-
-          <div class="course-mode-panel" id="placeBuilderBody" data-course-panel="places">
+          <div class="course-mode-panel is-active" id="placeBuilderBody" data-course-panel="places">
             <div class="place-builder-panel">
               <div class="place-builder-head">
                 <div class="place-builder-copy">
@@ -4617,8 +4844,17 @@
                 </div>
                 <span class="place-builder-count" id="placeBuilderCount">0곳 선택</span>
               </div>
+              <label class="place-builder-search">
+                장소 검색
+                <input id="placeBuilderSearch" type="search" placeholder="예: 오도리, 시장, 온천">
+              </label>
               <div class="place-builder-grid" id="placeBuilderGrid" aria-label="명승지 직접 선택 목록"></div>
+              <div class="place-builder-pagination" id="placeBuilderPagination" aria-label="명승지 목록 페이지"></div>
             </div>
+          </div>
+
+          <div class="course-mode-panel" id="courseBuilderBody" data-course-panel="custom">
+            <div class="course-grid" id="courseGrid" aria-label="도시별 여행 코스 목록"></div>
           </div>
 
           <div class="course-mode-panel" id="packageBody" data-course-panel="package">
@@ -4640,7 +4876,6 @@
                 </div>
                 <div class="plan-vault-actions">
                   <button class="plan-vault-button" type="button" id="savePlanButton">계획 저장</button>
-                  <button class="plan-vault-button" type="button" id="loadLatestPlanButton">불러오기</button>
                   <button class="plan-vault-button" type="button" id="exportPlanButton">파일 저장</button>
                   <button class="plan-vault-button" type="button" id="importPlanButton">파일 불러오기</button>
                   <input id="planFileInput" type="file" accept="application/json,.json" hidden>
@@ -4719,6 +4954,10 @@
             </div>
           </div>
           <div class="attraction-filter-panel game-card">
+            <label class="attraction-search-field">
+              명승지 검색
+              <input id="attractionSearchInput" type="search" placeholder="예: TV타워, 공원, 쇼핑">
+            </label>
             <div class="attraction-filter-row">
               <label>
                 추천 강도
@@ -4740,10 +4979,14 @@
             </div>
             <div class="attraction-filter-meta">
               <p class="filter-count" id="attractionFilterCount">명승지를 불러오는 중입니다.</p>
-              <button class="attraction-list-toggle" type="button" id="toggleAttractionList">명승지 리스트 접기</button>
+              <div class="favorite-filter-actions">
+                <button class="attraction-list-toggle" type="button" id="openFavoriteAttractions">찜 목록 보기</button>
+                <button class="attraction-list-toggle" type="button" id="toggleAttractionList">명승지 리스트 접기</button>
+              </div>
             </div>
           </div>
           <div class="attraction-grid" id="attractionGrid" aria-label="삿포로 명승지 목록"></div>
+          <div class="place-builder-pagination attraction-pagination" id="attractionPagination" aria-label="명승지 리스트 페이지"></div>
         </section>
 
         <section class="tab-panel" id="transportPanelTab" data-panel="transport" aria-labelledby="transport-title">
@@ -4763,7 +5006,7 @@
             </div>
             <p class="lead" id="budgetLead" hidden></p>
           </div>
-          <div class="budget-calculator game-card">
+          <div class="budget-calculator game-card" id="budgetCalculator">
             <div class="budget-input-row">
               <label class="budget-field">
                 금액(엔)
@@ -4793,6 +5036,9 @@
             <div class="exchange-status-row">
               <button class="exchange-refresh-button" type="button" id="refreshExchangeRate" aria-label="환율 새로고침" title="환율 새로고침">환율 ↻</button>
               <p class="exchange-status" id="exchangeStatus">실시간 환율을 불러오는 중입니다.</p>
+            </div>
+            <div class="budget-reset-row">
+              <button class="inline-action" type="button" id="resetExchangeCalculator">초기화</button>
             </div>
           </div>
           <div class="tips-grid" id="budgetGrid"></div>
@@ -4845,6 +5091,32 @@
           <button class="inline-action" type="button" data-action="close-image">닫기</button>
         </div>
         <img class="image-modal-photo" id="imageModalPhoto" src="" alt="">
+      </div>
+    </div>
+
+    <div class="modal" id="favoriteAttractionModal" aria-hidden="true">
+      <div class="modal-panel">
+        <div class="modal-head">
+          <div>
+            <h3 id="favoriteAttractionTitle">찜한 명승지</h3>
+            <p class="stop-picker-meta" id="favoriteAttractionMeta">찜한 장소를 한 번에 확인하세요.</p>
+          </div>
+          <button class="inline-action" type="button" data-action="close-favorite-attractions">닫기</button>
+        </div>
+        <div class="favorite-modal-grid" id="favoriteAttractionGrid"></div>
+      </div>
+    </div>
+
+    <div class="modal" id="calculatorModal" aria-hidden="true">
+      <div class="modal-panel calculator-modal-panel">
+        <div class="modal-head">
+          <div>
+            <h3>계산기(円)</h3>
+            <p class="stop-picker-meta">엔화 금액, 할인율, Tax Refund를 바로 계산하세요.</p>
+          </div>
+          <button class="inline-action" type="button" data-action="close-calculator">닫기</button>
+        </div>
+        <div id="calculatorModalMount"></div>
       </div>
     </div>
 
@@ -6733,6 +7005,24 @@
       seeds.forEach(seed => addSupplementalPlace(cityKey, seed));
     });
 
+    function normalizeAttractionImages() {
+      Object.values(cityData).forEach(city => {
+        const seenSources = new Set();
+        city.attractions.forEach(attraction => {
+          let imageSrc = attraction.image || city.actualPlacePhotos[attraction.id]?.src || "";
+          const hasDuplicateRealPhoto = imageSrc && !imageSrc.startsWith("data:image") && seenSources.has(imageSrc);
+          if (!imageSrc || hasDuplicateRealPhoto) {
+            imageSrc = imageFallback(attraction.name);
+          }
+          attraction.image = imageSrc;
+          city.actualPlacePhotos[attraction.id] = { label: attraction.name, src: imageSrc };
+          seenSources.add(imageSrc);
+        });
+      });
+    }
+
+    normalizeAttractionImages();
+
     const cityTips = {
       sapporo: {
         weather: "삿포로는 여름이 선선하고 겨울에는 눈이 많습니다. 겨울 여행은 방수 신발과 미끄럼 대비가 만족도를 크게 좌우합니다.",
@@ -7121,6 +7411,7 @@
     let suppressNextDayClick = false;
     let slotFillTargetIndex = null;
     let stopPickerDayIndex = null;
+    let favoriteAttractionIds = new Set();
     let mapVisibleDays = new Set();
     let knownMapDayCount = 0;
     let mapZoomLevel = 11;
@@ -7137,6 +7428,7 @@
     let weatherController = null;
     const PLAN_STORAGE_KEY = "japan-route-guide-saved-plans";
     const AUTO_PLAN_STORAGE_KEY = "japan-route-guide-auto-plan";
+    const FAVORITE_ATTRACTION_STORAGE_KEY = "japan-route-guide-favorite-attractions";
     let planAutoSaveTimer = null;
     let isRestoringPlan = false;
     let isPlanAutoSaveReady = false;
@@ -7149,7 +7441,6 @@
     const planVaultStatus = document.querySelector("#planVaultStatus");
     const savedPlanList = document.querySelector("#savedPlanList");
     const savePlanButton = document.querySelector("#savePlanButton");
-    const loadLatestPlanButton = document.querySelector("#loadLatestPlanButton");
     const exportPlanButton = document.querySelector("#exportPlanButton");
     const importPlanButton = document.querySelector("#importPlanButton");
     const planFileInput = document.querySelector("#planFileInput");
@@ -7171,22 +7462,32 @@
     const imageModal = document.querySelector("#imageModal");
     const imageModalTitle = document.querySelector("#imageModalTitle");
     const imageModalPhoto = document.querySelector("#imageModalPhoto");
+    const calculatorModal = document.querySelector("#calculatorModal");
+    const calculatorModalMount = document.querySelector("#calculatorModalMount");
+    const favoriteAttractionModal = document.querySelector("#favoriteAttractionModal");
+    const favoriteAttractionMeta = document.querySelector("#favoriteAttractionMeta");
+    const favoriteAttractionGrid = document.querySelector("#favoriteAttractionGrid");
     const stopPickerModal = document.querySelector("#stopPickerModal");
     const stopPickerTitle = document.querySelector("#stopPickerTitle");
     const stopPickerMeta = document.querySelector("#stopPickerMeta");
     const stopPickerGroups = document.querySelector("#stopPickerGroups");
     const attractionGrid = document.querySelector("#attractionGrid");
+    const attractionPagination = document.querySelector("#attractionPagination");
     const toggleAttractionList = document.querySelector("#toggleAttractionList");
     const attractionStrengthFilter = document.querySelector("#attractionStrengthFilter");
     const attractionCategoryFilter = document.querySelector("#attractionCategoryFilter");
     const attractionAreaFilter = document.querySelector("#attractionAreaFilter");
+    const attractionSearchInput = document.querySelector("#attractionSearchInput");
     const attractionFilterCount = document.querySelector("#attractionFilterCount");
+    const openFavoriteAttractions = document.querySelector("#openFavoriteAttractions");
     const packageGrid = document.querySelector("#packageGrid");
     const packageBody = document.querySelector("#packageBody");
     const courseBuilderBody = document.querySelector("#courseBuilderBody");
     const placeBuilderBody = document.querySelector("#placeBuilderBody");
     const placeBuilderGrid = document.querySelector("#placeBuilderGrid");
     const placeBuilderCount = document.querySelector("#placeBuilderCount");
+    const placeBuilderPagination = document.querySelector("#placeBuilderPagination");
+    const placeBuilderSearch = document.querySelector("#placeBuilderSearch");
     const courseModeButtons = document.querySelectorAll("[data-course-mode]");
     const courseModePanels = document.querySelectorAll("[data-course-panel]");
     const finishCourseSelection = document.querySelector("#finishCourseSelection");
@@ -7210,12 +7511,14 @@
     const budgetTitle = document.querySelector("#budget-title");
     const budgetLead = document.querySelector("#budgetLead");
     const budgetGrid = document.querySelector("#budgetGrid");
+    const budgetCalculator = document.querySelector("#budgetCalculator");
     const yenAmountInput = document.querySelector("#yenAmountInput");
     const exchangeRateInput = document.querySelector("#exchangeRateInput");
     const discountRateInput = document.querySelector("#discountRateInput");
     const taxRefundRateInput = document.querySelector("#taxRefundRateInput");
     const exchangeResult = document.querySelector("#exchangeResult");
     const exchangeStatus = document.querySelector("#exchangeStatus");
+    const resetExchangeCalculator = document.querySelector("#resetExchangeCalculator");
     const refreshExchangeRate = document.querySelector("#refreshExchangeRate");
     const quickYenButtons = document.querySelector("#quickYenButtons");
     const weeklyWeatherStrip = document.querySelector("#weeklyWeatherStrip");
@@ -7224,23 +7527,31 @@
     const hero = document.querySelector(".hero");
     const heroExchange = document.querySelector("#heroExchange");
     const heroWeather = document.querySelector("#heroWeather");
+    const openCalculatorModalButton = document.querySelector("#openCalculatorModal");
     const heroTitle = document.querySelector("#heroTitle");
     const brandMark = document.querySelector("#brandMark");
     const brandName = document.querySelector("#brandName");
     const cityButtons = document.querySelectorAll("[data-city]");
     const attractionsTitle = document.querySelector("#attractions-title");
     const openAttractions = new Set();
-    const attractionFilters = { strength: "all", category: "all", area: "all" };
+    const attractionFilters = { strength: "all", category: "all", area: "all", query: "" };
     let attractionsListOpen = true;
-    let activeCourseMode = "custom";
+    let activeCourseMode = "places";
     let currentCityKey = "sapporo";
     const tabButtons = document.querySelectorAll("[data-tab]");
     const tabPanels = document.querySelectorAll("[data-panel]");
     let currentTab = document.querySelector(".tab-button.is-active")?.dataset.tab || null;
     let stopPickerSortMode = "distance";
     const STOP_PICKER_PAGE_SIZE = 6;
+    const PLACE_BUILDER_PAGE_SIZE = 12;
+    const ATTRACTION_PAGE_SIZE = 6;
     let stopPickerPages = { available: 1, scheduled: 1 };
+    let placeBuilderPage = 1;
+    let attractionPage = 1;
     let selectedPlaceStops = [];
+    let editingPlanId = null;
+    let calculatorOriginalParent = null;
+    let calculatorOriginalNextSibling = null;
 
     function getCourse(courseId) {
       return courses.find(course => course.id === courseId) || courses[0];
@@ -7300,22 +7611,18 @@
       };
     }
 
+    function getStopOriginBadge(origin) {
+      if (origin === "ai") return `<span class="stop-origin-badge is-ai">AI 추천 여행지</span>`;
+      if (origin === "user" || origin === "user-added") return `<span class="stop-origin-badge">내가 고른 곳</span>`;
+      return "";
+    }
+
     function getPlaceModeDistribution(selectedCount, tripDayCount) {
       const dayCount = Math.max(1, Number(tripDayCount || 1));
-      const weights = dayCount === 1
-        ? [1]
-        : Array.from({ length: dayCount }, (_, index) => (index === 0 || index === dayCount - 1 ? 1 : 2));
-      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
-      const rawCounts = weights.map(weight => (selectedCount * weight) / totalWeight);
-      const counts = rawCounts.map(value => Math.floor(value));
-      let remaining = selectedCount - counts.reduce((sum, value) => sum + value, 0);
-      const remainders = rawCounts.map((value, index) => ({ index, remainder: value - counts[index] }))
-        .sort((a, b) => b.remainder - a.remainder);
-      for (let index = 0; index < remainders.length && remaining > 0; index += 1) {
-        counts[remainders[index].index] += 1;
-        remaining -= 1;
-      }
-      return counts;
+      const total = Math.max(0, Number(selectedCount || 0));
+      const base = Math.floor(total / dayCount);
+      const remainder = total % dayCount;
+      return Array.from({ length: dayCount }, (_, index) => base + (index < remainder ? 1 : 0));
     }
 
     function orderStopsForPlaceMode(stopIds) {
@@ -7352,24 +7659,138 @@
 
     function buildRouteStackFromSelectedPlaces() {
       const tripDayCount = Number(tripDays.value);
+      const targetTotal = Math.max(selectedPlaceStops.length, tripDayCount * getDailyStopLimit());
       const orderedStops = orderStopsForPlaceMode(selectedPlaceStops);
-      const counts = getPlaceModeDistribution(orderedStops.length, tripDayCount);
+      const selectedCounts = getPlaceModeDistribution(orderedStops.length, tripDayCount);
+      const targetCounts = getPlaceModeDistribution(targetTotal, tripDayCount);
       const course = createPlaceBuilderCourse();
+      const usedStops = new Set(orderedStops);
+      const candidateStops = attractions.map(attraction => getAttractionStopId(attraction.id)).filter(stopId => !usedStops.has(stopId));
+      const dayPlans = [];
       let cursor = 0;
-      return counts.map((count, index) => {
-        const dayStops = orderedStops.slice(cursor, cursor + count);
-        cursor += count;
-        if (!dayStops.length) return createEmptyRouteSlot();
-        return {
+
+      for (let index = 0; index < tripDayCount; index += 1) {
+        const selectedCount = selectedCounts[index] || 0;
+        const dayStops = orderedStops.slice(cursor, cursor + selectedCount);
+        cursor += selectedCount;
+        const stopOrigins = Object.fromEntries(dayStops.map(stopId => [stopId, "user"]));
+        dayPlans.push({
           uid: `places-${currentCityKey}-${index + 1}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
           custom: true,
           fixedStops: true,
           course,
           courseDay: index + 1,
           title: `장소 조합 Day ${index + 1}`,
-          stops: dayStops
-        };
+          stops: dayStops,
+          stopOrigins
+        });
+      }
+
+      dayPlans.forEach((dayPlan, index) => {
+        const requiredCount = targetCounts[index] || 0;
+        while (dayPlan.stops.length < requiredCount && candidateStops.length) {
+          const anchorStops = dayPlan.stops.length ? dayPlan.stops : [];
+          const anchorPoint = anchorStops.length
+            ? null
+            : (hotelLocation ? { lat: hotelLocation.lat, lng: hotelLocation.lng } : mapCenter);
+          candidateStops.sort((a, b) => {
+            const metaA = getRecommendationMeta(a);
+            const metaB = getRecommendationMeta(b);
+            const distanceA = anchorStops.length
+              ? minDistanceToStops(a, anchorStops)
+              : Math.hypot((getPlace(a).lat - anchorPoint.lat) * 111, (getPlace(a).lng - anchorPoint.lng) * 82);
+            const distanceB = anchorStops.length
+              ? minDistanceToStops(b, anchorStops)
+              : Math.hypot((getPlace(b).lat - anchorPoint.lat) * 111, (getPlace(b).lng - anchorPoint.lng) * 82);
+            const areaBonusA = anchorStops.length && anchorStops.some(stopId => getStopArea(stopId) === getStopArea(a)) ? 0.35 : 0;
+            const areaBonusB = anchorStops.length && anchorStops.some(stopId => getStopArea(stopId) === getStopArea(b)) ? 0.35 : 0;
+            const favoriteBonusA = favoriteAttractionIds.has(getAttractionFromStopId(a)?.id) ? 0.42 : 0;
+            const favoriteBonusB = favoriteAttractionIds.has(getAttractionFromStopId(b)?.id) ? 0.42 : 0;
+            const scoreA = distanceA - (metaA.recommendScore * 0.18) - Math.log10(metaA.reviewCount + 1) * 0.04 - areaBonusA - favoriteBonusA;
+            const scoreB = distanceB - (metaB.recommendScore * 0.18) - Math.log10(metaB.reviewCount + 1) * 0.04 - areaBonusB - favoriteBonusB;
+            return scoreA - scoreB;
+          });
+          const nextStop = candidateStops.shift();
+          if (!nextStop) break;
+          dayPlan.stops.push(nextStop);
+          dayPlan.stopOrigins[nextStop] = "ai";
+          usedStops.add(nextStop);
+        }
+        dayPlan.stops = optimizeStopsByLocation(dayPlan.stops);
       });
+
+      return dayPlans.map(dayPlan => dayPlan.stops.length ? dayPlan : createEmptyRouteSlot(dayPlan.uid));
+    }
+
+    function buildSinglePlaceRouteDay(slotIndex) {
+      const scheduledStops = getScheduledStops(slotIndex);
+      const selectedStops = orderStopsForPlaceMode(selectedPlaceStops.filter(stopId => !scheduledStops.has(stopId)));
+      if (!selectedStops.length) return null;
+
+      const course = createPlaceBuilderCourse();
+      const stopOrigins = Object.fromEntries(selectedStops.map(stopId => [stopId, "user"]));
+      const dayStops = [...selectedStops];
+      const targetCount = Math.max(dayStops.length, getDailyStopLimit());
+      const usedStops = new Set([...scheduledStops, ...dayStops]);
+      const candidateStops = attractions
+        .map(attraction => getAttractionStopId(attraction.id))
+        .filter(stopId => getPlace(stopId) && !usedStops.has(stopId));
+
+      while (dayStops.length < targetCount && candidateStops.length) {
+        const anchorStops = dayStops.length ? dayStops : [];
+        const anchorPoint = anchorStops.length
+          ? null
+          : (hotelLocation ? { lat: hotelLocation.lat, lng: hotelLocation.lng } : mapCenter);
+        candidateStops.sort((a, b) => {
+          const metaA = getRecommendationMeta(a);
+          const metaB = getRecommendationMeta(b);
+          const distanceA = anchorStops.length
+            ? minDistanceToStops(a, anchorStops)
+            : Math.hypot((getPlace(a).lat - anchorPoint.lat) * 111, (getPlace(a).lng - anchorPoint.lng) * 82);
+          const distanceB = anchorStops.length
+            ? minDistanceToStops(b, anchorStops)
+            : Math.hypot((getPlace(b).lat - anchorPoint.lat) * 111, (getPlace(b).lng - anchorPoint.lng) * 82);
+          const favoriteBonusA = favoriteAttractionIds.has(getAttractionFromStopId(a)?.id) ? 0.42 : 0;
+          const favoriteBonusB = favoriteAttractionIds.has(getAttractionFromStopId(b)?.id) ? 0.42 : 0;
+          const scoreA = distanceA - (metaA.recommendScore * 0.18) - Math.log10(metaA.reviewCount + 1) * 0.04 - favoriteBonusA;
+          const scoreB = distanceB - (metaB.recommendScore * 0.18) - Math.log10(metaB.reviewCount + 1) * 0.04 - favoriteBonusB;
+          return scoreA - scoreB;
+        });
+        const nextStop = candidateStops.shift();
+        if (!nextStop) break;
+        dayStops.push(nextStop);
+        stopOrigins[nextStop] = "ai";
+        usedStops.add(nextStop);
+      }
+
+      const optimizedStops = optimizeStopsByLocation(dayStops);
+      return {
+        uid: `place-slot-${currentCityKey}-${slotIndex + 1}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        custom: true,
+        fixedStops: true,
+        course,
+        courseDay: slotIndex + 1,
+        title: `장소 조합 Day ${slotIndex + 1}`,
+        stops: optimizedStops,
+        stopOrigins
+      };
+    }
+
+    function fillEmptyRouteSlotWithPlaces(slotIndex) {
+      const days = getRouteDays();
+      if (!days[slotIndex]?.empty) return false;
+      const placeDay = buildSinglePlaceRouteDay(slotIndex);
+      if (!placeDay) return false;
+      days[slotIndex] = placeDay;
+      routeStack = routeDaysToStack(days);
+      slotFillTargetIndex = null;
+      selectedPlaceStops = [];
+      placeBuilderPage = 1;
+      openRouteDays.clear();
+      foodVisibility.clear();
+      hiddenPinDetails.clear();
+      forcedPinDetails.clear();
+      return true;
     }
 
     function getFoodRecommendations(stopId, stop) {
@@ -7420,7 +7841,23 @@
         if (attractionFilters.strength !== "all" && score < Number(attractionFilters.strength)) return false;
         if (attractionFilters.category !== "all" && getAttractionCategory(attraction) !== attractionFilters.category) return false;
         if (attractionFilters.area !== "all" && getAttractionArea(attraction) !== attractionFilters.area) return false;
+        if (attractionFilters.query) {
+          const haystack = [
+            attraction.name,
+            attraction.tag,
+            attraction.summary,
+            attraction.address,
+            getAttractionArea(attraction),
+            getAttractionCategoryLabel(getAttractionCategory(attraction))
+          ].join(" ").toLowerCase();
+          if (!haystack.includes(attractionFilters.query)) return false;
+        }
         return true;
+      }).sort((a, b) => {
+        const metaA = getRecommendationMeta(getAttractionStopId(a.id));
+        const metaB = getRecommendationMeta(getAttractionStopId(b.id));
+        if (metaB.recommendScore !== metaA.recommendScore) return metaB.recommendScore - metaA.recommendScore;
+        return metaB.reviewCount - metaA.reviewCount;
       });
     }
 
@@ -7528,6 +7965,15 @@
 
     function escapeAttribute(value) {
       return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
     function getDailyStopLimit() {
@@ -7699,10 +8145,13 @@
       const areaSet = new Set(referenceStops.map(getStopArea));
       const currentStops = new Set(day.stops);
       const scheduledElsewhere = getScheduledStops(dayIndex);
+      const scheduledAcrossRoute = getScheduledStops();
       const candidateIds = [...new Set([
         ...baseStops,
         ...sameCourseStops,
-        ...getAllCityCandidateStops()
+        ...getAllCityCandidateStops(),
+        ...scheduledAcrossRoute,
+        ...currentStops
       ])];
 
       const ranked = candidateIds
@@ -7712,10 +8161,12 @@
           const attraction = getAttractionFromStopId(stopId);
           const meta = getRecommendationMeta(stopId);
           const distance = minDistanceToStops(stopId, referenceStops);
+          const favorite = Boolean(attraction && favoriteAttractionIds.has(attraction.id));
           const score =
             (baseStops.includes(stopId) ? 220 : 0) +
             (sameCourseStops.includes(stopId) ? 140 : 0) +
             (areaSet.has(getStopArea(stopId)) ? 80 : 0) +
+            (favorite ? 180 : 0) +
             (meta.recommendScore * 8) +
             (Math.log10(meta.reviewCount + 1) * 10) -
             (distance * 3.4);
@@ -7727,6 +8178,7 @@
             meta,
             score,
             distance,
+            favorite,
             alreadyScheduled,
             photo: getStopPhotoInfo(stopId),
             description: attraction?.summary || locationDescriptions[stopId]?.desc || "현재 일정 동선과 함께 넣기 좋은 후보입니다."
@@ -7734,14 +8186,23 @@
         })
         .sort((a, b) => b.score - a.score);
 
-      const deduped = [];
-      const seenNames = new Set();
+      const dedupedByName = new Map();
       ranked.forEach(item => {
         const nameKey = item.stop.name.trim().toLowerCase();
-        if (seenNames.has(nameKey)) return;
-        seenNames.add(nameKey);
-        deduped.push(item);
+        const existing = dedupedByName.get(nameKey);
+        if (!existing) {
+          dedupedByName.set(nameKey, item);
+          return;
+        }
+        if (item.alreadyScheduled && !existing.alreadyScheduled) {
+          dedupedByName.set(nameKey, item);
+          return;
+        }
+        if (item.alreadyScheduled === existing.alreadyScheduled && item.score > existing.score) {
+          dedupedByName.set(nameKey, item);
+        }
       });
+      const deduped = [...dedupedByName.values()];
 
       return {
         day,
@@ -7772,6 +8233,7 @@
           course: item.course,
           courseDay: item.courseDay,
           title: item.title,
+          stopOrigins: item.stopOrigins || {},
           stops,
           intensityLimit: getDailyStopLimit(),
           rawStops: item.stops
@@ -7802,6 +8264,7 @@
         course: day.course,
         courseDay: day.courseDay,
         title: day.title,
+        stopOrigins: day.stopOrigins || {},
         stops: day.rawStops || day.stops
       } : ({
         uid: day.uid,
@@ -7828,6 +8291,7 @@
         } : null,
         courseDay: item.courseDay || 1,
         title: item.title || "편집 일정",
+        stopOrigins: item.stopOrigins || {},
         stops: Array.isArray(item.stops) ? item.stops : []
       } : {
         uid: item.uid,
@@ -7850,6 +8314,7 @@
             course,
             courseDay: item.courseDay || 1,
             title: item.title || `${course.name} 편집 일정`,
+            stopOrigins: item.stopOrigins || {},
             stops: Array.isArray(item.stops) ? item.stops : []
           };
         }
@@ -7861,6 +8326,41 @@
           dayIndexes: Array.isArray(item.dayIndexes) ? item.dayIndexes : [0]
         };
       }).filter(Boolean);
+    }
+
+    function getFavoriteAttractionStorageKey() {
+      return `${FAVORITE_ATTRACTION_STORAGE_KEY}:${currentCityKey}`;
+    }
+
+    function loadFavoriteAttractions() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(getFavoriteAttractionStorageKey()) || "[]");
+        favoriteAttractionIds = new Set(Array.isArray(parsed) ? parsed : []);
+      } catch (error) {
+        favoriteAttractionIds = new Set();
+      }
+    }
+
+    function saveFavoriteAttractions() {
+      try {
+        localStorage.setItem(getFavoriteAttractionStorageKey(), JSON.stringify([...favoriteAttractionIds]));
+      } catch (error) {
+        // localStorage가 막힌 환경에서는 현재 세션에서만 찜 상태를 유지합니다.
+      }
+    }
+
+    function toggleFavoriteAttraction(attractionId) {
+      if (!attractionId) return;
+      if (favoriteAttractionIds.has(attractionId)) {
+        favoriteAttractionIds.delete(attractionId);
+      } else {
+        favoriteAttractionIds.add(attractionId);
+      }
+      saveFavoriteAttractions();
+      renderAttractions();
+      renderPlaceBuilder();
+      if (stopPickerDayIndex !== null) renderStopPickerModal(stopPickerDayIndex);
+      if (favoriteAttractionModal?.classList.contains("is-open")) renderFavoriteAttractionsModal();
     }
 
     function getSavedPlans() {
@@ -7928,18 +8428,32 @@
 
     function renderSavedPlans() {
       const plans = getSavedPlans();
-      savedPlanList.innerHTML = plans.length ? plans.map(plan => `
-        <div class="saved-plan-row" data-plan-id="${plan.id}">
-          <div class="saved-plan-info">
-            <strong>${plan.name || "저장한 여행 계획"}</strong>
-            <span>${getPlanSummary(plan)}</span>
+      savedPlanList.innerHTML = plans.length ? plans.map(plan => {
+        const isEditing = editingPlanId === plan.id;
+        return `
+          <div class="saved-plan-row" data-plan-id="${plan.id}">
+            <div class="saved-plan-info">
+              ${isEditing ? `
+                <div class="saved-plan-edit">
+                  <input class="saved-plan-title-input" type="text" value="${escapeAttribute(plan.name || "저장한 여행 계획")}" data-plan-title-input="${plan.id}" maxlength="80" aria-label="저장한 계획 제목">
+                  <button class="saved-plan-button" type="button" data-action="save-plan-title" data-plan-id="${plan.id}">저장</button>
+                  <button class="saved-plan-button" type="button" data-action="cancel-plan-title" data-plan-id="${plan.id}">취소</button>
+                </div>
+              ` : `
+                <strong>${escapeHtml(plan.name || "저장한 여행 계획")}</strong>
+              `}
+              <span>${getPlanSummary(plan)}</span>
+            </div>
+            ${isEditing ? "" : `
+              <div class="saved-plan-actions">
+                <button class="saved-plan-button" type="button" data-action="open-saved-plan" data-plan-id="${plan.id}">열기</button>
+                <button class="saved-plan-button" type="button" data-action="rename-saved-plan" data-plan-id="${plan.id}">제목 수정</button>
+                <button class="saved-plan-button" type="button" data-action="delete-saved-plan" data-plan-id="${plan.id}">삭제</button>
+              </div>
+            `}
           </div>
-          <div class="saved-plan-actions">
-            <button class="saved-plan-button" type="button" data-action="open-saved-plan" data-plan-id="${plan.id}">열기</button>
-            <button class="saved-plan-button" type="button" data-action="delete-saved-plan" data-plan-id="${plan.id}">삭제</button>
-          </div>
-        </div>
-      `).join("") : `<div class="saved-plan-empty">아직 저장된 계획이 없습니다. 현재 일정은 자동 저장됩니다.</div>`;
+        `;
+      }).join("") : `<div class="saved-plan-empty">아직 저장된 계획이 없습니다. 현재 일정은 자동 저장됩니다.</div>`;
     }
 
     function setPlanStatus(message) {
@@ -7954,6 +8468,39 @@
       renderSavedPlans();
       setPlanStatus("계획 저장됨 · 방금 전");
       return snapshot;
+    }
+
+    function startRenameSavedPlan(planId) {
+      editingPlanId = planId;
+      renderSavedPlans();
+      window.requestAnimationFrame(() => {
+        const input = savedPlanList.querySelector(`[data-plan-title-input="${planId}"]`);
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      });
+    }
+
+    function saveRenamedPlan(planId) {
+      const plans = getSavedPlans();
+      const plan = plans.find(item => item.id === planId);
+      if (!plan) {
+        setPlanStatus("수정할 계획 없음");
+        return;
+      }
+      const input = savedPlanList.querySelector(`[data-plan-title-input="${planId}"]`);
+      const trimmedName = (input?.value || "").trim();
+      if (!trimmedName) {
+        setPlanStatus("제목 수정 취소됨 · 제목을 입력해 주세요");
+        if (input) input.focus();
+        return;
+      }
+      plan.name = trimmedName.slice(0, 80);
+      setSavedPlans(plans);
+      editingPlanId = null;
+      renderSavedPlans();
+      setPlanStatus("계획 제목 수정됨");
     }
 
     function saveAutoPlan() {
@@ -8078,6 +8625,7 @@
         course: day.course,
         courseDay: day.courseDay,
         title: day.custom ? day.title : `${day.course.name} 편집 일정`,
+        stopOrigins: Object.fromEntries(nextStops.map(stopId => [stopId, day.stopOrigins?.[stopId] || "user"])),
         stops: nextStops,
         rawStops: nextStops
       };
@@ -8101,6 +8649,7 @@
         course: day.course,
         courseDay: day.courseDay,
         title: day.custom ? day.title : `${day.course.name} 편집 일정`,
+        stopOrigins: { ...(day.stopOrigins || {}), [stopId]: "user" },
         stops: nextStops,
         rawStops: nextStops
       };
@@ -8172,17 +8721,38 @@
     }
 
     function renderPlaceBuilder() {
-      const rankedAttractions = [...attractions].sort((a, b) => {
+      const query = (placeBuilderSearch?.value || "").trim().toLowerCase();
+      const rankedAttractions = attractions.filter(attraction => {
+        if (!query) return true;
+        const haystack = [
+          attraction.name,
+          attraction.tag,
+          attraction.summary,
+          attraction.address,
+          getAttractionArea(attraction),
+          getAttractionCategoryLabel(getAttractionCategory(attraction))
+        ].join(" ").toLowerCase();
+        return haystack.includes(query);
+      }).sort((a, b) => {
+        const favoriteDiff = Number(favoriteAttractionIds.has(b.id)) - Number(favoriteAttractionIds.has(a.id));
+        if (favoriteDiff !== 0) return favoriteDiff;
         const metaA = getRecommendationMeta(getAttractionStopId(a.id));
         const metaB = getRecommendationMeta(getAttractionStopId(b.id));
         if (metaB.recommendScore !== metaA.recommendScore) return metaB.recommendScore - metaA.recommendScore;
         return metaB.reviewCount - metaA.reviewCount;
       });
-      placeBuilderCount.textContent = `${selectedPlaceStops.length}곳 선택`;
-      placeBuilderGrid.innerHTML = rankedAttractions.map(attraction => {
+      const targetDays = slotFillTargetIndex !== null ? 1 : Number(tripDays.value);
+      const targetTotal = Math.max(selectedPlaceStops.length, targetDays * getDailyStopLimit());
+      const aiFillCount = Math.max(0, targetTotal - selectedPlaceStops.length);
+      const totalPages = Math.max(1, Math.ceil(rankedAttractions.length / PLACE_BUILDER_PAGE_SIZE));
+      placeBuilderPage = Math.min(totalPages, Math.max(1, placeBuilderPage));
+      const visibleAttractions = rankedAttractions.slice((placeBuilderPage - 1) * PLACE_BUILDER_PAGE_SIZE, placeBuilderPage * PLACE_BUILDER_PAGE_SIZE);
+      placeBuilderCount.textContent = `${selectedPlaceStops.length}곳 선택 · AI ${aiFillCount}곳 보강 · ${rankedAttractions.length}곳 표시 · ${placeBuilderPage}/${totalPages}쪽`;
+      placeBuilderGrid.innerHTML = visibleAttractions.length ? visibleAttractions.map(attraction => {
         const stopId = getAttractionStopId(attraction.id);
         const meta = getRecommendationMeta(stopId);
         const selected = selectedPlaceStops.includes(stopId);
+        const isFavorite = favoriteAttractionIds.has(attraction.id);
         return `
           <button class="place-builder-card ${selected ? "is-selected" : ""}" type="button" data-action="toggle-place-stop" data-stop-id="${stopId}" aria-pressed="${selected}">
             <span class="place-builder-thumb">
@@ -8190,11 +8760,19 @@
             </span>
             <span class="place-builder-info">
               <strong>${attraction.name}</strong>
-              <span>추천 ${meta.recommendScore}/5 · 리뷰 약 ${meta.reviewCount.toLocaleString("ko-KR")}개</span>
+              <span class="place-builder-badges">
+                ${isFavorite ? `<em class="stop-origin-badge"><span class="favorite-heart" aria-hidden="true">♥</span>찜</em>` : ""}
+                <em>추천 ${meta.recommendScore}/5 · 리뷰 약 ${meta.reviewCount.toLocaleString("ko-KR")}개</em>
+              </span>
             </span>
           </button>
         `;
-      }).join("");
+      }).join("") : `<div class="empty-state">검색 결과가 없습니다. 검색어를 지우면 전체 명승지가 다시 표시됩니다.</div>`;
+      placeBuilderPagination.innerHTML = totalPages > 1 ? `
+        <button class="inline-action" type="button" data-action="change-place-page" data-page="${placeBuilderPage - 1}" ${placeBuilderPage === 1 ? "disabled" : ""}>이전</button>
+        <span class="stop-picker-page-info">${placeBuilderPage} / ${totalPages}</span>
+        <button class="inline-action" type="button" data-action="change-place-page" data-page="${placeBuilderPage + 1}" ${placeBuilderPage === totalPages ? "disabled" : ""}>다음</button>
+      ` : "";
     }
 
     function getTripLengthLabel() {
@@ -8206,19 +8784,22 @@
     }
 
     function renderCourseSelectionProgress() {
-      if (activeCourseMode === "places" && slotFillTargetIndex === null) {
-        const maxDays = Number(tripDays.value);
-        const distribution = getPlaceModeDistribution(selectedPlaceStops.length, maxDays);
+      if (activeCourseMode === "places") {
+        const isSlotFillMode = slotFillTargetIndex !== null;
+        const maxDays = isSlotFillMode ? 1 : Number(tripDays.value);
+        const targetTotal = Math.max(selectedPlaceStops.length, maxDays * getDailyStopLimit());
+        const aiFillCount = Math.max(0, targetTotal - selectedPlaceStops.length);
+        const distribution = selectedPlaceStops.length ? getPlaceModeDistribution(targetTotal, maxDays) : [];
         selectionProgress.classList.remove("is-over", "is-under");
         selectionProgress.classList.toggle("is-complete", selectedPlaceStops.length > 0);
         selectionProgress.classList.toggle("is-partial", selectedPlaceStops.length > 0);
         finishCourseSelection.classList.remove("is-alert");
         finishCourseSelection.classList.toggle("is-complete", selectedPlaceStops.length > 0);
         selectionProgress.innerHTML = `
-          <div class="selection-meter-title">내 일정에 담길 후보</div>
+          <div class="selection-meter-title">${isSlotFillMode ? `Day ${slotFillTargetIndex + 1}에 담길 후보` : "내 일정에 담길 후보"}</div>
           <div class="selection-meter-summary">
             <strong>현재 명승지 ${selectedPlaceStops.length}곳 선택됨</strong>
-            <span>${distribution.map((count, index) => `Day ${index + 1} ${count}곳`).join(" · ") || "명승지를 고르면 Day별 배분이 계산됩니다."}</span>
+            <span>${selectedPlaceStops.length ? `내가 고른 곳 ${selectedPlaceStops.length}곳 · AI 추천 ${aiFillCount}곳 · ${isSlotFillMode ? `Day ${slotFillTargetIndex + 1} ${targetTotal}곳` : distribution.map((count, index) => `Day ${index + 1} ${count}곳`).join(" · ")}` : "명승지를 고르면 Day별 배분과 AI 보강 수가 계산됩니다."}</span>
           </div>
           <div class="selection-bar" role="progressbar" aria-label="선택한 명승지 수" aria-valuemin="0" aria-valuemax="${Math.max(selectedPlaceStops.length, 1)}" aria-valuenow="${selectedPlaceStops.length}" style="--day-count:${Math.max(maxDays, 1)}">
             <i style="--progress:${selectedPlaceStops.length ? 100 : 0}%"></i>
@@ -8257,16 +8838,23 @@
     function renderSlotFillState() {
       const isSlotFillMode = slotFillTargetIndex !== null;
       slotFillNotice.classList.toggle("is-visible", isSlotFillMode);
-      slotFillNotice.textContent = isSlotFillMode ? `Day ${slotFillTargetIndex + 1} 빈 슬롯 채우기 모드 · 코스를 1일만 넣을 수 있습니다.` : "";
-      finishCourseSelection.disabled = isSlotFillMode;
-      finishCourseSelection.textContent = isSlotFillMode ? "슬롯 채우는 중" : "선택 완료";
+      slotFillNotice.textContent = isSlotFillMode ? `Day ${slotFillTargetIndex + 1} 빈 슬롯 채우기 모드 · 장소 조합 또는 코스 1일로 채울 수 있습니다.` : "";
+      finishCourseSelection.disabled = false;
+      finishCourseSelection.textContent = "선택 완료";
       resetCourseSelection.textContent = isSlotFillMode ? "채우기 취소" : "초기화";
       courseModeButtons.forEach(button => {
-        if (button.dataset.courseMode !== "custom") button.disabled = isSlotFillMode;
+        button.disabled = isSlotFillMode && button.dataset.courseMode === "package";
       });
     }
 
     function applyPendingCoursesToRoute() {
+      if (slotFillTargetIndex !== null) {
+        return {
+          applied: false,
+          message: "빈 DAY에 넣을 코스 1일을 고르거나, 장소로 조합하기에서 명승지를 선택해 주세요."
+        };
+      }
+
       const pendingEntries = Object.entries(pendingDays)
         .map(([courseId, days]) => [courseId, Number(days || 0)])
         .filter(([, days]) => days > 0);
@@ -8321,6 +8909,16 @@
         };
       }
 
+      if (slotFillTargetIndex !== null) {
+        const filled = fillEmptyRouteSlotWithPlaces(slotFillTargetIndex);
+        return {
+          applied: filled,
+          message: filled
+            ? "고른 명승지와 AI 추천 명승지로 빈 DAY를 채웠습니다."
+            : "이미 다른 일정에 들어간 장소만 선택되어 있습니다. 다른 명승지를 골라 주세요."
+        };
+      }
+
       routeStack = buildRouteStackFromSelectedPlaces();
       pendingDays = createPendingDays();
       openRouteDays.clear();
@@ -8342,6 +8940,8 @@
     function resetSelectedCourses() {
       pendingDays = createPendingDays();
       selectedPlaceStops = [];
+      placeBuilderPage = 1;
+      attractionPage = 1;
       routeStack = [];
       slotFillTargetIndex = null;
       stopPickerDayIndex = null;
@@ -8532,6 +9132,7 @@
                       <span class="stop-heading">
                         <span class="stop-title-line">
                           <strong>${stop.name}</strong>
+                          ${getStopOriginBadge(day.stopOrigins?.[stopId])}
                           <span class="stop-strength">${recommendationLabel}</span>
                           <button class="route-chip-action" type="button" data-action="copy-address" data-address="${escapeAttribute(address)}">주소 복사</button>
                           <button class="route-photo-button" type="button" data-action="open-route-stop-photo" data-image-src="${escapeAttribute(photoSrc)}" data-image-label="${escapeAttribute(photoLabel)}" aria-label="${escapeAttribute(photoLabel)} 사진 보기">
@@ -8812,6 +9413,31 @@
       renderHeroLiveInfo();
     }
 
+    function resetCalculatorInputs() {
+      yenAmountInput.value = "";
+      discountRateInput.value = "";
+      taxRefundRateInput.value = "";
+      updateExchangeCalculator();
+    }
+
+    function openCalculatorModal() {
+      if (!calculatorOriginalParent) {
+        calculatorOriginalParent = budgetCalculator.parentElement;
+        calculatorOriginalNextSibling = budgetCalculator.nextSibling;
+      }
+      calculatorModalMount.appendChild(budgetCalculator);
+      calculatorModal.classList.add("is-open");
+      calculatorModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeCalculatorModal() {
+      if (calculatorOriginalParent) {
+        calculatorOriginalParent.insertBefore(budgetCalculator, calculatorOriginalNextSibling);
+      }
+      calculatorModal.classList.remove("is-open");
+      calculatorModal.setAttribute("aria-hidden", "true");
+    }
+
     function describeWeatherCode(code) {
       if (code === 0) return { icon: "☀", text: "맑음" };
       if ([1, 2].includes(code)) return { icon: "🌤", text: "구름 조금" };
@@ -9079,16 +9705,23 @@
       coursePackages = city.coursePackages;
       pendingDays = createPendingDays();
       selectedPlaceStops = [];
+      placeBuilderPage = 1;
       routeStack = [];
       slotFillTargetIndex = null;
       stopPickerDayIndex = null;
       closeStopPickerModal();
+      closeFavoriteAttractionsModal();
+      closeCalculatorModal();
       courseDetailsOpen.clear();
       openRouteDays.clear();
       openAttractions.clear();
       attractionFilters.strength = "all";
       attractionFilters.category = "all";
       attractionFilters.area = "all";
+      attractionFilters.query = "";
+      if (attractionSearchInput) attractionSearchInput.value = "";
+      if (placeBuilderSearch) placeBuilderSearch.value = "";
+      loadFavoriteAttractions();
       foodVisibility.clear();
       hiddenPinDetails.clear();
       forcedPinDetails.clear();
@@ -9147,19 +9780,27 @@
 
     function renderAttractions() {
       attractionGrid.classList.toggle("is-collapsed", !attractionsListOpen);
+      if (attractionPagination) attractionPagination.hidden = !attractionsListOpen;
       toggleAttractionList.textContent = attractionsListOpen ? "명승지 리스트 접기" : "명승지 리스트 열기";
       toggleAttractionList.setAttribute("aria-expanded", String(attractionsListOpen));
       syncAttractionListToggleMode();
       renderAttractionFilterOptions();
       const visibleAttractions = getFilteredAttractions();
-      attractionFilterCount.textContent = `총 ${attractions.length}곳 중 ${visibleAttractions.length}곳 표시`;
-      attractionGrid.innerHTML = visibleAttractions.length ? visibleAttractions.map(attraction => {
+      const totalPages = Math.max(1, Math.ceil(visibleAttractions.length / ATTRACTION_PAGE_SIZE));
+      attractionPage = Math.min(totalPages, Math.max(1, attractionPage));
+      const pagedAttractions = visibleAttractions.slice((attractionPage - 1) * ATTRACTION_PAGE_SIZE, attractionPage * ATTRACTION_PAGE_SIZE);
+      attractionFilterCount.textContent = `총 ${attractions.length}곳 중 ${visibleAttractions.length}곳 표시 · ${attractionPage}/${totalPages}쪽`;
+      if (openFavoriteAttractions) {
+        openFavoriteAttractions.textContent = `찜 목록 보기 (${favoriteAttractionIds.size})`;
+      }
+      attractionGrid.innerHTML = pagedAttractions.length ? pagedAttractions.map(attraction => {
         const isOpen = openAttractions.has(attraction.id);
         const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(attraction.address)}`;
         const recommendationLabel = getRecommendationLabel(getAttractionStopId(attraction.id));
         const photoSource = attraction.image.startsWith("data:image") ? "사진: 가이드 일러스트" : "사진: Wikimedia Commons";
         const detailMainLine = `관광 소요 시간: ${attraction.duration}`;
         const detailLines = [`주목해야 할 점: ${attraction.highlight}`, ...attraction.details];
+        const isFavorite = favoriteAttractionIds.has(attraction.id);
         return `
           <article class="attraction-card game-card" data-attraction-id="${attraction.id}">
             <button class="attraction-photo" type="button" data-action="open-attraction-photo" data-image-src="${attraction.image}" data-image-label="${attraction.name}">
@@ -9172,6 +9813,9 @@
             </div>
             <div class="attraction-meta-row">
               <span class="attraction-strength">${recommendationLabel}</span>
+              <button class="attraction-chip-action ${isFavorite ? "is-favorite" : ""}" type="button" data-action="toggle-favorite-attraction" data-attraction-id="${attraction.id}" aria-label="${escapeAttribute(isFavorite ? `${attraction.name} 찜 해제` : `${attraction.name} 찜`)}">
+                <span class="favorite-heart" aria-hidden="true">${isFavorite ? "♥" : "♡"}</span>${isFavorite ? "찜 해제" : "찜"}
+              </button>
               <button class="attraction-chip-action" type="button" data-action="copy-address" data-address="${escapeAttribute(attraction.address)}">주소복사</button>
               <a class="attraction-chip-action" href="${mapsUrl}" target="_blank" rel="noreferrer">구글맵 검색</a>
             </div>
@@ -9189,6 +9833,11 @@
           </article>
         `;
       }).join("") : `<div class="tip-card game-card"><h3>조건에 맞는 명승지가 없습니다.</h3><p>추천 강도나 장소 유형, 권역 필터를 조금 넓혀보세요.</p></div>`;
+      attractionPagination.innerHTML = visibleAttractions.length && totalPages > 1 ? `
+        <button class="inline-action" type="button" data-action="change-attraction-page" data-page="${attractionPage - 1}" ${attractionPage === 1 ? "disabled" : ""}>이전</button>
+        <span class="stop-picker-page-info">${attractionPage} / ${totalPages}</span>
+        <button class="inline-action" type="button" data-action="change-attraction-page" data-page="${attractionPage + 1}" ${attractionPage === totalPages ? "disabled" : ""}>다음</button>
+      ` : "";
     }
 
     function syncAttractionListToggleMode() {
@@ -9281,6 +9930,53 @@
       imageModalPhoto.alt = "";
     }
 
+    function getFavoriteAttractions() {
+      return attractions.filter(attraction => favoriteAttractionIds.has(attraction.id)).sort((a, b) => {
+        const metaA = getRecommendationMeta(getAttractionStopId(a.id));
+        const metaB = getRecommendationMeta(getAttractionStopId(b.id));
+        if (metaB.recommendScore !== metaA.recommendScore) return metaB.recommendScore - metaA.recommendScore;
+        return metaB.reviewCount - metaA.reviewCount;
+      });
+    }
+
+    function renderFavoriteAttractionsModal() {
+      const favoriteAttractions = getFavoriteAttractions();
+      favoriteAttractionMeta.textContent = favoriteAttractions.length
+        ? `${cityData[currentCityKey].name}에서 찜한 명승지 ${favoriteAttractions.length}곳`
+        : "아직 찜한 명승지가 없습니다.";
+      favoriteAttractionGrid.innerHTML = favoriteAttractions.length ? favoriteAttractions.map(attraction => {
+        const stopId = getAttractionStopId(attraction.id);
+        const recommendationLabel = getRecommendationLabel(stopId);
+        return `
+          <article class="favorite-modal-card">
+            <img src="${attraction.image}" alt="${attraction.name}" loading="lazy" onerror="${imageFallbackHandler(attraction.name)}">
+            <div class="favorite-modal-info">
+              <strong>${attraction.name}</strong>
+              <span class="attraction-strength">${recommendationLabel}</span>
+              <p class="attraction-summary">${attraction.summary}</p>
+              <div class="favorite-modal-actions">
+                <button class="attraction-chip-action" type="button" data-action="open-favorite-photo" data-image-src="${escapeAttribute(attraction.image)}" data-image-label="${escapeAttribute(attraction.name)}">사진</button>
+                <button class="attraction-chip-action is-favorite" type="button" data-action="toggle-favorite-attraction" data-attraction-id="${escapeAttribute(attraction.id)}">
+                  <span class="favorite-heart" aria-hidden="true">♥</span>찜 해제
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("") : `<div class="empty-state">가 볼만한 곳에서 하트 찜을 눌러 관심 장소를 모아보세요.</div>`;
+    }
+
+    function openFavoriteAttractionsModal() {
+      renderFavoriteAttractionsModal();
+      favoriteAttractionModal.classList.add("is-open");
+      favoriteAttractionModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeFavoriteAttractionsModal() {
+      favoriteAttractionModal.classList.remove("is-open");
+      favoriteAttractionModal.setAttribute("aria-hidden", "true");
+    }
+
     function renderStopPickerModal(dayIndex) {
       const { day, available, scheduled } = buildStopPickerCandidates(dayIndex);
       if (!day || day.empty) {
@@ -9299,6 +9995,8 @@
         const nextItems = [...items];
         if (stopPickerSortMode === "score") {
           return nextItems.sort((a, b) => {
+            const favoriteDiff = Number(b.favorite) - Number(a.favorite);
+            if (favoriteDiff !== 0) return favoriteDiff;
             const bucketDiff = getDistanceBucket(a.distance) - getDistanceBucket(b.distance);
             if (bucketDiff !== 0) return bucketDiff;
             if (b.meta.recommendScore !== a.meta.recommendScore) return b.meta.recommendScore - a.meta.recommendScore;
@@ -9307,6 +10005,8 @@
           });
         }
         return nextItems.sort((a, b) => {
+          const favoriteDiff = Number(b.favorite) - Number(a.favorite);
+          if (favoriteDiff !== 0) return favoriteDiff;
           if (a.distance !== b.distance) return a.distance - b.distance;
           return b.score - a.score;
         });
@@ -9343,6 +10043,7 @@
           <div class="stop-picker-card-footer">
             <div class="stop-picker-state-row">
               <span class="stop-strength">${getRecommendationLabel(item.stopId)}</span>
+              ${item.favorite && !disabled ? `<span class="stop-origin-badge"><span class="favorite-heart" aria-hidden="true">♥</span>찜</span>` : ""}
               <span class="stop-picker-distance">현재 DAY 기준 약 ${item.distance.toFixed(1)}km</span>
             </div>
             ${disabled ? `
@@ -9460,6 +10161,13 @@
     });
 
     placeBuilderBody.addEventListener("click", event => {
+      const pageTarget = event.target.closest("[data-action='change-place-page']");
+      if (pageTarget) {
+        placeBuilderPage = Math.max(1, Number(pageTarget.dataset.page || 1));
+        renderPlaceBuilder();
+        return;
+      }
+
       const actionTarget = event.target.closest("[data-action='toggle-place-stop']");
       if (!actionTarget) return;
       const stopId = actionTarget.dataset.stopId;
@@ -9473,15 +10181,21 @@
       renderCourseSelectionProgress();
     });
 
+    placeBuilderSearch?.addEventListener("input", () => {
+      placeBuilderPage = 1;
+      renderPlaceBuilder();
+    });
+
     courseModeButtons.forEach(button => {
       button.addEventListener("click", () => {
         switchCourseMode(button.dataset.courseMode);
+        renderCourseSelectionProgress();
       });
     });
 
     finishCourseSelection.addEventListener("click", () => {
       completionAttempted = true;
-      const result = activeCourseMode === "places" && slotFillTargetIndex === null
+      const result = activeCourseMode === "places"
         ? applySelectedPlacesToRoute()
         : applyPendingCoursesToRoute();
       if (result.applied || result.complete) completionAttempted = false;
@@ -9505,15 +10219,6 @@
 
     savePlanButton.addEventListener("click", savePlanToList);
 
-    loadLatestPlanButton.addEventListener("click", () => {
-      const latestPlan = getSavedPlans()[0] || getAutoPlan();
-      if (latestPlan) {
-        applyPlanSnapshot(latestPlan);
-        return;
-      }
-      setPlanStatus("불러올 계획 없음");
-    });
-
     exportPlanButton.addEventListener("click", exportCurrentPlan);
 
     importPlanButton.addEventListener("click", () => {
@@ -9534,10 +10239,36 @@
         const plan = plans.find(item => item.id === planId);
         if (plan) applyPlanSnapshot(plan);
       }
+      if (actionTarget.dataset.action === "rename-saved-plan") {
+        startRenameSavedPlan(planId);
+      }
+      if (actionTarget.dataset.action === "save-plan-title") {
+        saveRenamedPlan(planId);
+      }
+      if (actionTarget.dataset.action === "cancel-plan-title") {
+        editingPlanId = null;
+        renderSavedPlans();
+        setPlanStatus("제목 수정 취소됨");
+      }
       if (actionTarget.dataset.action === "delete-saved-plan") {
         setSavedPlans(plans.filter(item => item.id !== planId));
+        if (editingPlanId === planId) editingPlanId = null;
         renderSavedPlans();
         setPlanStatus("계획 삭제됨");
+      }
+    });
+
+    savedPlanList.addEventListener("keydown", event => {
+      const input = event.target.closest("[data-plan-title-input]");
+      if (!input) return;
+      if (event.key === "Enter") {
+        event.preventDefault();
+        saveRenamedPlan(input.dataset.planTitleInput);
+      }
+      if (event.key === "Escape") {
+        editingPlanId = null;
+        renderSavedPlans();
+        setPlanStatus("제목 수정 취소됨");
       }
     });
 
@@ -9555,6 +10286,8 @@
     yenAmountInput.addEventListener("input", updateExchangeCalculator);
     discountRateInput.addEventListener("input", updateExchangeCalculator);
     taxRefundRateInput.addEventListener("input", updateExchangeCalculator);
+    resetExchangeCalculator?.addEventListener("click", resetCalculatorInputs);
+    openCalculatorModalButton?.addEventListener("click", openCalculatorModal);
     exchangeRateInput.addEventListener("input", () => {
       exchangeRateLabel = "수동 입력 기준";
       updateExchangeCalculator();
@@ -9574,9 +10307,25 @@
         attractionFilters.strength = attractionStrengthFilter.value;
         attractionFilters.category = attractionCategoryFilter.value;
         attractionFilters.area = attractionAreaFilter.value;
+        attractionPage = 1;
         renderAttractions();
       });
     });
+
+    attractionSearchInput?.addEventListener("input", () => {
+      attractionFilters.query = attractionSearchInput.value.trim().toLowerCase();
+      attractionPage = 1;
+      renderAttractions();
+    });
+
+    attractionPagination?.addEventListener("click", event => {
+      const pageTarget = event.target.closest("[data-action='change-attraction-page']");
+      if (!pageTarget) return;
+      attractionPage = Math.max(1, Number(pageTarget.dataset.page || 1));
+      renderAttractions();
+    });
+
+    openFavoriteAttractions?.addEventListener("click", openFavoriteAttractionsModal);
 
     [tripDays, tripIntensity].forEach(control => {
       control.addEventListener("change", () => {
@@ -9616,10 +10365,12 @@
       if (action === "fill-slot") {
         slotFillTargetIndex = Number(actionTarget.dataset.slotIndex);
         pendingDays = createPendingDays();
+        selectedPlaceStops = [];
+        placeBuilderPage = 1;
         openRouteDays.clear();
         closeStopPickerModal();
-        switchCourseMode("custom");
-        autoRouteStatus.textContent = `Day ${slotFillTargetIndex + 1} 빈 슬롯에 넣을 코스를 1일 골라주세요.`;
+        switchCourseMode("places");
+        autoRouteStatus.textContent = `Day ${slotFillTargetIndex + 1} 빈 슬롯에 넣을 장소를 고르거나 코스 1일을 골라주세요.`;
         renderAll();
         switchTab("course-select");
         return;
@@ -9733,6 +10484,11 @@
         return;
       }
 
+      if (action === "toggle-favorite-attraction") {
+        toggleFavoriteAttraction(actionTarget.dataset.attractionId);
+        return;
+      }
+
       if (action === "copy-address") {
         copyAddress(actionTarget.dataset.address, actionTarget);
       }
@@ -9834,6 +10590,27 @@
       }
     });
 
+    calculatorModal.addEventListener("click", event => {
+      if (event.target === calculatorModal || event.target.closest("[data-action='close-calculator']")) {
+        closeCalculatorModal();
+      }
+    });
+
+    favoriteAttractionModal.addEventListener("click", event => {
+      const actionTarget = event.target.closest("[data-action]");
+      if (actionTarget?.dataset.action === "open-favorite-photo") {
+        openImageModal(actionTarget.dataset.imageSrc, actionTarget.dataset.imageLabel);
+        return;
+      }
+      if (actionTarget?.dataset.action === "toggle-favorite-attraction") {
+        toggleFavoriteAttraction(actionTarget.dataset.attractionId);
+        return;
+      }
+      if (event.target === favoriteAttractionModal || actionTarget?.dataset.action === "close-favorite-attractions") {
+        closeFavoriteAttractionsModal();
+      }
+    });
+
     stopPickerModal.addEventListener("click", event => {
       const actionTarget = event.target.closest("[data-action]");
       if (actionTarget?.dataset.action === "sort-stop-picker") {
@@ -9883,6 +10660,16 @@
 
       if (galleryModal.classList.contains("is-open")) {
         closeGallery();
+        return;
+      }
+
+      if (favoriteAttractionModal.classList.contains("is-open")) {
+        closeFavoriteAttractionsModal();
+        return;
+      }
+
+      if (calculatorModal.classList.contains("is-open")) {
+        closeCalculatorModal();
         return;
       }
 
