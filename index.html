@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -715,6 +715,110 @@
       background: var(--surface-strong);
     }
 
+    .place-builder-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .place-builder-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .place-builder-copy {
+      display: grid;
+      gap: 4px;
+    }
+
+    .place-builder-copy strong {
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+
+    .place-builder-copy span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .place-builder-count {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .place-builder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .place-builder-card {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 2px solid var(--line);
+      border-radius: 12px 8px 12px 8px;
+      background: #fff;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(16, 19, 25, 0.12);
+    }
+
+    .place-builder-card.is-selected {
+      border-color: var(--blue);
+      background: rgba(227, 246, 255, 0.72);
+    }
+
+    .place-builder-thumb {
+      width: 72px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: #f3f6fa;
+    }
+
+    .place-builder-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .place-builder-info {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .place-builder-info strong {
+      font-size: 0.92rem;
+      line-height: 1.25;
+      word-break: keep-all;
+    }
+
+    .place-builder-info span {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
     .auto-controls {
       display: grid;
       grid-template-columns: 1fr;
@@ -776,6 +880,66 @@
       display: grid;
       gap: 12px;
       padding: 16px;
+    }
+
+    .budget-input-row {
+      align-items: end;
+    }
+
+    .budget-field {
+      display: grid;
+      flex: 1 1 150px;
+      gap: 4px;
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .budget-field.is-percent {
+      flex-basis: 128px;
+    }
+
+    .budget-field input {
+      width: 100%;
+    }
+
+    .budget-adjustment-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .exchange-status-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .exchange-refresh-button {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      padding: 4px 9px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 3px 3px 0 var(--line);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 950;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .exchange-status-row .exchange-status {
+      min-width: 0;
     }
 
     .attraction-filter-panel {
@@ -974,6 +1138,20 @@
       border-color: rgba(25, 112, 93, 0.7);
       box-shadow: var(--shadow);
       transform: translateY(-2px);
+    }
+
+    .course-card.has-pending-days {
+      border-color: var(--route-course-color, var(--green));
+      background:
+        linear-gradient(90deg, var(--route-course-soft, rgba(227, 246, 255, 0.7)), transparent 58%),
+        var(--surface);
+    }
+
+    .course-card.has-pending-days .course-icon,
+    .course-card .day-button.active {
+      background: var(--route-course-color, var(--green));
+      color: #fff;
+      border-color: var(--route-course-color, var(--green));
     }
 
     .course-top {
@@ -1231,6 +1409,18 @@
       display: grid;
     }
 
+    #galleryModal {
+      z-index: 52;
+    }
+
+    #stopPickerModal {
+      z-index: 54;
+    }
+
+    #imageModal {
+      z-index: 56;
+    }
+
     .modal-panel {
       width: min(1120px, 100%);
       max-height: min(86vh, 860px);
@@ -1315,6 +1505,22 @@
       background: #fff;
     }
 
+    .slot-fill-notice {
+      display: none;
+      margin: 0 0 14px;
+      padding: 10px 12px;
+      border: 2px dashed rgba(36, 107, 254, 0.35);
+      border-radius: 8px;
+      background: rgba(227, 246, 255, 0.7);
+      color: #0c4d7c;
+      font-size: 0.84rem;
+      font-weight: 850;
+    }
+
+    .slot-fill-notice.is-visible {
+      display: block;
+    }
+
     .route-panel,
     .map-panel {
       padding: 14px;
@@ -1350,35 +1556,294 @@
       margin-bottom: 14px;
     }
 
+    .plan-vault {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 12px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.035) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(0deg, rgba(5, 5, 5, 0.035) 1px, transparent 1px) 0 0 / 22px 22px,
+        #fffdf5;
+      box-shadow: var(--shadow);
+    }
+
+    .plan-vault-head,
+    .plan-vault-status-row,
+    .plan-vault-actions,
+    .saved-plan-row,
+    .saved-plan-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .plan-vault-head {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .plan-vault h4 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .plan-vault-status {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 25px;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border: 1px solid rgba(18, 112, 190, 0.2);
+      border-radius: 999px;
+      background: rgba(227, 246, 255, 0.86);
+      color: #0c4d7c;
+      font-size: 0.76rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .plan-vault-actions {
+      flex-wrap: wrap;
+    }
+
+    .plan-vault-button,
+    .saved-plan-button {
+      display: inline-flex;
+      min-height: 31px;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 9px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 900;
+      line-height: 1;
+      box-shadow: 3px 3px 0 var(--line);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .plan-vault-button:hover,
+    .saved-plan-button:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .saved-plan-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .saved-plan-row {
+      justify-content: space-between;
+      padding: 8px;
+      border: 1px solid rgba(8, 31, 58, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .saved-plan-info {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .saved-plan-info strong,
+    .saved-plan-info span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .saved-plan-info strong {
+      font-size: 0.85rem;
+    }
+
+    .saved-plan-info span {
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    .saved-plan-empty {
+      padding: 9px;
+      border: 1px dashed rgba(8, 31, 58, 0.25);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
     .day-list {
       display: grid;
       gap: 12px;
     }
 
+    .day-tab-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
     .day-card {
-      padding: 14px;
+      position: relative;
+      overflow: hidden;
+      min-height: 112px;
+      padding: 50px 14px 14px 20px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .day-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: var(--route-course-color, var(--day-1));
     }
 
     .day-card h3 {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      min-width: 0;
+      width: 100%;
+      overflow: hidden;
     }
 
     .day-card-head {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 10px;
+      min-height: 100%;
     }
 
     .day-card-head h3 {
       margin-bottom: 0;
+    }
+
+    .day-course-name {
+      display: inline-flex;
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: nowrap;
+      word-break: keep-all;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .day-course-text {
+      flex: 0 0 auto;
+      min-width: max-content;
+      overflow: visible;
+      text-overflow: clip;
+      white-space: nowrap;
+    }
+
+    .day-course-badge {
+      display: inline-flex;
+      width: 22px;
+      height: 22px;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--route-course-color, var(--day-1));
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .day-card.is-active {
+      background:
+        linear-gradient(90deg, var(--route-course-soft, rgba(227, 246, 255, 0.74)), transparent 70%),
+        #fff;
+      border-color: var(--route-course-color, var(--blue));
+    }
+
+    .day-card.is-draggable {
+      cursor: grab;
+    }
+
+    .day-card.is-dragging {
+      opacity: 0.55;
+      cursor: grabbing;
+    }
+
+    .day-card.is-drop-target {
+      outline: 3px solid var(--route-course-color, var(--blue));
+      outline-offset: 3px;
+    }
+
+    .day-card.is-empty-slot {
+      grid-column: 1 / -1;
+      min-height: 124px;
+      padding-right: 18px;
+      border-style: dashed;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(236, 242, 251, 0.92)),
+        linear-gradient(90deg, rgba(5, 5, 5, 0.025) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(0deg, rgba(5, 5, 5, 0.025) 1px, transparent 1px) 0 0 / 22px 22px,
+        #f3f5f8;
+    }
+
+    .day-card.is-empty-slot::before {
+      background: linear-gradient(180deg, #b8c6dc, #dbe4f2);
+    }
+
+    .day-card.is-empty-slot .day-card-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .day-card.is-empty-slot h3 {
+      width: 100%;
+    }
+
+    .day-empty-copy {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .day-empty-copy strong {
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .day-empty-copy span {
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+
+    .day-empty-action {
+      min-width: 124px;
+      min-height: 40px;
+      padding-inline: 14px;
+      border-color: rgba(45, 93, 165, 0.18);
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .day-toolbar,
@@ -1394,35 +1859,45 @@
       gap: 12px;
     }
 
-    .day-number {
-      display: grid;
-      width: 30px;
-      height: 30px;
-      place-items: center;
+    .day-detail-panel {
+      padding: 14px;
+      border: 2px solid var(--line);
       border-radius: 8px;
-      background: var(--day-1);
+      background:
+        linear-gradient(90deg, var(--route-course-soft, rgba(227, 246, 255, 0.72)), transparent 64%),
+        #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .day-detail-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .day-label-icon {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      z-index: 1;
+      display: inline-flex;
+      min-width: 58px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 8px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: var(--route-course-color, var(--day-1));
       color: #fff;
-      font-size: 0.82rem;
-    }
-
-    .day-card:nth-child(2) .day-number {
-      background: var(--day-2);
-    }
-
-    .day-card:nth-child(3) .day-number {
-      background: var(--day-3);
-    }
-
-    .day-card:nth-child(4) .day-number {
-      background: var(--day-4);
-    }
-
-    .day-card:nth-child(5) .day-number {
-      background: var(--day-5);
-    }
-
-    .day-card:nth-child(6) .day-number {
-      background: var(--day-6);
+      font-size: 0.8rem;
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: 0;
+      box-shadow: 3px 3px 0 var(--line);
+      white-space: nowrap;
     }
 
     .stops {
@@ -1453,6 +1928,36 @@
     .stop-meta {
       display: grid;
       gap: 6px;
+    }
+
+    .stop-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .stop-title-line {
+      display: inline-flex;
+      min-width: 0;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stop-title-line strong {
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+
+    .stop-title-actions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-left: auto;
     }
 
     .stop-strength,
@@ -1501,21 +2006,74 @@
       cursor: pointer;
     }
 
-    .stop-address {
-      display: grid;
-      gap: 6px;
-      padding: 8px;
-      border: 1px solid rgba(8, 31, 58, 0.14);
+    .route-chip-action,
+    .route-photo-button,
+    .route-stop-delete {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(18, 112, 190, 0.2);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--muted);
-      font-size: 0.82rem;
+      background: rgba(227, 246, 255, 0.86);
+      color: #0c4d7c;
+      font-family: inherit;
+      font-size: 0.76rem;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
     }
 
-    .stop-address .inline-action {
-      width: fit-content;
-      min-height: 30px;
-      padding: 5px 9px;
+    .route-chip-action {
+      min-height: 27px;
+      padding: 5px 8px;
+    }
+
+    .route-photo-button,
+    .route-stop-delete {
+      width: 28px;
+      height: 27px;
+      padding: 0;
+    }
+
+    .route-photo-icon {
+      position: relative;
+      width: 15px;
+      height: 11px;
+      border: 2px solid currentColor;
+      border-radius: 3px;
+    }
+
+    .route-photo-icon::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 2px;
+      width: 7px;
+      height: 4px;
+      border: 2px solid currentColor;
+      border-bottom: 0;
+      border-radius: 3px 3px 0 0;
+      background: rgba(227, 246, 255, 0.86);
+    }
+
+    .route-photo-icon::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 4px;
+      height: 4px;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .route-stop-delete {
+      border-color: rgba(8, 31, 58, 0.35);
+      background: #fff;
+      color: var(--line);
+      font-size: 1rem;
     }
 
     .food-row {
@@ -1531,6 +2089,206 @@
     .food-chip {
       background: #fff5df;
       color: #72501a;
+    }
+
+    .stop-add-row {
+      display: block !important;
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+
+    .stop-add-slot {
+      display: block;
+      width: 100%;
+      min-height: 56px;
+      padding: 12px 14px;
+      border: 2px dashed #c4ccd8;
+      border-radius: 8px;
+      background: #f1f3f6;
+      color: #6a7485;
+      text-align: center;
+      font-size: 0.92rem;
+      font-weight: 900;
+    }
+
+    .stop-add-slot:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: #eef5ff;
+    }
+
+    .stop-picker-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .stop-picker-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stop-picker-sort {
+      min-width: 86px;
+    }
+
+    .inline-action.is-active {
+      background: #eef5ff;
+      border-color: rgba(45, 93, 165, 0.25);
+      color: var(--blue);
+    }
+
+    .stop-picker-meta {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.4;
+    }
+
+    .stop-picker-groups {
+      display: grid;
+      gap: 16px;
+    }
+
+    .stop-picker-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stop-picker-group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stop-picker-group-head strong {
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .stop-picker-group-head span {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .stop-picker-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stop-picker-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stop-picker-page-info {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .stop-picker-card {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border: 2px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 3px 3px 0 var(--line);
+    }
+
+    .stop-picker-card.is-disabled {
+      background: #f7f8fa;
+      border-style: dashed;
+      box-shadow: none;
+      opacity: 0.86;
+    }
+
+    .stop-picker-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+
+    .stop-picker-card-top {
+      display: grid;
+      gap: 6px;
+    }
+
+    .stop-picker-card p {
+      margin: 0;
+      color: #33404f;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .stop-picker-card-footer {
+      display: grid;
+      gap: 8px;
+    }
+
+    .stop-picker-actions {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .stop-picker-photo,
+    .stop-picker-add {
+      flex: 1 1 0;
+      min-width: 0;
+      min-height: 38px;
+      padding-inline: 10px;
+    }
+
+    .stop-picker-photo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .stop-picker-photo .route-photo-icon {
+      transform: scale(0.94);
+    }
+
+    .stop-picker-state {
+      display: inline-flex;
+      flex: 1 1 0;
+      align-items: center;
+      justify-content: center;
+      min-height: 31px;
+      min-width: 0;
+      padding: 5px 9px;
+      border: 1px solid rgba(8, 31, 58, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.74);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .stop-picker-state-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stop-picker-distance {
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 800;
     }
 
     .empty-state {
@@ -1821,6 +2579,12 @@
       color: #42505f;
       font-size: 0.72rem;
       font-weight: 800;
+    }
+
+    @media (min-width: 780px) {
+      .day-tab-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
 
     .reserve {
@@ -3705,6 +4469,38 @@
         order: 3;
       }
     }
+
+    .route-summary span {
+      border: 1px solid var(--route-course-color, rgba(8, 31, 58, 0.16));
+      background: var(--route-course-soft, #f0f4f2);
+    }
+
+    .anti-brutal .course-card.has-pending-days {
+      border-color: var(--route-course-color, var(--line));
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.035) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(0deg, rgba(5, 5, 5, 0.035) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(90deg, var(--route-course-soft, rgba(227, 246, 255, 0.65)), transparent 62%),
+        #fff;
+    }
+
+    .anti-brutal .course-card.has-pending-days .course-icon,
+    .anti-brutal .course-card .day-button.active,
+    .anti-brutal .day-course-badge,
+    .anti-brutal .day-label-icon {
+      background: var(--route-course-color, var(--blue));
+      color: #fff;
+    }
+
+    .anti-brutal .day-card.is-active,
+    .anti-brutal .day-detail-panel {
+      border-color: var(--route-course-color, var(--line));
+      background:
+        linear-gradient(90deg, rgba(5, 5, 5, 0.035) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(0deg, rgba(5, 5, 5, 0.035) 1px, transparent 1px) 0 0 / 22px 22px,
+        linear-gradient(90deg, var(--route-course-soft, rgba(227, 246, 255, 0.72)), transparent 68%),
+        #fff;
+    }
   </style>
 </head>
 <body class="compact-layout yeomi-style layout-lab layout-lab-v2 anti-brutal figma-inspired design-canvas asset-library-density balanced-shell responsive-stage">
@@ -3800,14 +4596,29 @@
               <p>직접 코스를 조합하거나, 여행기간에 맞는 추천 패키지로 빠르게 시작하세요.</p>
             </div>
           </div>
+          <p class="slot-fill-notice" id="slotFillNotice"></p>
           <div class="selection-meter" id="selectionProgress" aria-live="polite"></div>
           <div class="course-mode-tabs" role="tablist" aria-label="코스 선택 방식">
             <button class="course-mode-button is-active" type="button" data-course-mode="custom">코스로 조합하기</button>
+            <button class="course-mode-button" type="button" data-course-mode="places">장소로 조합하기</button>
             <button class="course-mode-button" type="button" data-course-mode="package">추천 패키지</button>
           </div>
 
           <div class="course-mode-panel is-active" id="courseBuilderBody" data-course-panel="custom">
             <div class="course-grid" id="courseGrid" aria-label="도시별 여행 코스 목록"></div>
+          </div>
+
+          <div class="course-mode-panel" id="placeBuilderBody" data-course-panel="places">
+            <div class="place-builder-panel">
+              <div class="place-builder-head">
+                <div class="place-builder-copy">
+                  <strong>추천 강도가 높은 명승지를 직접 골라보세요.</strong>
+                  <span>선택 완료를 누르면 가까운 곳끼리 묶어서 Day별로 자동 배분합니다.</span>
+                </div>
+                <span class="place-builder-count" id="placeBuilderCount">0곳 선택</span>
+              </div>
+              <div class="place-builder-grid" id="placeBuilderGrid" aria-label="명승지 직접 선택 목록"></div>
+            </div>
           </div>
 
           <div class="course-mode-panel" id="packageBody" data-course-panel="package">
@@ -3821,6 +4632,22 @@
 
         <section class="tab-panel planner-tab-panel planner-step" id="routePanelTab" data-panel="route" aria-labelledby="auto-builder-title">
           <aside class="route-panel game-card" aria-live="polite">
+            <div class="plan-vault" aria-label="계획 저장과 불러오기">
+              <div class="plan-vault-head">
+                <div>
+                  <h4>계획 보관함</h4>
+                  <span class="plan-vault-status" id="planVaultStatus">자동 저장 대기 중</span>
+                </div>
+                <div class="plan-vault-actions">
+                  <button class="plan-vault-button" type="button" id="savePlanButton">계획 저장</button>
+                  <button class="plan-vault-button" type="button" id="loadLatestPlanButton">불러오기</button>
+                  <button class="plan-vault-button" type="button" id="exportPlanButton">파일 저장</button>
+                  <button class="plan-vault-button" type="button" id="importPlanButton">파일 불러오기</button>
+                  <input id="planFileInput" type="file" accept="application/json,.json" hidden>
+                </div>
+              </div>
+              <div class="saved-plan-list" id="savedPlanList" aria-live="polite"></div>
+            </div>
             <div class="route-title">
               <div>
                 <h3>선택 루트</h3>
@@ -3830,10 +4657,6 @@
             </div>
             <div class="route-summary" id="routeSummary"></div>
             <div class="day-list" id="dayList"></div>
-            <div class="reserve">
-              <h3>예비 콘텐츠</h3>
-              <ul class="reserve-list" id="reserveList"></ul>
-            </div>
           </aside>
         </section>
 
@@ -3883,7 +4706,7 @@
         <nav class="app-tabs reference-tabs" aria-label="일본 여행 확인 메뉴">
           <button class="tab-button" type="button" data-tab="attractions" aria-controls="attractionsPanelTab"><span>가 볼만한 곳</span><span class="tab-hint">사진·간단 정보</span></button>
           <button class="tab-button" type="button" data-tab="transport" aria-controls="transportPanelTab"><span>교통</span><span class="tab-hint">공항·대중교통</span></button>
-          <button class="tab-button" type="button" data-tab="budget" aria-controls="budgetPanelTab"><span>Money(円)</span><span class="tab-hint">비용 정보</span></button>
+          <button class="tab-button" type="button" data-tab="budget" aria-controls="budgetPanelTab"><span>계산기(円)</span><span class="tab-hint">비용 정보</span></button>
           <button class="tab-button" type="button" data-tab="tips" aria-controls="tipsPanelTab"><span>여행 팁</span><span class="tab-hint">준비물·쇼핑·날씨</span></button>
         </nav>
       </div>
@@ -3942,9 +4765,22 @@
           </div>
           <div class="budget-calculator game-card">
             <div class="budget-input-row">
-              <input id="yenAmountInput" type="number" min="0" step="100" value="10000" inputmode="numeric" aria-label="엔화 금액">
-              <input id="exchangeRateInput" type="number" min="0" step="0.01" value="9.5" inputmode="decimal" aria-label="1엔당 원화 환율">
-              <button class="inline-action" type="button" id="refreshExchangeRate">환율 새로고침</button>
+              <label class="budget-field">
+                금액(엔)
+                <input id="yenAmountInput" type="number" min="0" step="100" value="10000" inputmode="numeric" aria-label="엔화 금액">
+              </label>
+              <label class="budget-field">
+                환율
+                <input id="exchangeRateInput" type="number" min="0" step="0.01" value="9.5" inputmode="decimal" aria-label="1엔당 원화 환율">
+              </label>
+              <label class="budget-field is-percent">
+                할인율(%)
+                <input id="discountRateInput" type="number" min="0" max="100" step="1" value="" inputmode="decimal" placeholder="0" aria-label="할인율 퍼센트">
+              </label>
+              <label class="budget-field is-percent">
+                Tax Refund(%)
+                <input id="taxRefundRateInput" type="number" min="0" max="100" step="1" value="" inputmode="decimal" placeholder="0" aria-label="Tax Refund 퍼센트">
+              </label>
             </div>
             <div class="quick-yen-row" id="quickYenButtons" aria-label="자주 쓰는 엔화 금액">
               <button class="inline-action" type="button" data-yen="500">500엔</button>
@@ -3954,7 +4790,10 @@
               <button class="inline-action" type="button" data-yen="10000">10,000엔</button>
             </div>
             <p class="budget-result" id="exchangeResult"><strong>약 95,000원</strong></p>
-            <p class="exchange-status" id="exchangeStatus">실시간 환율을 불러오는 중입니다.</p>
+            <div class="exchange-status-row">
+              <button class="exchange-refresh-button" type="button" id="refreshExchangeRate" aria-label="환율 새로고침" title="환율 새로고침">환율 ↻</button>
+              <p class="exchange-status" id="exchangeStatus">실시간 환율을 불러오는 중입니다.</p>
+            </div>
           </div>
           <div class="tips-grid" id="budgetGrid"></div>
         </section>
@@ -4006,6 +4845,19 @@
           <button class="inline-action" type="button" data-action="close-image">닫기</button>
         </div>
         <img class="image-modal-photo" id="imageModalPhoto" src="" alt="">
+      </div>
+    </div>
+
+    <div class="modal" id="stopPickerModal" aria-hidden="true">
+      <div class="modal-panel stop-picker-panel">
+        <div class="modal-head">
+          <div>
+            <h3 id="stopPickerTitle">명승지 추가</h3>
+            <p class="stop-picker-meta" id="stopPickerMeta">현재 코스와 어울리는 후보를 보여드립니다.</p>
+          </div>
+          <button class="inline-action" type="button" data-action="close-stop-picker">닫기</button>
+        </div>
+        <div class="stop-picker-groups" id="stopPickerGroups"></div>
       </div>
     </div>
 
@@ -6230,6 +7082,30 @@
     };
 
     const dayColors = ["var(--day-1)", "var(--day-2)", "var(--day-3)", "var(--day-4)", "var(--day-5)", "var(--day-6)"];
+    const courseTonePalette = [
+      { accent: "#2f6df6", soft: "rgba(47, 109, 246, 0.13)" },
+      { accent: "#22a06b", soft: "rgba(34, 160, 107, 0.14)" },
+      { accent: "#f0a202", soft: "rgba(240, 162, 2, 0.16)" },
+      { accent: "#8c54ff", soft: "rgba(140, 84, 255, 0.14)" },
+      { accent: "#ef6f5e", soft: "rgba(239, 111, 94, 0.14)" },
+      { accent: "#0097a7", soft: "rgba(0, 151, 167, 0.13)" }
+    ];
+
+    function getCourseTone(courseId) {
+      const courseIndex = Math.max(0, courses.findIndex(course => course.id === courseId));
+      return courseTonePalette[courseIndex % courseTonePalette.length];
+    }
+
+    function getCourseToneStyle(courseId) {
+      const tone = getCourseTone(courseId);
+      return `--route-course-color:${tone.accent}; --route-course-soft:${tone.soft};`;
+    }
+
+    function toCircledNumber(number) {
+      const circledNumbers = ["", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮"];
+      return circledNumbers[number] || String(number);
+    }
+
     function createPendingDays() {
       return Object.fromEntries(courses.map(course => [course.id, 0]));
     }
@@ -6241,6 +7117,10 @@
     let completionAttempted = false;
     const openGalleries = new Set();
     const foodVisibility = new Map();
+    let draggedRouteDayIndex = null;
+    let suppressNextDayClick = false;
+    let slotFillTargetIndex = null;
+    let stopPickerDayIndex = null;
     let mapVisibleDays = new Set();
     let knownMapDayCount = 0;
     let mapZoomLevel = 11;
@@ -6255,13 +7135,24 @@
     let exchangeRateLabel = "임시 기준";
     let todayWeatherSummary = null;
     let weatherController = null;
+    const PLAN_STORAGE_KEY = "japan-route-guide-saved-plans";
+    const AUTO_PLAN_STORAGE_KEY = "japan-route-guide-auto-plan";
+    let planAutoSaveTimer = null;
+    let isRestoringPlan = false;
+    let isPlanAutoSaveReady = false;
     let isDraggingMap = false;
     let dragStart = { x: 0, y: 0, centerPixel: null };
     let touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel, startMidX: 0, startMidY: 0, startCenter: null };
 
     const courseGrid = document.querySelector("#courseGrid");
     const dayList = document.querySelector("#dayList");
-    const reserveList = document.querySelector("#reserveList");
+    const planVaultStatus = document.querySelector("#planVaultStatus");
+    const savedPlanList = document.querySelector("#savedPlanList");
+    const savePlanButton = document.querySelector("#savePlanButton");
+    const loadLatestPlanButton = document.querySelector("#loadLatestPlanButton");
+    const exportPlanButton = document.querySelector("#exportPlanButton");
+    const importPlanButton = document.querySelector("#importPlanButton");
+    const planFileInput = document.querySelector("#planFileInput");
     const routeSummary = document.querySelector("#routeSummary");
     const routeMeta = document.querySelector("#routeMeta");
     const routeMap = document.querySelector("#routeMap");
@@ -6280,6 +7171,10 @@
     const imageModal = document.querySelector("#imageModal");
     const imageModalTitle = document.querySelector("#imageModalTitle");
     const imageModalPhoto = document.querySelector("#imageModalPhoto");
+    const stopPickerModal = document.querySelector("#stopPickerModal");
+    const stopPickerTitle = document.querySelector("#stopPickerTitle");
+    const stopPickerMeta = document.querySelector("#stopPickerMeta");
+    const stopPickerGroups = document.querySelector("#stopPickerGroups");
     const attractionGrid = document.querySelector("#attractionGrid");
     const toggleAttractionList = document.querySelector("#toggleAttractionList");
     const attractionStrengthFilter = document.querySelector("#attractionStrengthFilter");
@@ -6289,11 +7184,15 @@
     const packageGrid = document.querySelector("#packageGrid");
     const packageBody = document.querySelector("#packageBody");
     const courseBuilderBody = document.querySelector("#courseBuilderBody");
+    const placeBuilderBody = document.querySelector("#placeBuilderBody");
+    const placeBuilderGrid = document.querySelector("#placeBuilderGrid");
+    const placeBuilderCount = document.querySelector("#placeBuilderCount");
     const courseModeButtons = document.querySelectorAll("[data-course-mode]");
     const courseModePanels = document.querySelectorAll("[data-course-panel]");
     const finishCourseSelection = document.querySelector("#finishCourseSelection");
     const resetCourseSelection = document.querySelector("#resetCourseSelection");
     const selectionProgress = document.querySelector("#selectionProgress");
+    const slotFillNotice = document.querySelector("#slotFillNotice");
     const tripDays = document.querySelector("#tripDays");
     const tripIntensity = document.querySelector("#tripIntensity");
     const hotelBaseSelect = document.querySelector("#hotelBaseSelect");
@@ -6313,6 +7212,8 @@
     const budgetGrid = document.querySelector("#budgetGrid");
     const yenAmountInput = document.querySelector("#yenAmountInput");
     const exchangeRateInput = document.querySelector("#exchangeRateInput");
+    const discountRateInput = document.querySelector("#discountRateInput");
+    const taxRefundRateInput = document.querySelector("#taxRefundRateInput");
     const exchangeResult = document.querySelector("#exchangeResult");
     const exchangeStatus = document.querySelector("#exchangeStatus");
     const refreshExchangeRate = document.querySelector("#refreshExchangeRate");
@@ -6336,6 +7237,10 @@
     const tabButtons = document.querySelectorAll("[data-tab]");
     const tabPanels = document.querySelectorAll("[data-panel]");
     let currentTab = document.querySelector(".tab-button.is-active")?.dataset.tab || null;
+    let stopPickerSortMode = "distance";
+    const STOP_PICKER_PAGE_SIZE = 6;
+    let stopPickerPages = { available: 1, scheduled: 1 };
+    let selectedPlaceStops = [];
 
     function getCourse(courseId) {
       return courses.find(course => course.id === courseId) || courses[0];
@@ -6372,6 +7277,99 @@
     function getStopAddress(stopId, stop) {
       const attraction = getAttractionFromStopId(stopId);
       return attraction?.address || locationAddresses[stopId] || `${stop.name}, Sapporo, Hokkaido, Japan`;
+    }
+
+    function getStopPhotoInfo(stopId) {
+      const attraction = getAttractionFromStopId(stopId);
+      const stop = getPlace(stopId);
+      const photo = actualPlacePhotos[stopId] || (attraction?.image ? { label: attraction.name, src: attraction.image } : null);
+      return {
+        src: photo?.src || imageFallback(stop.name),
+        label: photo?.label || stop.name
+      };
+    }
+
+    function createPlaceBuilderCourse() {
+      const city = cityData[currentCityKey] || cityData.sapporo;
+      return {
+        id: `place-builder-${currentCityKey}`,
+        name: `${city.name} 장소 조합`,
+        short: "장소 조합",
+        icon: "📍",
+        days: [{ stops: [] }]
+      };
+    }
+
+    function getPlaceModeDistribution(selectedCount, tripDayCount) {
+      const dayCount = Math.max(1, Number(tripDayCount || 1));
+      const weights = dayCount === 1
+        ? [1]
+        : Array.from({ length: dayCount }, (_, index) => (index === 0 || index === dayCount - 1 ? 1 : 2));
+      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+      const rawCounts = weights.map(weight => (selectedCount * weight) / totalWeight);
+      const counts = rawCounts.map(value => Math.floor(value));
+      let remaining = selectedCount - counts.reduce((sum, value) => sum + value, 0);
+      const remainders = rawCounts.map((value, index) => ({ index, remainder: value - counts[index] }))
+        .sort((a, b) => b.remainder - a.remainder);
+      for (let index = 0; index < remainders.length && remaining > 0; index += 1) {
+        counts[remainders[index].index] += 1;
+        remaining -= 1;
+      }
+      return counts;
+    }
+
+    function orderStopsForPlaceMode(stopIds) {
+      const uniqueStops = [...new Set(stopIds)].filter(stopId => Boolean(getPlace(stopId)));
+      if (uniqueStops.length < 2) return uniqueStops;
+      const anchor = hotelLocation ? { lat: hotelLocation.lat, lng: hotelLocation.lng } : mapCenter;
+      const remaining = [...uniqueStops];
+      let startIndex = 0;
+      let startDistance = Infinity;
+      remaining.forEach((stopId, index) => {
+        const stop = getPlace(stopId);
+        const distance = Math.hypot((stop.lat - anchor.lat) * 111, (stop.lng - anchor.lng) * 82);
+        if (distance < startDistance) {
+          startDistance = distance;
+          startIndex = index;
+        }
+      });
+      const ordered = [remaining.splice(startIndex, 1)[0]];
+      while (remaining.length) {
+        const current = ordered[ordered.length - 1];
+        let nextIndex = 0;
+        let nextDistance = distanceBetweenStops(current, remaining[0]);
+        remaining.forEach((stopId, index) => {
+          const distance = distanceBetweenStops(current, stopId);
+          if (distance < nextDistance) {
+            nextDistance = distance;
+            nextIndex = index;
+          }
+        });
+        ordered.push(remaining.splice(nextIndex, 1)[0]);
+      }
+      return ordered;
+    }
+
+    function buildRouteStackFromSelectedPlaces() {
+      const tripDayCount = Number(tripDays.value);
+      const orderedStops = orderStopsForPlaceMode(selectedPlaceStops);
+      const counts = getPlaceModeDistribution(orderedStops.length, tripDayCount);
+      const course = createPlaceBuilderCourse();
+      let cursor = 0;
+      return counts.map((count, index) => {
+        const dayStops = orderedStops.slice(cursor, cursor + count);
+        cursor += count;
+        if (!dayStops.length) return createEmptyRouteSlot();
+        return {
+          uid: `places-${currentCityKey}-${index + 1}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          custom: true,
+          fixedStops: true,
+          course,
+          courseDay: index + 1,
+          title: `장소 조합 Day ${index + 1}`,
+          stops: dayStops
+        };
+      });
     }
 
     function getFoodRecommendations(stopId, stop) {
@@ -6645,9 +7643,125 @@
       };
     }
 
+    function createEmptyRouteSlot(uid = null) {
+      return {
+        uid: uid || `empty-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        empty: true
+      };
+    }
+
+    function getConfirmedRouteDayCount() {
+      return routeStack.filter(item => !item.empty).length;
+    }
+
+    function getRouteDayBaseStops(day) {
+      if (!day || day.empty || !day.course) return [];
+      const dayStops = getCourseDayStops(day.course.id, Math.max(0, day.courseDay - 1));
+      return dayStops.length ? dayStops : (day.rawStops || day.stops || []);
+    }
+
+    function getAllCityCandidateStops() {
+      return [...new Set([
+        ...getCityCandidateStops(),
+        ...attractions.map(attraction => `attr-${attraction.id}`)
+      ])];
+    }
+
+    function getScheduledStops(excludeDayIndex = null) {
+      const scheduled = new Set();
+      getRouteDays().forEach((day, index) => {
+        if (day.empty || index === excludeDayIndex) return;
+        day.stops.forEach(stopId => scheduled.add(stopId));
+      });
+      return scheduled;
+    }
+
+    function getNextCourseDayIndex(courseId, ignoreDayIndex = null) {
+      const course = getCourse(courseId);
+      if (!course) return 0;
+      const usedCount = getRouteDays().reduce((count, day, index) => {
+        if (index === ignoreDayIndex || day.empty || day.course?.id !== courseId) return count;
+        return count + 1;
+      }, 0);
+      return usedCount % Math.max(1, course.days.length);
+    }
+
+    function buildStopPickerCandidates(dayIndex) {
+      const days = getRouteDays();
+      const day = days[dayIndex];
+      if (!day || day.empty || !day.course) {
+        return { day: null, available: [], scheduled: [] };
+      }
+
+      const baseStops = getRouteDayBaseStops(day);
+      const sameCourseStops = [...new Set(day.course.days.flatMap(courseDay => courseDay.stops))];
+      const referenceStops = day.stops.length ? day.stops : baseStops;
+      const areaSet = new Set(referenceStops.map(getStopArea));
+      const currentStops = new Set(day.stops);
+      const scheduledElsewhere = getScheduledStops(dayIndex);
+      const candidateIds = [...new Set([
+        ...baseStops,
+        ...sameCourseStops,
+        ...getAllCityCandidateStops()
+      ])];
+
+      const ranked = candidateIds
+        .filter(stopId => Boolean(getPlace(stopId)))
+        .map(stopId => {
+          const stop = getPlace(stopId);
+          const attraction = getAttractionFromStopId(stopId);
+          const meta = getRecommendationMeta(stopId);
+          const distance = minDistanceToStops(stopId, referenceStops);
+          const score =
+            (baseStops.includes(stopId) ? 220 : 0) +
+            (sameCourseStops.includes(stopId) ? 140 : 0) +
+            (areaSet.has(getStopArea(stopId)) ? 80 : 0) +
+            (meta.recommendScore * 8) +
+            (Math.log10(meta.reviewCount + 1) * 10) -
+            (distance * 3.4);
+          const alreadyScheduled = currentStops.has(stopId) || scheduledElsewhere.has(stopId);
+          return {
+            stopId,
+            stop,
+            attraction,
+            meta,
+            score,
+            distance,
+            alreadyScheduled,
+            photo: getStopPhotoInfo(stopId),
+            description: attraction?.summary || locationDescriptions[stopId]?.desc || "현재 일정 동선과 함께 넣기 좋은 후보입니다."
+          };
+        })
+        .sort((a, b) => b.score - a.score);
+
+      const deduped = [];
+      const seenNames = new Set();
+      ranked.forEach(item => {
+        const nameKey = item.stop.name.trim().toLowerCase();
+        if (seenNames.has(nameKey)) return;
+        seenNames.add(nameKey);
+        deduped.push(item);
+      });
+
+      return {
+        day,
+        available: deduped.filter(item => !item.alreadyScheduled),
+        scheduled: deduped.filter(item => item.alreadyScheduled)
+      };
+    }
+
     function getRouteDays() {
       const usedStops = new Set();
       return routeStack.flatMap(item => {
+        if (item.empty) {
+          return [{
+            uid: item.uid,
+            empty: true,
+            stops: [],
+            rawStops: [],
+            intensityLimit: getDailyStopLimit()
+          }];
+        }
         if (item.custom) {
           const stops = item.fixedStops ? optimizeStopsByLocation(item.stops) : pickStopsForIntensity(item.stops, usedStops);
           stops.forEach(stopId => usedStops.add(stopId));
@@ -6681,7 +7795,7 @@
     }
 
     function routeDaysToStack(days) {
-      return days.map(day => day.custom ? {
+      return days.map(day => day.empty ? createEmptyRouteSlot(day.uid) : day.custom ? {
         uid: day.uid,
         custom: true,
         fixedStops: day.fixedStops,
@@ -6696,9 +7810,243 @@
       }));
     }
 
+    function normalizeRouteStackForSave(stack = routeStack) {
+      return stack.map(item => item.empty ? {
+        uid: item.uid,
+        empty: true
+      } : item.custom ? {
+        uid: item.uid,
+        custom: true,
+        fixedStops: Boolean(item.fixedStops),
+        courseId: item.courseId || item.course?.id || courses[0]?.id,
+        courseSnapshot: item.course ? {
+          id: item.course.id,
+          name: item.course.name,
+          short: item.course.short,
+          icon: item.course.icon,
+          days: Array.isArray(item.course.days) ? item.course.days : [{ stops: [] }]
+        } : null,
+        courseDay: item.courseDay || 1,
+        title: item.title || "편집 일정",
+        stops: Array.isArray(item.stops) ? item.stops : []
+      } : {
+        uid: item.uid,
+        courseId: item.courseId,
+        dayIndexes: Array.isArray(item.dayIndexes) ? item.dayIndexes : []
+      }).filter(item => item.empty || item.custom || getCourse(item.courseId));
+    }
+
+    function restoreRouteStackFromSave(savedStack = []) {
+      return savedStack.map(item => {
+        if (item.empty) {
+          return createEmptyRouteSlot(item.uid);
+        }
+        if (item.custom) {
+          const course = item.courseSnapshot || getCourse(item.courseId) || courses[0];
+          return {
+            uid: item.uid || `custom-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            custom: true,
+            fixedStops: Boolean(item.fixedStops),
+            course,
+            courseDay: item.courseDay || 1,
+            title: item.title || `${course.name} 편집 일정`,
+            stops: Array.isArray(item.stops) ? item.stops : []
+          };
+        }
+        const course = getCourse(item.courseId);
+        if (!course) return null;
+        return {
+          uid: item.uid || `${item.courseId}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          courseId: item.courseId,
+          dayIndexes: Array.isArray(item.dayIndexes) ? item.dayIndexes : [0]
+        };
+      }).filter(Boolean);
+    }
+
+    function getSavedPlans() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(PLAN_STORAGE_KEY) || "[]");
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function setSavedPlans(plans) {
+      localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(plans.slice(0, 12)));
+    }
+
+    function getAutoPlan() {
+      try {
+        return JSON.parse(localStorage.getItem(AUTO_PLAN_STORAGE_KEY) || "null");
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function serializeMap(map) {
+      return [...map.entries()];
+    }
+
+    function makePlanSnapshot(name = "") {
+      const city = cityData[currentCityKey] || cityData.sapporo;
+      const days = getRouteDays();
+      const now = new Date();
+      return {
+        version: 1,
+        id: `plan-${now.getTime()}-${Math.random().toString(36).slice(2, 7)}`,
+        name: name || `${city.name} ${getTripLengthLabel()}`,
+        cityKey: currentCityKey,
+        cityName: city.name,
+        savedAt: now.toISOString(),
+        tripDays: tripDays.value,
+        tripIntensity: tripIntensity.value,
+        hotelBase: hotelBaseSelect.value,
+        hotelAddressInput: hotelAddressInput.value,
+        hotelLocation,
+        selectedPlaceStops,
+        routeStack: normalizeRouteStackForSave(),
+        pendingDays,
+        activeCourseMode,
+        openRouteDayUids: [...openRouteDays],
+        foodVisibility: serializeMap(foodVisibility),
+        mapVisibleDays: [...mapVisibleDays],
+        mapCenter,
+        mapZoomLevel,
+        showPinDetails,
+        hiddenPinDetails: [...hiddenPinDetails],
+        forcedPinDetails: [...forcedPinDetails],
+        routeDayCount: days.length
+      };
+    }
+
+    function getPlanSummary(plan) {
+      const dayText = `${plan.routeDayCount || plan.routeStack?.length || 0} day`;
+      const dateText = plan.savedAt ? new Date(plan.savedAt).toLocaleString("ko-KR", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }) : "시간 정보 없음";
+      return `${plan.cityName || "일본"} · ${dayText} · ${dateText}`;
+    }
+
+    function renderSavedPlans() {
+      const plans = getSavedPlans();
+      savedPlanList.innerHTML = plans.length ? plans.map(plan => `
+        <div class="saved-plan-row" data-plan-id="${plan.id}">
+          <div class="saved-plan-info">
+            <strong>${plan.name || "저장한 여행 계획"}</strong>
+            <span>${getPlanSummary(plan)}</span>
+          </div>
+          <div class="saved-plan-actions">
+            <button class="saved-plan-button" type="button" data-action="open-saved-plan" data-plan-id="${plan.id}">열기</button>
+            <button class="saved-plan-button" type="button" data-action="delete-saved-plan" data-plan-id="${plan.id}">삭제</button>
+          </div>
+        </div>
+      `).join("") : `<div class="saved-plan-empty">아직 저장된 계획이 없습니다. 현재 일정은 자동 저장됩니다.</div>`;
+    }
+
+    function setPlanStatus(message) {
+      planVaultStatus.textContent = message;
+    }
+
+    function savePlanToList() {
+      const snapshot = makePlanSnapshot();
+      const plans = getSavedPlans();
+      plans.unshift(snapshot);
+      setSavedPlans(plans);
+      renderSavedPlans();
+      setPlanStatus("계획 저장됨 · 방금 전");
+      return snapshot;
+    }
+
+    function saveAutoPlan() {
+      if (isRestoringPlan || !isPlanAutoSaveReady) return;
+      try {
+        localStorage.setItem(AUTO_PLAN_STORAGE_KEY, JSON.stringify(makePlanSnapshot("자동 저장")));
+        setPlanStatus("자동 저장됨 · 방금 전");
+      } catch (error) {
+        setPlanStatus("자동 저장 실패");
+      }
+    }
+
+    function schedulePlanAutoSave() {
+      if (isRestoringPlan || !isPlanAutoSaveReady) return;
+      window.clearTimeout(planAutoSaveTimer);
+      planAutoSaveTimer = window.setTimeout(saveAutoPlan, 450);
+    }
+
+    function applyPlanSnapshot(plan) {
+      if (!plan || !plan.cityKey) return;
+      isRestoringPlan = true;
+      applyCity(plan.cityKey);
+      tripDays.value = plan.tripDays || tripDays.value;
+      tripIntensity.value = plan.tripIntensity || tripIntensity.value;
+      pendingDays = { ...createPendingDays(), ...(plan.pendingDays || {}) };
+      selectedPlaceStops = Array.isArray(plan.selectedPlaceStops) ? [...new Set(plan.selectedPlaceStops)] : [];
+      activeCourseMode = plan.activeCourseMode || activeCourseMode;
+      routeStack = restoreRouteStackFromSave(plan.routeStack || []);
+      slotFillTargetIndex = null;
+      stopPickerDayIndex = null;
+      closeStopPickerModal();
+      openRouteDays.clear();
+      (plan.openRouteDayUids || []).forEach(uid => openRouteDays.add(uid));
+      foodVisibility.clear();
+      (plan.foodVisibility || []).forEach(([key, value]) => foodVisibility.set(Number(key), Boolean(value)));
+      mapVisibleDays = new Set((plan.mapVisibleDays || []).map(Number));
+      knownMapDayCount = routeStack.length;
+      mapCenter = plan.mapCenter || { ...cityData[currentCityKey].mapCenter };
+      mapZoomLevel = plan.mapZoomLevel || cityData[currentCityKey].mapZoom;
+      showPinDetails = plan.showPinDetails !== false;
+      hiddenPinDetails.clear();
+      (plan.hiddenPinDetails || []).forEach(pinKey => hiddenPinDetails.add(pinKey));
+      forcedPinDetails.clear();
+      (plan.forcedPinDetails || []).forEach(pinKey => forcedPinDetails.add(pinKey));
+      hotelAddressInput.value = plan.hotelAddressInput || "";
+      if (plan.hotelLocation) {
+        hotelLocation = plan.hotelLocation;
+        hotelStatus.textContent = `${hotelLocation.name} 위치를 불러왔습니다.`;
+      } else if (plan.hotelBase) {
+        hotelBaseSelect.value = plan.hotelBase;
+        setHotelFromBase(plan.hotelBase);
+      }
+      isRestoringPlan = false;
+      renderAll();
+      setPlanStatus("계획 불러옴 · 방금 전");
+    }
+
+    function exportCurrentPlan() {
+      const snapshot = makePlanSnapshot();
+      const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const date = new Date().toISOString().slice(0, 10);
+      link.href = url;
+      link.download = `${snapshot.cityName || "japan"}-trip-${date}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+      setPlanStatus("계획 파일 저장됨");
+    }
+
+    function importPlanFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const plan = JSON.parse(reader.result);
+          applyPlanSnapshot(plan);
+          setPlanStatus("계획 파일 불러옴");
+        } catch (error) {
+          setPlanStatus("파일 불러오기 실패");
+        }
+      };
+      reader.readAsText(file, "utf-8");
+    }
+
+    function initPlanVault() {
+      renderSavedPlans();
+      if (getAutoPlan()) setPlanStatus("자동 저장 있음 · 불러오기 가능");
+    }
     function getRouteCourseSummary(days) {
       const summary = new Map();
       days.forEach(day => {
+        if (day.empty || !day.course) return;
         const current = summary.get(day.course.id) || { course: day.course, count: 0 };
         current.count += 1;
         summary.set(day.course.id, current);
@@ -6721,7 +8069,7 @@
     function removeStopFromRouteDay(dayIndex, stopIndex) {
       const days = getRouteDays();
       const day = days[dayIndex];
-      if (!day || !day.stops[stopIndex]) return;
+      if (!day || day.empty || !day.stops[stopIndex]) return;
       const nextStops = day.stops.filter((_, index) => index !== stopIndex);
       days[dayIndex] = {
         uid: day.uid,
@@ -6739,11 +8087,52 @@
       forcedPinDetails.clear();
     }
 
+    function addStopToRouteDay(dayIndex, stopId) {
+      const days = getRouteDays();
+      const day = days[dayIndex];
+      if (!day || day.empty || !stopId) return false;
+      const allScheduledStops = getScheduledStops();
+      if (allScheduledStops.has(stopId)) return false;
+      const nextStops = [...new Set([...(day.stops || []), stopId])];
+      days[dayIndex] = {
+        uid: day.uid,
+        custom: true,
+        fixedStops: true,
+        course: day.course,
+        courseDay: day.courseDay,
+        title: day.custom ? day.title : `${day.course.name} 편집 일정`,
+        stops: nextStops,
+        rawStops: nextStops
+      };
+      routeStack = routeDaysToStack(days);
+      foodVisibility.clear();
+      hiddenPinDetails.clear();
+      forcedPinDetails.clear();
+      return true;
+    }
+
+    function fillEmptyRouteSlot(slotIndex, courseId) {
+      if (slotIndex === null || !routeStack[slotIndex]?.empty) return false;
+      const nextDayIndex = getNextCourseDayIndex(courseId, slotIndex);
+      routeStack[slotIndex] = createRouteDay(courseId, nextDayIndex);
+      slotFillTargetIndex = null;
+      pendingDays = createPendingDays();
+      openRouteDays.clear();
+      foodVisibility.clear();
+      hiddenPinDetails.clear();
+      forcedPinDetails.clear();
+      autoRouteStatus.textContent = `${getCourse(courseId).name} ${nextDayIndex + 1}일차를 Day ${slotIndex + 1}에 반영했습니다.`;
+      return true;
+    }
+
     function renderCourses() {
+      const isSlotFillMode = slotFillTargetIndex !== null;
       courseGrid.innerHTML = courses.map(course => {
         const isCourseOpen = courseDetailsOpen.has(course.id);
+        const selectedDayCount = Number(pendingDays[course.id] || 0);
+        const nextSlotDayIndex = getNextCourseDayIndex(course.id, slotFillTargetIndex);
         return `
-        <article class="course-card game-card" data-course-id="${course.id}">
+        <article class="course-card game-card ${selectedDayCount ? "has-pending-days" : ""}" data-course-id="${course.id}" style="${getCourseToneStyle(course.id)}">
           <div class="course-top">
             <div class="course-title">
               <span class="course-icon" aria-hidden="true">${course.icon}</span>
@@ -6763,15 +8152,48 @@
               ${course.days[0].stops.slice(0, 5).map(stopId => `<li title="${getPlace(stopId).name}">${getPlace(stopId).name}</li>`).join("")}
             </ul>
             <div class="course-controls">
-              <div class="days" aria-label="${course.name} 추가 일수 선택">
-                ${Array.from({ length: Number(tripDays.value) + 1 }, (_, days) => `
-                  <button class="day-button ${pendingDays[course.id] === days ? "active" : ""}" type="button" data-action="set-days" data-course-id="${course.id}" data-days="${days}">${days}일</button>
-                `).join("")}
-              </div>
+              ${isSlotFillMode ? `
+                <div class="days" aria-label="${course.name} 빈 슬롯 채우기">
+                  <span class="day-intensity-note">추가 시 ${nextSlotDayIndex + 1}일차 데이터 반영</span>
+                  <button class="select-course" type="button" data-action="fill-empty-slot" data-course-id="${course.id}">이 슬롯에 1일 넣기</button>
+                </div>
+              ` : `
+                <div class="days" aria-label="${course.name} 추가 일수 선택">
+                  ${Array.from({ length: Number(tripDays.value) + 1 }, (_, days) => `
+                    <button class="day-button ${pendingDays[course.id] === days ? "active" : ""}" type="button" data-action="set-days" data-course-id="${course.id}" data-days="${days}">${days}일</button>
+                  `).join("")}
+                </div>
+              `}
             </div>
           </div>
         </article>
       `;
+      }).join("");
+    }
+
+    function renderPlaceBuilder() {
+      const rankedAttractions = [...attractions].sort((a, b) => {
+        const metaA = getRecommendationMeta(getAttractionStopId(a.id));
+        const metaB = getRecommendationMeta(getAttractionStopId(b.id));
+        if (metaB.recommendScore !== metaA.recommendScore) return metaB.recommendScore - metaA.recommendScore;
+        return metaB.reviewCount - metaA.reviewCount;
+      });
+      placeBuilderCount.textContent = `${selectedPlaceStops.length}곳 선택`;
+      placeBuilderGrid.innerHTML = rankedAttractions.map(attraction => {
+        const stopId = getAttractionStopId(attraction.id);
+        const meta = getRecommendationMeta(stopId);
+        const selected = selectedPlaceStops.includes(stopId);
+        return `
+          <button class="place-builder-card ${selected ? "is-selected" : ""}" type="button" data-action="toggle-place-stop" data-stop-id="${stopId}" aria-pressed="${selected}">
+            <span class="place-builder-thumb">
+              <img src="${attraction.image}" alt="${attraction.name}" loading="lazy" onerror="${imageFallbackHandler(attraction.name)}">
+            </span>
+            <span class="place-builder-info">
+              <strong>${attraction.name}</strong>
+              <span>추천 ${meta.recommendScore}/5 · 리뷰 약 ${meta.reviewCount.toLocaleString("ko-KR")}개</span>
+            </span>
+          </button>
+        `;
       }).join("");
     }
 
@@ -6784,8 +8206,30 @@
     }
 
     function renderCourseSelectionProgress() {
+      if (activeCourseMode === "places" && slotFillTargetIndex === null) {
+        const maxDays = Number(tripDays.value);
+        const distribution = getPlaceModeDistribution(selectedPlaceStops.length, maxDays);
+        selectionProgress.classList.remove("is-over", "is-under");
+        selectionProgress.classList.toggle("is-complete", selectedPlaceStops.length > 0);
+        selectionProgress.classList.toggle("is-partial", selectedPlaceStops.length > 0);
+        finishCourseSelection.classList.remove("is-alert");
+        finishCourseSelection.classList.toggle("is-complete", selectedPlaceStops.length > 0);
+        selectionProgress.innerHTML = `
+          <div class="selection-meter-title">내 일정에 담길 후보</div>
+          <div class="selection-meter-summary">
+            <strong>현재 명승지 ${selectedPlaceStops.length}곳 선택됨</strong>
+            <span>${distribution.map((count, index) => `Day ${index + 1} ${count}곳`).join(" · ") || "명승지를 고르면 Day별 배분이 계산됩니다."}</span>
+          </div>
+          <div class="selection-bar" role="progressbar" aria-label="선택한 명승지 수" aria-valuemin="0" aria-valuemax="${Math.max(selectedPlaceStops.length, 1)}" aria-valuenow="${selectedPlaceStops.length}" style="--day-count:${Math.max(maxDays, 1)}">
+            <i style="--progress:${selectedPlaceStops.length ? 100 : 0}%"></i>
+          </div>
+        `;
+        return;
+      }
+
       const maxDays = Number(tripDays.value);
-      const confirmedDays = routeStack.length;
+      const confirmedDays = getConfirmedRouteDayCount();
+      const occupiedSlots = routeStack.length;
       const pendingTotal = getPendingDayTotal();
       const visibleDays = confirmedDays + pendingTotal;
       const overflowDays = Math.max(0, visibleDays - maxDays);
@@ -6802,12 +8246,24 @@
         <div class="selection-meter-title">내 일정에 담긴 일정</div>
         <div class="selection-meter-summary">
           <strong>현재 ${visibleDays} day / ${maxDays} day 선택됨${overText}</strong>
-          <span>${confirmedDays} day 확정${pendingTotal ? ` · 추가 대기 ${pendingTotal} day` : " · 추가 대기 없음"}</span>
+          <span>${confirmedDays} day 확정${occupiedSlots > confirmedDays ? ` · 빈 슬롯 ${occupiedSlots - confirmedDays} day` : ""}${pendingTotal ? ` · 추가 대기 ${pendingTotal} day` : " · 추가 대기 없음"}</span>
         </div>
         <div class="selection-bar" role="progressbar" aria-label="선택한 일정 비율" aria-valuemin="0" aria-valuemax="${maxDays}" aria-valuenow="${Math.min(visibleDays, maxDays)}" style="--day-count:${maxDays}">
           <i style="--progress:${progress}%"></i>
         </div>
       `;
+    }
+
+    function renderSlotFillState() {
+      const isSlotFillMode = slotFillTargetIndex !== null;
+      slotFillNotice.classList.toggle("is-visible", isSlotFillMode);
+      slotFillNotice.textContent = isSlotFillMode ? `Day ${slotFillTargetIndex + 1} 빈 슬롯 채우기 모드 · 코스를 1일만 넣을 수 있습니다.` : "";
+      finishCourseSelection.disabled = isSlotFillMode;
+      finishCourseSelection.textContent = isSlotFillMode ? "슬롯 채우는 중" : "선택 완료";
+      resetCourseSelection.textContent = isSlotFillMode ? "채우기 취소" : "초기화";
+      courseModeButtons.forEach(button => {
+        if (button.dataset.courseMode !== "custom") button.disabled = isSlotFillMode;
+      });
     }
 
     function applyPendingCoursesToRoute() {
@@ -6857,9 +8313,39 @@
       };
     }
 
+    function applySelectedPlacesToRoute() {
+      if (!selectedPlaceStops.length) {
+        return {
+          applied: false,
+          message: "장소로 조합하기에서는 먼저 명승지를 1곳 이상 골라 주세요."
+        };
+      }
+
+      routeStack = buildRouteStackFromSelectedPlaces();
+      pendingDays = createPendingDays();
+      openRouteDays.clear();
+      foodVisibility.clear();
+      hiddenPinDetails.clear();
+      forcedPinDetails.clear();
+
+      const tripDayCount = Number(tripDays.value);
+      const distribution = getPlaceModeDistribution(selectedPlaceStops.length, tripDayCount)
+        .map((count, index) => `Day ${index + 1} ${count}곳`)
+        .join(" · ");
+
+      return {
+        applied: true,
+        message: `고른 명승지 ${selectedPlaceStops.length}곳을 거리 기준으로 묶어 자동 배분했습니다. ${distribution}`
+      };
+    }
+
     function resetSelectedCourses() {
       pendingDays = createPendingDays();
+      selectedPlaceStops = [];
       routeStack = [];
+      slotFillTargetIndex = null;
+      stopPickerDayIndex = null;
+      closeStopPickerModal();
       completionAttempted = false;
       openRouteDays.clear();
       mapVisibleDays = new Set();
@@ -6928,6 +8414,10 @@
     }
 
     function renderPackageCourses() {
+      if (slotFillTargetIndex !== null) {
+        packageGrid.innerHTML = `<div class="empty-state">빈 DAY 슬롯은 패키지 대신 코스를 1일씩 골라 채워주세요.</div>`;
+        return;
+      }
       const selectedDays = Number(tripDays.value);
       const packages = [...coursePackages].sort((a, b) => {
         const score = packageItem => {
@@ -6969,30 +8459,61 @@
     function renderRoute() {
       const days = getRouteDays();
       const totalDays = days.length;
+      const confirmedDays = days.filter(day => !day.empty).length;
+      const emptySlotCount = totalDays - confirmedDays;
       const courseSummary = getRouteCourseSummary(days);
-      routeMeta.textContent = totalDays ? `${totalDays}일 조합 · 코스 ${courseSummary.length}개 · ${getIntensityLabel()}` : "코스를 추가해 루트를 만드세요";
+      routeMeta.textContent = totalDays ? `${confirmedDays}일 확정${emptySlotCount ? ` · 빈 슬롯 ${emptySlotCount}개` : ""} · 코스 ${courseSummary.length}개 · ${getIntensityLabel()}` : "코스를 추가해 루트를 만드세요";
       routeSummary.innerHTML = courseSummary.length
-        ? courseSummary.map(item => `<span>${item.course.name} ${item.count}일</span>`).join("")
+        ? courseSummary.map(item => `<span style="${getCourseToneStyle(item.course.id)}">${item.course.name} ${item.count}일</span>`).join("")
         : "";
 
-      dayList.innerHTML = days.length ? days.map((day, index) => {
-        const isFoodVisible = foodVisibility.get(index) !== false;
-        const isDayOpen = openRouteDays.has(day.uid);
-        return `
-        <article class="day-card" data-day-index="${index}" data-day-uid="${day.uid}">
-          <div class="day-card-head">
-            <h3><span class="day-number">${index + 1}</span>Day ${index + 1} · ${day.custom ? day.title : `${day.course.name} ${day.courseDay}일차`}</h3>
-            <div class="day-toolbar">
-              <div class="day-order-controls" aria-label="Day 순서 조정">
-                <button class="inline-action" type="button" data-action="move-day" data-direction="up" data-index="${index}" ${index === 0 ? "disabled" : ""}>▲</button>
-                <button class="inline-action" type="button" data-action="move-day" data-direction="down" data-index="${index}" ${index === days.length - 1 ? "disabled" : ""}>▼</button>
+      const courseDayOrder = new Map();
+      const allDaysClosed = openRouteDays.size === 0;
+      const activeDayIndex = days.findIndex(day => !day.empty && openRouteDays.has(day.uid));
+      const dayCards = days.map((day, index) => {
+        if (day.empty) {
+          return `
+            <article class="day-card is-empty-slot ${allDaysClosed ? "is-draggable" : ""}" draggable="${allDaysClosed ? "true" : "false"}" data-day-index="${index}">
+              <div class="day-card-head">
+                <h3>
+                  <span class="day-label-icon">DAY ${index + 1}</span>
+                  <span class="day-empty-copy">
+                    <strong>비어 있는 일정 슬롯</strong>
+                    <span>코스를 다시 골라 이 위치를 채울 수 있습니다.</span>
+                  </span>
+                </h3>
+                <button class="inline-action day-empty-action" type="button" data-action="fill-slot" data-slot-index="${index}">코스 고르기</button>
               </div>
-              <button class="inline-action" type="button" data-action="toggle-day-detail" data-day-uid="${day.uid}">${isDayOpen ? "내용 접기" : "내용 펼치기"}</button>
-              <button class="inline-action" type="button" data-action="toggle-food" data-food-day="${index}">${isFoodVisible ? "음식 추천 접기" : "음식 추천"}</button>
+            </article>
+          `;
+        }
+        const isDayOpen = openRouteDays.has(day.uid);
+        const courseId = day.course?.id || `custom-${index}`;
+        const courseOrder = (courseDayOrder.get(courseId) || 0) + 1;
+        courseDayOrder.set(courseId, courseOrder);
+        const dayLabel = day.custom ? day.title : day.course.name;
+        const dayBadge = courseOrder;
+        return `
+          <article class="day-card ${isDayOpen ? "is-active" : ""} ${allDaysClosed ? "is-draggable" : ""}" draggable="${allDaysClosed ? "true" : "false"}" data-action="toggle-day-detail" data-day-index="${index}" data-day-uid="${day.uid}" style="${getCourseToneStyle(courseId)}">
+            <div class="day-card-head">
+              <h3><span class="day-label-icon">DAY ${index + 1}</span><span class="day-course-name"><span class="day-course-text">${dayLabel}</span><span class="day-course-badge">${dayBadge}</span></span></h3>
             </div>
-          </div>
-          <div class="day-detail ${isDayOpen ? "" : "is-collapsed"}">
-            <span class="day-intensity-note">${getIntensityLabel()} 기준 · 하루 ${day.stops.length}/${day.intensityLimit}곳 추천</span>
+          </article>
+        `;
+      }).join("");
+      const activeDayDetail = activeDayIndex >= 0 ? (() => {
+        const day = days[activeDayIndex];
+        const isFoodVisible = foodVisibility.get(activeDayIndex) === true;
+        const courseId = day.course?.id || `custom-${activeDayIndex}`;
+        return `
+          <div class="day-detail day-detail-panel" data-day-index="${activeDayIndex}" style="${getCourseToneStyle(courseId)}">
+            <div class="day-detail-toolbar">
+              <span class="day-intensity-note">${getIntensityLabel()} 기준 · 하루 ${day.stops.length}/${day.intensityLimit}곳 추천</span>
+              <div class="day-toolbar">
+                <button class="inline-action" type="button" data-action="toggle-food" data-food-day="${activeDayIndex}">${isFoodVisible ? "음식 추천 접기" : "음식 추천"}</button>
+                <button class="inline-action" type="button" data-action="remove-route" data-index="${activeDayIndex}">이 Day 제거</button>
+              </div>
+            </div>
             <ul class="stops">
               ${day.stops.map((stopId, stopIndex) => {
                 const stop = getPlace(stopId);
@@ -7001,35 +8522,40 @@
                 const address = getStopAddress(stopId, stop);
                 const foodItems = getFoodRecommendations(stopId, stop);
                 const recommendationLabel = getRecommendationLabel(stopId);
+                const stopPhoto = actualPlacePhotos[stopId] || (attraction?.image ? { label: attraction.name, src: attraction.image } : null);
+                const photoSrc = stopPhoto?.src || imageFallback(stop.name);
+                const photoLabel = stopPhoto?.label || stop.name;
                 return `
                   <li>
                     <span class="dot"></span>
                     <span class="stop-meta">
-                      <strong>${stop.name}</strong>
-                      <span class="stop-strength">${recommendationLabel}</span>
-                      <span>${description}</span>
-                      <span class="stop-address">
-                        <span>${address}</span>
-                        <button class="inline-action" type="button" data-action="copy-address" data-address="${escapeAttribute(address)}">주소 복사</button>
+                      <span class="stop-heading">
+                        <span class="stop-title-line">
+                          <strong>${stop.name}</strong>
+                          <span class="stop-strength">${recommendationLabel}</span>
+                          <button class="route-chip-action" type="button" data-action="copy-address" data-address="${escapeAttribute(address)}">주소 복사</button>
+                          <button class="route-photo-button" type="button" data-action="open-route-stop-photo" data-image-src="${escapeAttribute(photoSrc)}" data-image-label="${escapeAttribute(photoLabel)}" aria-label="${escapeAttribute(photoLabel)} 사진 보기">
+                            <span class="route-photo-icon" aria-hidden="true"></span>
+                          </button>
+                        </span>
+                        <button class="route-stop-delete" type="button" data-action="remove-stop" data-day-index="${activeDayIndex}" data-stop-index="${stopIndex}" aria-label="${escapeAttribute(stop.name)} 삭제">X</button>
                       </span>
+                      <span>${description}</span>
                       <span class="food-row ${isFoodVisible ? "" : "is-hidden"}">
-                        <span class="food-chip">추천 음식</span>
                         ${foodItems.map(food => `<span class="food-chip">${food}</span>`).join("")}
                       </span>
-                      <button class="inline-action" type="button" data-action="remove-stop" data-day-index="${index}" data-stop-index="${stopIndex}">이 명승지 삭제</button>
                     </span>
                   </li>
                 `;
               }).join("")}
+              <li class="stop-add-row">
+                <button class="stop-add-slot" type="button" data-action="open-stop-picker" data-day-index="${activeDayIndex}">+ 추가하기</button>
+              </li>
             </ul>
-            <button class="remove-day" type="button" data-action="remove-route" data-index="${index}">이 Day 제거</button>
           </div>
-        </article>
-      `;
-      }).join("") : `<div class="empty-state">위 코스에서 일수를 고른 뒤 루트에 추가하세요.</div>`;
-
-      const reserveItems = [...new Set(routeStack.flatMap(item => item.custom ? ["선택 명승지 주변 카페", "날씨에 따른 실내 대체지", "동선 사이 여유 식사 후보"] : getCourse(item.courseId).reserves))].slice(0, 10);
-      reserveList.innerHTML = reserveItems.length ? reserveItems.map(item => `<li>${item}</li>`).join("") : "<li>코스를 추가하면 예비 콘텐츠가 표시됩니다.</li>";
+        `;
+      })() : "";
+      dayList.innerHTML = days.length ? `<div class="day-tab-grid">${dayCards}</div>${activeDayDetail}` : `<div class="empty-state">위 코스에서 일수를 고른 뒤 루트에 추가하세요.</div>`;
     }
 
     function latLngToPixel(lat, lng, zoom) {
@@ -7129,7 +8655,7 @@
       const tipHtml = [];
       const activePinKeys = new Set();
       days.forEach((day, dayIndex) => {
-        if (!mapVisibleDays.has(dayIndex)) return;
+        if (day.empty || !mapVisibleDays.has(dayIndex)) return;
         const color = dayColors[dayIndex % dayColors.length];
         day.stops.forEach((stopId, stopIndex) => {
           const stop = getPlace(stopId);
@@ -7172,7 +8698,9 @@
       });
       pinLayer.innerHTML = pinHtml.join("") + tipHtml.join("");
       renderMapDayFilters(days);
-      const legendItems = days.map((day, index) => `<span style="border-left: 8px solid ${dayColors[index % dayColors.length]}">Day ${index + 1} ${day.course.icon} ${day.course.short}</span>`);
+      const legendItems = days.map((day, index) => day.empty
+        ? `<span style="border-left: 8px solid ${dayColors[index % dayColors.length]}">Day ${index + 1} 빈 슬롯</span>`
+        : `<span style="border-left: 8px solid ${dayColors[index % dayColors.length]}">Day ${index + 1} ${day.course.icon} ${day.course.short}</span>`);
       if (hotelLocation) legendItems.unshift(`<span style="border-left: 8px solid #0f2742">숙소 🏨 ${hotelLocation.name}</span>`);
       mapLegend.innerHTML = legendItems.length ? legendItems.join("") : "<span>코스를 추가하면 핀이 표시됩니다.</span>";
     }
@@ -7192,7 +8720,7 @@
         ? days.map((day, index) => `
           <label class="map-day-toggle" style="border-left: 8px solid ${dayColors[index % dayColors.length]}">
             <input type="checkbox" data-map-day="${index}" ${mapVisibleDays.has(index) ? "checked" : ""}>
-            Day ${index + 1} ${day.course.icon}
+            Day ${index + 1} ${day.empty ? "빈 슬롯" : day.course.icon}
           </label>
         `).join("")
         : `<span class="map-day-toggle">루트에 코스를 추가하면 Day 필터가 생깁니다.</span>`;
@@ -7244,10 +8772,42 @@
       }
     }
 
+    function normalizePercent(value) {
+      const percent = Number(value || 0);
+      if (!Number.isFinite(percent)) return 0;
+      return Math.max(0, Math.min(100, percent));
+    }
+
+    function calculateAdjustedYen(yen, discountPercent, taxRefundPercent) {
+      const amount = Math.max(0, Number(yen || 0));
+      const readPercent = value => {
+        const percent = Number(value || 0);
+        if (!Number.isFinite(percent)) return 0;
+        return Math.max(0, Math.min(100, percent));
+      };
+      const discount = readPercent(discountPercent);
+      const taxRefund = readPercent(taxRefundPercent);
+      return amount * (1 - discount / 100) * (1 - taxRefund / 100);
+    }
+
+    function formatPercentText(value) {
+      const percent = normalizePercent(value);
+      return Number.isInteger(percent) ? String(percent) : percent.toFixed(1);
+    }
+
     function updateExchangeCalculator() {
       const yen = Math.max(0, Number(yenAmountInput.value || 0));
       const rate = Math.max(0, Number(exchangeRateInput.value || exchangeRate));
-      exchangeResult.innerHTML = `<strong>약 ${formatKRW(yen * rate)}</strong>`;
+      const discount = normalizePercent(discountRateInput.value);
+      const taxRefund = normalizePercent(taxRefundRateInput.value);
+      const adjustedYen = calculateAdjustedYen(yen, discount, taxRefund);
+      const adjustmentNotes = [];
+      if (discount > 0) adjustmentNotes.push(`할인 ${formatPercentText(discount)}% 적용`);
+      if (taxRefund > 0) adjustmentNotes.push(`Tax Refund ${formatPercentText(taxRefund)}% 적용`);
+      exchangeResult.innerHTML = `
+        <strong>약 ${formatKRW(adjustedYen * rate)}</strong>
+        ${adjustmentNotes.length ? `<span class="budget-adjustment-note">${adjustmentNotes.join(" / ")}</span>` : ""}
+      `;
       exchangeStatus.textContent = `1엔 = ${rate.toFixed(2)}원 · ${exchangeRateLabel}`;
       renderHeroLiveInfo();
     }
@@ -7492,7 +9052,9 @@
     function renderAll() {
       renderPackageCourses();
       renderCourses();
+      renderPlaceBuilder();
       renderCourseSelectionProgress();
+      renderSlotFillState();
       switchCourseMode(activeCourseMode);
       renderRoute();
       renderMap();
@@ -7500,6 +9062,8 @@
       renderTransport();
       renderBudget();
       renderTips();
+      renderSavedPlans();
+      schedulePlanAutoSave();
     }
 
     function applyCity(cityKey) {
@@ -7514,7 +9078,11 @@
       attractionMeta = city.attractionMeta;
       coursePackages = city.coursePackages;
       pendingDays = createPendingDays();
+      selectedPlaceStops = [];
       routeStack = [];
+      slotFillTargetIndex = null;
+      stopPickerDayIndex = null;
+      closeStopPickerModal();
       courseDetailsOpen.clear();
       openRouteDays.clear();
       openAttractions.clear();
@@ -7713,10 +9281,149 @@
       imageModalPhoto.alt = "";
     }
 
+    function renderStopPickerModal(dayIndex) {
+      const { day, available, scheduled } = buildStopPickerCandidates(dayIndex);
+      if (!day || day.empty) {
+        stopPickerTitle.textContent = "명승지 추가";
+        stopPickerMeta.textContent = "추가 가능한 일정이 없습니다.";
+        stopPickerGroups.innerHTML = `<div class="empty-state">먼저 DAY 일정을 열어 주세요.</div>`;
+        return;
+      }
+
+      stopPickerTitle.textContent = `Day ${dayIndex + 1} 명승지 추가`;
+      stopPickerMeta.textContent = `${day.course.name}와 잘 어울리는 후보를 먼저 보여드릴게요. 이미 전체 일정에 들어간 장소는 아래에서만 확인할 수 있어요.`;
+
+      const getDistanceBucket = distance => Math.floor(distance / 1.2);
+
+      const sortItems = items => {
+        const nextItems = [...items];
+        if (stopPickerSortMode === "score") {
+          return nextItems.sort((a, b) => {
+            const bucketDiff = getDistanceBucket(a.distance) - getDistanceBucket(b.distance);
+            if (bucketDiff !== 0) return bucketDiff;
+            if (b.meta.recommendScore !== a.meta.recommendScore) return b.meta.recommendScore - a.meta.recommendScore;
+            if (b.meta.reviewCount !== a.meta.reviewCount) return b.meta.reviewCount - a.meta.reviewCount;
+            return a.distance - b.distance;
+          });
+        }
+        return nextItems.sort((a, b) => {
+          if (a.distance !== b.distance) return a.distance - b.distance;
+          return b.score - a.score;
+        });
+      };
+
+      const availableItems = sortItems(available);
+      const scheduledItems = sortItems(scheduled);
+      const paginateItems = (items, key) => {
+        const totalPages = Math.max(1, Math.ceil(items.length / STOP_PICKER_PAGE_SIZE));
+        const currentPage = Math.min(totalPages, Math.max(1, stopPickerPages[key] || 1));
+        stopPickerPages[key] = currentPage;
+        return {
+          totalPages,
+          currentPage,
+          items: items.slice((currentPage - 1) * STOP_PICKER_PAGE_SIZE, currentPage * STOP_PICKER_PAGE_SIZE)
+        };
+      };
+      const availablePage = paginateItems(availableItems, "available");
+      const scheduledPage = paginateItems(scheduledItems, "scheduled");
+      const renderPagination = (key, page) => page.totalPages > 1 ? `
+        <div class="stop-picker-pagination">
+          <button class="inline-action" type="button" data-action="change-stop-picker-page" data-section="${key}" data-page="${page.currentPage - 1}" ${page.currentPage === 1 ? "disabled" : ""}>이전</button>
+          <span class="stop-picker-page-info">${page.currentPage} / ${page.totalPages}</span>
+          <button class="inline-action" type="button" data-action="change-stop-picker-page" data-section="${key}" data-page="${page.currentPage + 1}" ${page.currentPage === page.totalPages ? "disabled" : ""}>다음</button>
+        </div>
+      ` : "";
+
+      const renderCard = (item, disabled = false) => `
+        <article class="stop-picker-card ${disabled ? "is-disabled" : ""}">
+          <div class="stop-picker-card-top">
+            <strong>${item.stop.name}</strong>
+            <p>${item.description}</p>
+          </div>
+          <div class="stop-picker-card-footer">
+            <div class="stop-picker-state-row">
+              <span class="stop-strength">${getRecommendationLabel(item.stopId)}</span>
+              <span class="stop-picker-distance">현재 DAY 기준 약 ${item.distance.toFixed(1)}km</span>
+            </div>
+            ${disabled ? `
+              <div class="stop-picker-actions">
+                <button class="select-course stop-picker-photo" type="button" data-action="open-stop-picker-photo" data-image-src="${escapeAttribute(item.photo.src)}" data-image-label="${escapeAttribute(item.photo.label)}" aria-label="${escapeAttribute(item.photo.label)} 사진 보기">
+                  <span class="route-photo-icon" aria-hidden="true"></span>
+                  사진
+                </button>
+                <span class="stop-picker-state">이미 일정에 반영됨</span>
+              </div>
+            ` : `
+              <div class="stop-picker-actions">
+                <button class="select-course stop-picker-photo" type="button" data-action="open-stop-picker-photo" data-image-src="${escapeAttribute(item.photo.src)}" data-image-label="${escapeAttribute(item.photo.label)}" aria-label="${escapeAttribute(item.photo.label)} 사진 보기">
+                  <span class="route-photo-icon" aria-hidden="true"></span>
+                  사진
+                </button>
+                <button class="select-course stop-picker-add" type="button" data-action="add-stop-to-day" data-day-index="${dayIndex}" data-stop-id="${escapeAttribute(item.stopId)}">추가</button>
+              </div>
+            `}
+          </div>
+        </article>
+      `;
+
+      stopPickerGroups.innerHTML = `
+        <div class="stop-picker-controls">
+          <button class="inline-action stop-picker-sort ${stopPickerSortMode === "distance" ? "is-active" : ""}" type="button" data-action="sort-stop-picker" data-sort="distance">거리순</button>
+          <button class="inline-action stop-picker-sort ${stopPickerSortMode === "score" ? "is-active" : ""}" type="button" data-action="sort-stop-picker" data-sort="score">추천순</button>
+        </div>
+        <section class="stop-picker-group">
+          <div class="stop-picker-group-head">
+            <strong>이 코스와 어울리는 추천</strong>
+            <span>${availableItems.length}곳</span>
+          </div>
+          <div class="stop-picker-grid">
+            ${availableItems.length ? availablePage.items.map(item => renderCard(item)).join("") : `<div class="empty-state">이미 일정에 들어가지 않은 추천 후보를 모두 사용했습니다.</div>`}
+          </div>
+          ${renderPagination("available", availablePage)}
+        </section>
+        ${scheduledItems.length ? `
+          <section class="stop-picker-group">
+            <div class="stop-picker-group-head">
+              <strong>이미 일정에 있는 장소</strong>
+              <span>${scheduledItems.length}곳</span>
+            </div>
+            <div class="stop-picker-grid">
+              ${scheduledPage.items.map(item => renderCard(item, true)).join("")}
+            </div>
+            ${renderPagination("scheduled", scheduledPage)}
+          </section>
+        ` : ""}
+      `;
+    }
+
+    function openStopPickerModal(dayIndex) {
+      stopPickerDayIndex = dayIndex;
+      stopPickerPages = { available: 1, scheduled: 1 };
+      renderStopPickerModal(dayIndex);
+      stopPickerModal.classList.add("is-open");
+      stopPickerModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeStopPickerModal() {
+      stopPickerDayIndex = null;
+      stopPickerPages = { available: 1, scheduled: 1 };
+      stopPickerModal.classList.remove("is-open");
+      stopPickerModal.setAttribute("aria-hidden", "true");
+      stopPickerGroups.innerHTML = "";
+    }
+
     courseGrid.addEventListener("click", event => {
       const action = event.target.dataset.action;
       const courseId = event.target.dataset.courseId;
       if (!action || !courseId) return;
+
+      if (action === "fill-empty-slot") {
+        if (fillEmptyRouteSlot(slotFillTargetIndex, courseId)) {
+          renderAll();
+          switchTab("route");
+        }
+        return;
+      }
 
       if (action === "toggle-course-detail") {
         if (courseDetailsOpen.has(courseId)) courseDetailsOpen.delete(courseId);
@@ -7752,6 +9459,20 @@
       renderAll();
     });
 
+    placeBuilderBody.addEventListener("click", event => {
+      const actionTarget = event.target.closest("[data-action='toggle-place-stop']");
+      if (!actionTarget) return;
+      const stopId = actionTarget.dataset.stopId;
+      if (!stopId) return;
+      if (selectedPlaceStops.includes(stopId)) {
+        selectedPlaceStops = selectedPlaceStops.filter(item => item !== stopId);
+      } else {
+        selectedPlaceStops = [...selectedPlaceStops, stopId];
+      }
+      renderPlaceBuilder();
+      renderCourseSelectionProgress();
+    });
+
     courseModeButtons.forEach(button => {
       button.addEventListener("click", () => {
         switchCourseMode(button.dataset.courseMode);
@@ -7760,7 +9481,9 @@
 
     finishCourseSelection.addEventListener("click", () => {
       completionAttempted = true;
-      const result = applyPendingCoursesToRoute();
+      const result = activeCourseMode === "places" && slotFillTargetIndex === null
+        ? applySelectedPlacesToRoute()
+        : applyPendingCoursesToRoute();
       if (result.applied || result.complete) completionAttempted = false;
       autoRouteStatus.textContent = result.message;
       renderAll();
@@ -7768,8 +9491,54 @@
     });
 
     resetCourseSelection.addEventListener("click", () => {
+      if (slotFillTargetIndex !== null) {
+        slotFillTargetIndex = null;
+        pendingDays = createPendingDays();
+        closeStopPickerModal();
+        autoRouteStatus.textContent = "빈 DAY 슬롯 채우기를 취소했습니다.";
+        renderAll();
+        return;
+      }
       resetSelectedCourses();
       renderAll();
+    });
+
+    savePlanButton.addEventListener("click", savePlanToList);
+
+    loadLatestPlanButton.addEventListener("click", () => {
+      const latestPlan = getSavedPlans()[0] || getAutoPlan();
+      if (latestPlan) {
+        applyPlanSnapshot(latestPlan);
+        return;
+      }
+      setPlanStatus("불러올 계획 없음");
+    });
+
+    exportPlanButton.addEventListener("click", exportCurrentPlan);
+
+    importPlanButton.addEventListener("click", () => {
+      planFileInput.click();
+    });
+
+    planFileInput.addEventListener("change", () => {
+      importPlanFile(planFileInput.files?.[0]);
+      planFileInput.value = "";
+    });
+
+    savedPlanList.addEventListener("click", event => {
+      const actionTarget = event.target.closest("[data-action]");
+      if (!actionTarget) return;
+      const plans = getSavedPlans();
+      const planId = actionTarget.dataset.planId;
+      if (actionTarget.dataset.action === "open-saved-plan") {
+        const plan = plans.find(item => item.id === planId);
+        if (plan) applyPlanSnapshot(plan);
+      }
+      if (actionTarget.dataset.action === "delete-saved-plan") {
+        setSavedPlans(plans.filter(item => item.id !== planId));
+        renderSavedPlans();
+        setPlanStatus("계획 삭제됨");
+      }
     });
 
     hotelBaseSelect.addEventListener("change", () => {
@@ -7784,6 +9553,8 @@
     });
 
     yenAmountInput.addEventListener("input", updateExchangeCalculator);
+    discountRateInput.addEventListener("input", updateExchangeCalculator);
+    taxRefundRateInput.addEventListener("input", updateExchangeCalculator);
     exchangeRateInput.addEventListener("input", () => {
       exchangeRateLabel = "수동 입력 기준";
       updateExchangeCalculator();
@@ -7793,7 +9564,8 @@
     quickYenButtons.addEventListener("click", event => {
       const button = event.target.closest("[data-yen]");
       if (!button) return;
-      yenAmountInput.value = button.dataset.yen;
+      const currentYen = Number(yenAmountInput.value || 0);
+      yenAmountInput.value = String(Math.max(0, currentYen) + Number(button.dataset.yen || 0));
       updateExchangeCalculator();
     });
 
@@ -7813,52 +9585,134 @@
     });
 
     dayList.addEventListener("click", event => {
-      const action = event.target.dataset.action;
+      const actionTarget = event.target.closest("[data-action]");
+      if (!actionTarget) return;
+      const action = actionTarget.dataset.action;
+      if (suppressNextDayClick) {
+        suppressNextDayClick = false;
+        return;
+      }
 
       if (action === "move-day") {
-        const dayIndex = Number(event.target.dataset.index);
-        const direction = event.target.dataset.direction === "up" ? -1 : 1;
+        const dayIndex = Number(actionTarget.dataset.index);
+        const direction = actionTarget.dataset.direction === "up" ? -1 : 1;
         moveRouteDay(dayIndex, dayIndex + direction);
         renderAll();
         return;
       }
 
       if (action === "toggle-day-detail") {
-        const dayUid = event.target.dataset.dayUid;
-        if (openRouteDays.has(dayUid)) openRouteDays.delete(dayUid);
-        else openRouteDays.add(dayUid);
+        const dayUid = actionTarget.dataset.dayUid;
+        if (openRouteDays.has(dayUid)) {
+          openRouteDays.clear();
+        } else {
+          openRouteDays.clear();
+          openRouteDays.add(dayUid);
+        }
         renderRoute();
+        return;
+      }
+
+      if (action === "fill-slot") {
+        slotFillTargetIndex = Number(actionTarget.dataset.slotIndex);
+        pendingDays = createPendingDays();
+        openRouteDays.clear();
+        closeStopPickerModal();
+        switchCourseMode("custom");
+        autoRouteStatus.textContent = `Day ${slotFillTargetIndex + 1} 빈 슬롯에 넣을 코스를 1일 골라주세요.`;
+        renderAll();
+        switchTab("course-select");
         return;
       }
 
       if (action === "toggle-food") {
-        const dayIndex = Number(event.target.dataset.foodDay);
-        foodVisibility.set(dayIndex, foodVisibility.get(dayIndex) === false);
+        const dayIndex = Number(actionTarget.dataset.foodDay);
+        foodVisibility.set(dayIndex, foodVisibility.get(dayIndex) !== true);
         renderRoute();
         return;
       }
 
+      if (action === "open-stop-picker") {
+        openStopPickerModal(Number(actionTarget.dataset.dayIndex));
+        return;
+      }
+
       if (action === "copy-address") {
-        copyAddress(event.target.dataset.address, event.target);
+        copyAddress(actionTarget.dataset.address, actionTarget);
+        return;
+      }
+
+      if (action === "open-route-stop-photo") {
+        openImageModal(actionTarget.dataset.imageSrc, actionTarget.dataset.imageLabel);
         return;
       }
 
       if (action === "remove-stop") {
-        removeStopFromRouteDay(Number(event.target.dataset.dayIndex), Number(event.target.dataset.stopIndex));
+        removeStopFromRouteDay(Number(actionTarget.dataset.dayIndex), Number(actionTarget.dataset.stopIndex));
         renderAll();
         return;
       }
 
       if (action !== "remove-route") return;
-      const removeDayIndex = Number(event.target.dataset.index);
+      const removeDayIndex = Number(actionTarget.dataset.index);
       const days = getRouteDays();
-      if (days[removeDayIndex]) openRouteDays.delete(days[removeDayIndex].uid);
-      days.splice(removeDayIndex, 1);
+      if (!days[removeDayIndex]) return;
+      openRouteDays.delete(days[removeDayIndex].uid);
+      days[removeDayIndex] = { uid: days[removeDayIndex].uid, empty: true };
       routeStack = routeDaysToStack(days);
       foodVisibility.clear();
       hiddenPinDetails.clear();
       forcedPinDetails.clear();
+      closeStopPickerModal();
+      autoRouteStatus.textContent = `Day ${removeDayIndex + 1}을 빈 슬롯으로 비워 두었습니다.`;
       renderAll();
+    });
+
+    dayList.addEventListener("dragstart", event => {
+      const card = event.target.closest(".day-card[data-day-index]");
+      if (!card || openRouteDays.size > 0) {
+        event.preventDefault();
+        return;
+      }
+      draggedRouteDayIndex = Number(card.dataset.dayIndex);
+      card.classList.add("is-dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", String(draggedRouteDayIndex));
+    });
+
+    dayList.addEventListener("dragover", event => {
+      const card = event.target.closest(".day-card[data-day-index]");
+      if (!card || draggedRouteDayIndex === null || openRouteDays.size > 0) return;
+      event.preventDefault();
+      card.classList.add("is-drop-target");
+    });
+
+    dayList.addEventListener("dragleave", event => {
+      const card = event.target.closest(".day-card[data-day-index]");
+      if (card) card.classList.remove("is-drop-target");
+    });
+
+    dayList.addEventListener("drop", event => {
+      const card = event.target.closest(".day-card[data-day-index]");
+      if (!card || draggedRouteDayIndex === null || openRouteDays.size > 0) return;
+      event.preventDefault();
+      const targetIndex = Number(card.dataset.dayIndex);
+      if (targetIndex !== draggedRouteDayIndex) {
+        moveRouteDay(draggedRouteDayIndex, targetIndex);
+        suppressNextDayClick = true;
+        renderAll();
+      }
+      draggedRouteDayIndex = null;
+    });
+
+    dayList.addEventListener("dragend", () => {
+      draggedRouteDayIndex = null;
+      dayList.querySelectorAll(".is-dragging, .is-drop-target").forEach(element => {
+        element.classList.remove("is-dragging", "is-drop-target");
+      });
+      window.setTimeout(() => {
+        suppressNextDayClick = false;
+      }, 180);
     });
 
     attractionGrid.addEventListener("click", event => {
@@ -7980,6 +9834,45 @@
       }
     });
 
+    stopPickerModal.addEventListener("click", event => {
+      const actionTarget = event.target.closest("[data-action]");
+      if (actionTarget?.dataset.action === "sort-stop-picker") {
+        stopPickerSortMode = ["distance", "score"].includes(actionTarget.dataset.sort)
+          ? actionTarget.dataset.sort
+          : "distance";
+        stopPickerPages = { available: 1, scheduled: 1 };
+        if (stopPickerDayIndex !== null) renderStopPickerModal(stopPickerDayIndex);
+        return;
+      }
+
+      if (actionTarget?.dataset.action === "change-stop-picker-page") {
+        const section = actionTarget.dataset.section === "scheduled" ? "scheduled" : "available";
+        const nextPage = Math.max(1, Number(actionTarget.dataset.page || 1));
+        stopPickerPages[section] = nextPage;
+        if (stopPickerDayIndex !== null) renderStopPickerModal(stopPickerDayIndex);
+        return;
+      }
+
+      if (actionTarget?.dataset.action === "open-stop-picker-photo") {
+        openImageModal(actionTarget.dataset.imageSrc, actionTarget.dataset.imageLabel);
+        return;
+      }
+
+      if (actionTarget?.dataset.action === "add-stop-to-day") {
+        const added = addStopToRouteDay(Number(actionTarget.dataset.dayIndex), actionTarget.dataset.stopId);
+        if (added) {
+          closeStopPickerModal();
+          autoRouteStatus.textContent = "명승지를 일정에 추가했습니다.";
+          renderAll();
+        }
+        return;
+      }
+
+      if (event.target === stopPickerModal || actionTarget?.dataset.action === "close-stop-picker") {
+        closeStopPickerModal();
+      }
+    });
+
     window.addEventListener("keydown", event => {
       if (event.key !== "Escape") return;
 
@@ -7990,6 +9883,11 @@
 
       if (galleryModal.classList.contains("is-open")) {
         closeGallery();
+        return;
+      }
+
+      if (stopPickerModal.classList.contains("is-open")) {
+        closeStopPickerModal();
       }
     });
 
@@ -8102,8 +10000,11 @@
     });
 
     applyCity("sapporo");
+    initPlanVault();
+    isPlanAutoSaveReady = true;
     fetchExchangeRate();
     syncTabWithHash();
   </script>
 </body>
 </html>
+
