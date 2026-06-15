@@ -4117,6 +4117,82 @@
       .favorite-modal-grid {
         grid-template-columns: 1fr;
       }
+
+      #favoriteAttractionModal {
+        padding: 14px;
+      }
+
+      #favoriteAttractionModal .modal-panel {
+        width: min(100%, 560px);
+        max-height: 82vh;
+        padding: 14px;
+        overflow-x: hidden;
+      }
+
+      #favoriteAttractionModal .modal-head {
+        align-items: flex-start;
+      }
+
+      #favoriteAttractionModal .modal-head h3 {
+        font-size: clamp(1.45rem, 7vw, 2rem);
+        white-space: nowrap;
+      }
+
+      #favoriteAttractionModal .modal-head-actions {
+        display: grid;
+        gap: 8px;
+        flex: 0 0 auto;
+      }
+
+      .favorite-modal-card {
+        grid-template-columns: 92px minmax(0, 1fr);
+        align-items: start;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      .favorite-modal-card img {
+        width: 92px;
+      }
+
+      .favorite-modal-info {
+        overflow: hidden;
+      }
+
+      .favorite-modal-info strong {
+        font-size: clamp(1.02rem, 4.8vw, 1.35rem);
+        line-height: 1.12;
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+
+      .favorite-modal-info .attraction-strength {
+        max-width: 100%;
+        width: fit-content;
+        white-space: normal;
+        line-height: 1.25;
+      }
+
+      .favorite-modal-info .attraction-summary {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      .favorite-modal-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+      }
+
+      .favorite-modal-actions .attraction-chip-action {
+        justify-content: center;
+        min-width: 0;
+        width: 100%;
+      }
     }
 
     /* Request refinements: denser hero controls and one-line labels. */
@@ -4828,6 +4904,7 @@
                 <option value="3">2박 3일</option>
                 <option value="4" selected>3박 4일</option>
                 <option value="5">4박 5일</option>
+                <option value="6">5박 6일</option>
               </select>
             </label>
             <label>
@@ -5136,7 +5213,10 @@
             <h3 id="favoriteAttractionTitle">찜한 명승지</h3>
             <p class="stop-picker-meta" id="favoriteAttractionMeta">찜한 장소를 한 번에 확인하세요.</p>
           </div>
-          <button class="inline-action" type="button" data-action="close-favorite-attractions">닫기</button>
+          <div class="modal-head-actions">
+            <button class="inline-action" type="button" id="clearFavoriteAttractions" data-action="clear-favorite-attractions">비우기</button>
+            <button class="inline-action" type="button" data-action="close-favorite-attractions">닫기</button>
+          </div>
         </div>
         <div class="favorite-modal-grid" id="favoriteAttractionGrid"></div>
       </div>
@@ -5837,7 +5917,8 @@
           2: [["classic", 0], ["shopping", 0]],
           3: [["classic", 0], ["otaru", 0], ["shopping", 0]],
           4: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["shopping", 0]],
-          5: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0], ["shopping", 0]]
+          5: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0], ["shopping", 0]],
+          6: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0], ["winter", 0], ["shopping", 0]]
         }
       },
       {
@@ -5849,7 +5930,8 @@
           2: [["classic", 0], ["nature", 0]],
           3: [["classic", 0], ["nature", 0], ["shopping", 0]],
           4: [["classic", 0], ["nature", 0], ["otaru", 0], ["shopping", 0]],
-          5: [["classic", 0], ["nature", 0], ["otaru", 0], ["jozankei", 0], ["shopping", 0]]
+          5: [["classic", 0], ["nature", 0], ["otaru", 0], ["jozankei", 0], ["shopping", 0]],
+          6: [["classic", 0], ["nature", 0], ["otaru", 0], ["jozankei", 0], ["winter", 0], ["shopping", 0]]
         }
       },
       {
@@ -5861,7 +5943,8 @@
           2: [["jozankei", 0], ["otaru", 0]],
           3: [["otaru", 0], ["jozankei", 0], ["nature", 0]],
           4: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0]],
-          5: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0], ["shopping", 0]]
+          5: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0], ["shopping", 0]],
+          6: [["classic", 0], ["otaru", 0], ["jozankei", 0], ["nature", 0], ["winter", 0], ["shopping", 0]]
         }
       }
     ];
@@ -5941,7 +6024,8 @@
             2: [[ids.city, 0], [ids.food, 0]],
             3: [[ids.city, 0], [ids.culture, 0], [ids.food, 0]],
             4: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.food, 0]],
-            5: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0]]
+            5: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0]],
+            6: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0], [ids.city, 1]]
           }
         },
         {
@@ -5953,7 +6037,8 @@
             2: [[ids.city, 0], [ids.nature, 0]],
             3: [[ids.city, 0], [ids.nature, 0], [ids.food, 0]],
             4: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.food, 0]],
-            5: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0]]
+            5: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0]],
+            6: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0], [ids.nature, 1]]
           }
         },
         {
@@ -5965,7 +6050,8 @@
             2: [[ids.nature, 0], [ids.food, 0]],
             3: [[ids.culture, 0], [ids.nature, 0], [ids.food, 0]],
             4: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.food, 0]],
-            5: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0]]
+            5: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0]],
+            6: [[ids.city, 0], [ids.culture, 0], [ids.nature, 0], [ids.night, 0], [ids.food, 0], [ids.food, 1]]
           }
         }
       ];
@@ -7718,6 +7804,7 @@
     let isRestoringPlan = false;
     let isPlanAutoSaveReady = false;
     let isDraggingMap = false;
+    const activeMapPointers = new Map();
     let dragStart = { x: 0, y: 0, centerPixel: null };
     let touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel, startMidX: 0, startMidY: 0, startCenter: null };
     const googlePlacePhotoSession = new Map();
@@ -7754,6 +7841,7 @@
     const favoriteAttractionModal = document.querySelector("#favoriteAttractionModal");
     const favoriteAttractionMeta = document.querySelector("#favoriteAttractionMeta");
     const favoriteAttractionGrid = document.querySelector("#favoriteAttractionGrid");
+    const clearFavoriteAttractions = document.querySelector("#clearFavoriteAttractions");
     const stopPickerModal = document.querySelector("#stopPickerModal");
     const stopPickerTitle = document.querySelector("#stopPickerTitle");
     const stopPickerMeta = document.querySelector("#stopPickerMeta");
@@ -8643,6 +8731,16 @@
       } else {
         favoriteAttractionIds.add(attractionId);
       }
+      saveFavoriteAttractions();
+      renderAttractions();
+      renderPlaceBuilder();
+      if (stopPickerDayIndex !== null) renderStopPickerModal(stopPickerDayIndex);
+      if (favoriteAttractionModal?.classList.contains("is-open")) renderFavoriteAttractionsModal();
+    }
+
+    function clearFavoriteAttractionList() {
+      if (!favoriteAttractionIds.size) return;
+      favoriteAttractionIds.clear();
       saveFavoriteAttractions();
       renderAttractions();
       renderPlaceBuilder();
@@ -10320,6 +10418,7 @@
       favoriteAttractionMeta.textContent = favoriteAttractions.length
         ? `${cityData[currentCityKey].name}에서 찜한 명승지 ${favoriteAttractions.length}곳`
         : "아직 찜한 명승지가 없습니다.";
+      if (clearFavoriteAttractions) clearFavoriteAttractions.disabled = favoriteAttractions.length === 0;
       favoriteAttractionGrid.innerHTML = favoriteAttractions.length ? favoriteAttractions.map(attraction => {
         const stopId = getAttractionStopId(attraction.id);
         const recommendationLabel = getRecommendationLabel(stopId);
@@ -10982,6 +11081,10 @@
         toggleFavoriteAttraction(actionTarget.dataset.attractionId);
         return;
       }
+      if (actionTarget?.dataset.action === "clear-favorite-attractions") {
+        clearFavoriteAttractionList();
+        return;
+      }
       if (event.target === favoriteAttractionModal || actionTarget?.dataset.action === "close-favorite-attractions") {
         closeFavoriteAttractionsModal();
       }
@@ -11077,6 +11180,105 @@
       routeMap.style.cursor = "";
     });
 
+    function getPointerValues() {
+      return [...activeMapPointers.values()];
+    }
+
+    function getPointerDistance(points) {
+      if (points.length < 2) return 0;
+      return Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);
+    }
+
+    function getPointerMidpoint(points) {
+      if (points.length < 2) return points[0] || { x: 0, y: 0 };
+      return {
+        x: (points[0].x + points[1].x) / 2,
+        y: (points[0].y + points[1].y) / 2
+      };
+    }
+
+    function getPinchZoomDelta(nextDistance, startDistance) {
+      if (!startDistance || !nextDistance) return 0;
+      return Math.max(-3, Math.min(3, Math.round(Math.log(nextDistance / startDistance) / Math.log(1.28))));
+    }
+
+    function resetPointerGestureFromActivePointers() {
+      const points = getPointerValues();
+      if (!points.length) {
+        touchMapState = { mode: null, startDistance: 0, startZoom: mapZoomLevel, startMidX: 0, startMidY: 0, startCenter: null };
+        return;
+      }
+      if (points.length === 1) {
+        const point = points[0];
+        touchMapState = { mode: "pointer-pan", startDistance: 0, startZoom: mapZoomLevel, startMidX: point.x, startMidY: point.y, startCenter: { ...mapCenter } };
+        dragStart = {
+          x: point.x,
+          y: point.y,
+          centerPixel: latLngToPixel(mapCenter.lat, mapCenter.lng, mapZoomLevel)
+        };
+        return;
+      }
+      const midpoint = getPointerMidpoint(points);
+      touchMapState = {
+        mode: "pointer-pinch",
+        startDistance: getPointerDistance(points),
+        startZoom: mapZoomLevel,
+        startMidX: midpoint.x,
+        startMidY: midpoint.y,
+        startCenter: { ...mapCenter }
+      };
+    }
+
+    function startMapPointerPan(event) {
+      if (event.pointerType === "mouse") return;
+      event.preventDefault();
+      event.stopPropagation();
+      activeMapPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      routeMap.setPointerCapture?.(event.pointerId);
+      resetPointerGestureFromActivePointers();
+    }
+
+    function moveMapPointerPan(event) {
+      if (!activeMapPointers.has(event.pointerId)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      activeMapPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      const points = getPointerValues();
+      if (points.length >= 2 && touchMapState.mode === "pointer-pinch" && touchMapState.startDistance > 0) {
+        const nextDistance = getPointerDistance(points);
+        const midpoint = getPointerMidpoint(points);
+        const nextZoom = Math.max(9, Math.min(16, touchMapState.startZoom + getPinchZoomDelta(nextDistance, touchMapState.startDistance)));
+        const dx = midpoint.x - touchMapState.startMidX;
+        const dy = midpoint.y - touchMapState.startMidY;
+        const startCenter = touchMapState.startCenter || mapCenter;
+        const startCenterPixel = latLngToPixel(startCenter.lat, startCenter.lng, nextZoom);
+        mapZoomLevel = nextZoom;
+        mapCenter = pixelToLatLng(startCenterPixel.x - dx, startCenterPixel.y - dy, mapZoomLevel);
+        renderMap();
+        return;
+      }
+      if (points.length === 1 && touchMapState.mode === "pointer-pan") {
+        const dx = points[0].x - dragStart.x;
+        const dy = points[0].y - dragStart.y;
+        mapCenter = pixelToLatLng(dragStart.centerPixel.x - dx, dragStart.centerPixel.y - dy, mapZoomLevel);
+        renderMap();
+      }
+    }
+
+    function endMapPointerPan(event) {
+      if (!activeMapPointers.has(event.pointerId)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      routeMap.releasePointerCapture?.(event.pointerId);
+      activeMapPointers.delete(event.pointerId);
+      resetPointerGestureFromActivePointers();
+    }
+
+    routeMap.addEventListener("pointerdown", startMapPointerPan, { passive: false });
+    routeMap.addEventListener("pointermove", moveMapPointerPan, { passive: false });
+    routeMap.addEventListener("pointerup", endMapPointerPan, { passive: false });
+    routeMap.addEventListener("pointercancel", endMapPointerPan, { passive: false });
+
     function getTouchDistance(touches) {
       if (touches.length < 2) return 0;
       const dx = touches[0].clientX - touches[1].clientX;
@@ -11093,8 +11295,10 @@
     }
 
     routeMap.addEventListener("touchstart", event => {
+      if (activeMapPointers.size) return;
       if (!event.touches.length) return;
       event.preventDefault();
+      event.stopPropagation();
       if (event.touches.length === 1) {
         const touch = event.touches[0];
         touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel, startMidX: touch.clientX, startMidY: touch.clientY, startCenter: { ...mapCenter } };
@@ -11117,8 +11321,10 @@
     }, { passive: false });
 
     routeMap.addEventListener("touchmove", event => {
+      if (activeMapPointers.size) return;
       if (!touchMapState.mode) return;
       event.preventDefault();
+      event.stopPropagation();
       if (touchMapState.mode === "pan" && event.touches.length === 1) {
         const touch = event.touches[0];
         const dx = touch.clientX - dragStart.x;
@@ -11130,7 +11336,7 @@
       if (event.touches.length >= 2 && touchMapState.startDistance > 0) {
         const nextDistance = getTouchDistance(event.touches);
         const midpoint = getTouchMidpoint(event.touches);
-        const zoomDelta = Math.round(Math.log2(nextDistance / touchMapState.startDistance));
+        const zoomDelta = getPinchZoomDelta(nextDistance, touchMapState.startDistance);
         const nextZoom = Math.max(9, Math.min(16, touchMapState.startZoom + zoomDelta));
         const dx = midpoint.x - touchMapState.startMidX;
         const dy = midpoint.y - touchMapState.startMidY;
@@ -11143,6 +11349,7 @@
     }, { passive: false });
 
     routeMap.addEventListener("touchend", event => {
+      if (activeMapPointers.size) return;
       if (event.touches.length === 1) {
         const touch = event.touches[0];
         touchMapState = { mode: "pan", startDistance: 0, startZoom: mapZoomLevel, startMidX: touch.clientX, startMidY: touch.clientY, startCenter: { ...mapCenter } };
