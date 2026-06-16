@@ -8217,9 +8217,11 @@
       if (photoHydrationQueue.has(cacheKey)) return false;
       if (attractionPhotoCache[cacheKey]) {
         if (attractionPhotoCache[cacheKey] === "missing") return false;
-        attraction.image = attractionPhotoCache[cacheKey];
+        const cachedPhoto = attractionPhotoCache[cacheKey];
+        const didPhotoChange = attraction.image !== cachedPhoto;
+        attraction.image = cachedPhoto;
         cityData[cityKey].actualPlacePhotos[attraction.id] = { label: attraction.name, src: attraction.image };
-        return true;
+        return didPhotoChange;
       }
       photoHydrationQueue.add(cacheKey);
       try {
