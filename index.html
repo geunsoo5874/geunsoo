@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>일본 여행가기</title>
+  <title>여행가기</title>
   <style>
     :root {
       --ink: #12253d;
@@ -111,6 +111,14 @@
       gap: 10px;
     }
 
+    .hero-top-actions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-left: auto;
+    }
+
     .brand-mark {
       display: grid;
       width: 34px;
@@ -145,6 +153,7 @@
       gap: 12px;
     }
 
+    .country-switch,
     .city-switch {
       display: grid;
       grid-template-columns: repeat(4, 6.4em);
@@ -153,6 +162,12 @@
       overflow-x: auto;
     }
 
+    .country-switch {
+      grid-template-columns: repeat(4, minmax(6.4em, 1fr));
+      width: min(100%, 720px);
+    }
+
+    .country-button,
     .city-button {
       display: grid;
       width: 6.4em;
@@ -167,18 +182,66 @@
       box-shadow: 0 5px 0 rgba(15, 39, 66, 0.13);
     }
 
+    .country-button strong,
     .city-button strong {
       font-size: 0.98rem;
       line-height: 1.2;
     }
 
+    .country-button.is-active,
     .city-button.is-active {
       background: var(--blue);
       color: #fff;
     }
 
+    .country-button.is-pending,
+    .city-button.is-pending {
+      background: rgba(255, 255, 255, 0.72);
+      color: rgba(8, 31, 58, 0.58);
+    }
+
+    .country-button small,
+    .city-button small {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.62rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .country-button.is-active small,
     .city-button.is-active span {
       color: rgba(255, 255, 255, 0.84);
+    }
+
+    .hero-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .destination-picker-button {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 13px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 950;
+      box-shadow: 4px 4px 0 var(--line);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .destination-picker-button:hover {
+      background: var(--cream);
     }
 
     .button {
@@ -882,6 +945,34 @@
       font-weight: 900;
     }
 
+    .trip-condition-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 190px) minmax(240px, 1fr);
+      gap: 10px;
+      align-items: end;
+      grid-column: 1 / -1;
+    }
+
+    .trip-condition-row label {
+      min-width: 0;
+    }
+
+    .field-label-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .field-note {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
     .auto-controls select,
     .auto-controls input {
       width: 100%;
@@ -892,6 +983,79 @@
       color: var(--ink);
       background: #fff;
       font-weight: 850;
+    }
+
+    .trip-day-stepper,
+    .course-day-stepper {
+      display: grid;
+      grid-template-columns: 42px minmax(76px, 1fr) 42px;
+      align-items: center;
+      gap: 7px;
+      width: 100%;
+    }
+
+    .trip-day-stepper button,
+    .course-day-stepper button {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--line);
+      border-radius: 9px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 950;
+      box-shadow: 3px 3px 0 rgba(16, 19, 25, 0.14);
+      cursor: pointer;
+    }
+
+    .trip-day-stepper button:hover,
+    .course-day-stepper button:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .trip-day-stepper input,
+    .course-day-stepper input {
+      text-align: center;
+      font-size: 0.98rem;
+      font-weight: 950;
+    }
+
+    .trip-condition-row .trip-day-stepper {
+      grid-template-columns: 34px minmax(58px, 1fr) 34px;
+      max-width: 190px;
+    }
+
+    .trip-condition-row .trip-day-stepper button,
+    .trip-condition-row .trip-day-stepper input {
+      min-height: 38px;
+    }
+
+    @media (max-width: 520px) {
+      .trip-condition-row {
+        grid-template-columns: 1fr;
+      }
+
+      .trip-condition-row .trip-day-stepper {
+        max-width: 190px;
+      }
+    }
+
+    .course-day-stepper {
+      grid-template-columns: 38px minmax(66px, 1fr) 38px;
+      max-width: 220px;
+    }
+
+    .course-day-stepper input {
+      min-height: 38px;
+      padding: 7px 8px;
+    }
+
+    .course-day-stepper button {
+      min-height: 38px;
+      box-shadow: 2px 2px 0 rgba(16, 19, 25, 0.14);
     }
 
     .hotel-address-row,
@@ -923,6 +1087,23 @@
       color: var(--muted);
       font-size: 0.88rem;
       font-weight: 850;
+    }
+
+    .conditions-next-row {
+      position: sticky;
+      bottom: 8px;
+      z-index: 12;
+      display: flex;
+      justify-content: flex-start;
+      pointer-events: none;
+    }
+
+    .conditions-next-button {
+      pointer-events: auto;
+      min-height: 40px;
+      padding-inline: 16px;
+      border-color: var(--line);
+      background: var(--cream);
     }
 
     .budget-calculator {
@@ -1445,10 +1626,10 @@
     }
 
     .days {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-auto-rows: 36px;
-      gap: 7px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .day-button,
@@ -1607,6 +1788,36 @@
       font-size: 0.86rem;
     }
 
+    .destination-modal-body {
+      display: grid;
+      gap: 14px;
+    }
+
+    .destination-modal-section {
+      display: grid;
+      gap: 8px;
+    }
+
+    .destination-modal-section h4 {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+
+    .destination-modal-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 850;
+      line-height: 1.35;
+    }
+
+    .destination-modal-body .country-switch,
+    .destination-modal-body .city-switch {
+      width: 100%;
+      max-width: none;
+    }
+
     .favorite-modal-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1615,17 +1826,31 @@
 
     .favorite-modal-card {
       display: grid;
-      grid-template-columns: 86px minmax(0, 1fr);
-      gap: 10px;
-      align-items: center;
+      grid-template-columns: 104px minmax(0, 1fr);
+      grid-template-areas:
+        "media title"
+        "media strength"
+        "media summary";
+      column-gap: 10px;
+      row-gap: 7px;
+      align-items: start;
       padding: 10px;
       border: 2px solid var(--line);
       border-radius: 14px 8px 12px 10px;
       background: rgba(255, 255, 255, 0.9);
     }
 
+    .favorite-modal-media {
+      display: grid;
+      grid-area: media;
+      gap: 7px;
+      align-content: start;
+      justify-items: center;
+      width: 104px;
+    }
+
     .favorite-modal-card img {
-      width: 86px;
+      width: 104px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       border: 2px solid var(--line);
@@ -1635,14 +1860,42 @@
 
     .favorite-modal-info {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: start;
       gap: 6px;
+      min-width: 0;
+      align-content: start;
+      padding-top: 2px;
+    }
+
+    .favorite-modal-title-row {
+      display: grid;
+      grid-area: title;
+      grid-template-columns: auto auto;
+      justify-content: start;
+      gap: 7px;
+      align-items: center;
+      width: 100%;
       min-width: 0;
     }
 
-    .favorite-modal-info strong {
-      font-size: 1rem;
-      line-height: 1.25;
+    .favorite-modal-title-row strong {
+      font-size: clamp(1.08rem, 2.2vw, 1.35rem);
+      line-height: 1.15;
       word-break: keep-all;
+      white-space: nowrap;
+    }
+
+    .favorite-modal-strength {
+      grid-area: strength;
+      margin-top: 0;
+    }
+
+    .favorite-modal-summary {
+      grid-area: summary;
+      margin-top: 0;
+      font-size: 0.88rem;
+      line-height: 1.34;
     }
 
     .favorite-modal-actions {
@@ -1876,15 +2129,15 @@
 
     .day-tab-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--day-card-columns, 2), minmax(0, 1fr));
       gap: 8px;
     }
 
     .day-card {
       position: relative;
       overflow: hidden;
-      min-height: 112px;
-      padding: 50px 14px 14px 20px;
+      min-height: clamp(76px, calc(132px - (var(--day-card-columns, 2) * 10px)), 112px);
+      padding: clamp(34px, calc(54px - (var(--day-card-columns, 2) * 4px)), 50px) 12px 12px 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
@@ -1946,6 +2199,10 @@
       white-space: nowrap;
     }
 
+    .day-tab-grid.is-compact .day-course-name {
+      display: none;
+    }
+
     .day-course-badge {
       display: inline-flex;
       width: 22px;
@@ -1983,8 +2240,7 @@
     }
 
     .day-card.is-empty-slot {
-      grid-column: 1 / -1;
-      min-height: 124px;
+      min-height: clamp(76px, calc(136px - (var(--day-card-columns, 2) * 10px)), 124px);
       padding-right: 18px;
       border-style: dashed;
       background:
@@ -2570,60 +2826,6 @@
       align-items: flex-start;
       gap: 8px;
       margin: 0 0 12px;
-    }
-
-    .map-nudge-pad {
-      display: grid;
-      grid-template-columns: repeat(3, 26px);
-      grid-template-rows: repeat(3, 24px);
-      gap: 2px;
-      position: absolute;
-      left: 8px;
-      bottom: 8px;
-      z-index: 6;
-      padding: 4px;
-      border: 2px solid var(--line);
-      border-radius: 9px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 4px 0 rgba(31, 36, 48, 0.14);
-      backdrop-filter: blur(6px);
-      pointer-events: auto;
-    }
-
-    .map-nudge-button,
-    .map-nudge-center {
-      display: inline-grid;
-      width: 26px;
-      height: 24px;
-      place-items: center;
-      border: 2px solid var(--line);
-      border-radius: 6px;
-      background: #fff;
-      color: var(--ink);
-      font-family: inherit;
-      font-size: 0.56rem;
-      font-weight: 950;
-      line-height: 1;
-      box-shadow: 2px 2px 0 rgba(31, 36, 48, 0.18);
-    }
-
-    .map-nudge-button {
-      cursor: pointer;
-    }
-
-    .map-nudge-button:active {
-      transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 rgba(31, 36, 48, 0.18);
-    }
-
-    .map-nudge-center {
-      background: var(--cream);
-      font-size: 0.68rem;
-    }
-
-    .map-zoom-button {
-      background: var(--blue);
-      color: #fff;
     }
 
     .map-tool-button,
@@ -3710,8 +3912,8 @@
     @media (min-width: 960px) {
       .anti-brutal .hero-live-card {
         position: absolute;
-        top: clamp(28px, 4vw, 54px);
-        right: clamp(-18px, -1.2vw, -8px);
+        top: clamp(88px, 7.2vw, 118px);
+        right: 0;
         justify-self: auto;
       }
     }
@@ -3733,6 +3935,7 @@
       transform: rotate(-1deg);
     }
 
+    .anti-brutal .country-switch,
     .anti-brutal .city-switch {
       width: min(100%, 560px);
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -3740,6 +3943,7 @@
       overflow: visible;
     }
 
+    .anti-brutal .country-button,
     .anti-brutal .city-button,
     .anti-brutal .button,
     .anti-brutal .inline-action,
@@ -3773,11 +3977,13 @@
       color: #fff;
     }
 
+    .anti-brutal .country-button,
     .anti-brutal .city-button {
       width: auto;
       min-height: 48px;
     }
 
+    .anti-brutal .country-switch .country-button,
     .anti-brutal .city-switch .city-button {
       justify-self: stretch;
       width: 100%;
@@ -3785,6 +3991,7 @@
       box-sizing: border-box;
     }
 
+    .anti-brutal .country-button.is-active,
     .anti-brutal .city-button.is-active,
     .anti-brutal .button:not(.secondary),
     .anti-brutal .tab-button.is-active,
@@ -3795,11 +4002,13 @@
       border-color: var(--line);
     }
 
+    .anti-brutal .country-button:nth-child(2n).is-active,
     .anti-brutal .city-button:nth-child(2n).is-active,
     .anti-brutal .course-card:nth-child(2n) .course-icon {
       background: var(--violet);
     }
 
+    .anti-brutal .country-button:nth-child(3n).is-active,
     .anti-brutal .city-button:nth-child(3n).is-active,
     .anti-brutal .course-card:nth-child(3n) .course-icon {
       background: var(--coral);
@@ -4119,7 +4328,7 @@
       }
 
       #favoriteAttractionModal {
-        padding: 14px;
+        padding: 12px;
       }
 
       #favoriteAttractionModal .modal-panel {
@@ -4131,6 +4340,7 @@
 
       #favoriteAttractionModal .modal-head {
         align-items: flex-start;
+        gap: 10px;
       }
 
       #favoriteAttractionModal .modal-head h3 {
@@ -4139,59 +4349,108 @@
       }
 
       #favoriteAttractionModal .modal-head-actions {
-        display: grid;
+        display: flex;
         gap: 8px;
         flex: 0 0 auto;
       }
 
+      #favoriteAttractionModal .modal-head-actions .inline-action {
+        min-width: 72px;
+        padding: 9px 12px;
+      }
+
       .favorite-modal-card {
-        grid-template-columns: 92px minmax(0, 1fr);
+        grid-template-columns: 104px minmax(0, 1fr);
+        grid-template-areas:
+          "media title"
+          "media strength"
+          "media summary";
         align-items: start;
-        gap: 12px;
+        column-gap: 10px;
+        row-gap: 8px;
         padding: 12px;
       }
 
+      .favorite-modal-media {
+        grid-area: media;
+        gap: 8px;
+      }
+
       .favorite-modal-card img {
-        width: 92px;
+        width: 104px;
       }
 
       .favorite-modal-info {
-        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: start;
+        gap: 6px;
+        min-width: 0;
       }
 
-      .favorite-modal-info strong {
-        font-size: clamp(1.02rem, 4.8vw, 1.35rem);
-        line-height: 1.12;
+      .favorite-modal-title-row strong {
+        font-size: clamp(1.02rem, 4.5vw, 1.28rem);
+        line-height: 1.18;
         white-space: normal;
         word-break: keep-all;
-        overflow-wrap: anywhere;
+        overflow-wrap: break-word;
       }
 
-      .favorite-modal-info .attraction-strength {
+      .favorite-modal-title-row {
+        grid-area: title;
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: start;
+        align-items: center;
+        gap: 7px;
+        width: 100%;
+      }
+
+      .favorite-modal-strength {
+        grid-area: strength;
         max-width: 100%;
         width: fit-content;
+        margin-top: 0;
         white-space: normal;
         line-height: 1.25;
+        font-size: 0.78rem;
       }
 
-      .favorite-modal-info .attraction-summary {
+      .favorite-modal-summary {
+        grid-area: summary;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         margin: 0;
+        font-size: 0.88rem;
+        line-height: 1.34;
       }
 
       .favorite-modal-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        width: 100%;
+        display: contents;
       }
 
       .favorite-modal-actions .attraction-chip-action {
         justify-content: center;
         min-width: 0;
         width: 100%;
+      }
+
+      .favorite-modal-title-row .attraction-chip-action {
+        width: auto;
+        min-height: 24px;
+        margin-left: 0;
+        padding: 4px 7px;
+        font-size: 0.72rem;
+      }
+
+      .favorite-modal-media .attraction-chip-action {
+        justify-self: center;
+        width: 88px;
+        min-height: 26px;
+        padding: 5px 7px;
+        font-size: 0.76rem;
       }
     }
 
@@ -4223,6 +4482,7 @@
       line-height: 0.96;
     }
 
+    .anti-brutal .country-switch,
     .anti-brutal .city-switch {
       width: 100%;
       max-width: 100%;
@@ -4231,6 +4491,7 @@
       overflow: visible;
     }
 
+    .anti-brutal .country-button,
     .anti-brutal .city-button {
       min-height: 40px;
       height: 40px;
@@ -4240,6 +4501,7 @@
       white-space: nowrap;
     }
 
+    .anti-brutal .country-button strong,
     .anti-brutal .city-button strong {
       font-size: clamp(0.78rem, 2.8vw, 0.94rem);
       line-height: 1;
@@ -4420,8 +4682,33 @@
 
     .anti-brutal #builder,
     .anti-brutal .weather-section {
-      gap: 0;
+      gap: 20px;
       padding-block: 12px;
+    }
+
+    .anti-brutal .planner-menu-card,
+    .anti-brutal .info-panel {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .anti-brutal .planner-menu-card::before,
+    .anti-brutal .info-panel::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      z-index: -1;
+      border-radius: 6px;
+      opacity: 0.62;
+      pointer-events: none;
+    }
+
+    .anti-brutal .planner-menu-card::before {
+      background: linear-gradient(135deg, rgba(36, 107, 254, 0.08), rgba(255, 255, 255, 0));
+    }
+
+    .anti-brutal .info-panel::before {
+      background: linear-gradient(135deg, rgba(151, 219, 37, 0.1), rgba(255, 255, 255, 0));
     }
 
     .anti-brutal .planner-panel,
@@ -4535,6 +4822,54 @@
       white-space: nowrap;
     }
 
+    .anti-brutal .favorite-modal-media .attraction-chip-action {
+      justify-self: center;
+      width: 88px;
+      min-height: 27px;
+      justify-content: center;
+      padding: 5px 8px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .anti-brutal .favorite-modal-title-row .attraction-chip-action {
+      width: auto;
+      min-height: 24px;
+      flex: 0 0 auto;
+      padding: 4px 7px;
+      margin: 0;
+      font-size: 0.72rem;
+      justify-content: center;
+    }
+
+    .anti-brutal .favorite-modal-title-row strong {
+      font-weight: 950;
+      line-height: 1.12;
+    }
+
+    .anti-brutal .favorite-modal-strength {
+      grid-area: strength;
+      justify-self: start;
+      align-self: start;
+      max-width: 100%;
+      width: fit-content;
+      min-height: 24px;
+      margin: 0;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .anti-brutal .favorite-modal-summary {
+      grid-area: summary;
+      max-width: 100%;
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.34;
+      text-align: left;
+    }
+
     .anti-brutal .attraction-summary {
       color: #4a5563;
       font-size: 0.78rem;
@@ -4567,6 +4902,9 @@
     .anti-brutal .workflow-tabs .tab-button {
       counter-increment: workflow-step;
       position: relative;
+      align-content: center;
+      justify-items: center;
+      padding: 24px 8px 12px;
     }
 
     .anti-brutal .planner-tabs .tab-button,
@@ -4580,27 +4918,31 @@
       align-items: center;
       justify-content: center;
       white-space: nowrap;
+      width: 100%;
+      padding-inline: 0;
+      text-align: center;
     }
 
     .anti-brutal .workflow-tabs .tab-button > span:first-child::before {
       content: "STEP." counter(workflow-step);
       position: absolute;
-      left: 8px;
-      top: 8px;
+      left: 6px;
+      top: 6px;
       display: grid;
-      width: 50px;
-      height: 20px;
+      width: auto;
+      min-width: 38px;
+      height: 17px;
       place-items: center;
       border: 2px solid var(--line);
       border-radius: 999px;
       background: var(--cream);
       color: var(--ink);
       box-shadow: none;
-      font-size: 0.58rem;
+      font-size: 0.5rem;
       font-weight: 950;
       line-height: 1;
       text-align: center;
-      padding: 0;
+      padding: 0 5px;
       letter-spacing: 0;
     }
 
@@ -4610,33 +4952,57 @@
     }
 
     @media (max-width: 719px) {
+      .field-label-line {
+        gap: 4px;
+      }
+
+      .field-note {
+        font-size: 0.62rem;
+        white-space: normal;
+      }
+
+      .conditions-next-row {
+        bottom: 6px;
+      }
+
+      .conditions-next-button {
+        min-height: 38px;
+        padding-inline: 13px;
+      }
+
       .anti-brutal .workflow-tabs .tab-button {
         min-height: 82px;
-        padding-top: 28px;
+        padding: 28px 7px 10px;
       }
 
       .anti-brutal .workflow-tabs .tab-button > span:first-child {
         max-width: 100%;
         min-height: 18px;
         text-align: center;
+        padding-inline: 0;
       }
 
       .anti-brutal .workflow-tabs .tab-button > span:first-child::before {
-        left: 7px;
-        top: 7px;
-        width: 48px;
-        height: 19px;
-        font-size: 0.55rem;
+        left: 6px;
+        top: 6px;
+        min-width: 36px;
+        height: 16px;
+        font-size: 0.48rem;
       }
     }
 
     @media (min-width: 1060px) {
+      .anti-brutal .country-switch,
       .anti-brutal .city-switch {
         width: 100%;
       }
 
       .anti-brutal .hero-actions {
         width: min(100%, 740px);
+      }
+
+      .anti-brutal .country-switch {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
       .anti-brutal .city-switch {
@@ -4651,6 +5017,34 @@
 
       .anti-brutal .hero-inner {
         padding-block: 18px 26px;
+      }
+
+      .anti-brutal .topline {
+        gap: 8px;
+      }
+
+      .anti-brutal .hero-top-actions {
+        gap: 6px;
+      }
+
+      .anti-brutal .hero-calculator-button {
+        width: 38px;
+        min-width: 38px;
+        height: 38px;
+        border-radius: 9px;
+      }
+
+      .anti-brutal .calculator-glyph {
+        width: 19px;
+        height: 24px;
+        border-width: 2px;
+      }
+
+      .anti-brutal .destination-picker-button {
+        min-height: 38px;
+        padding-inline: 9px;
+        font-size: 0.78rem;
+        box-shadow: 3px 3px 0 var(--line);
       }
 
       .anti-brutal .hero h1 {
@@ -4708,20 +5102,20 @@
       }
 
       .anti-brutal .topline {
-        grid-column: 1;
+        grid-column: 1 / -1;
         width: 100%;
         justify-content: space-between;
         margin: 0;
       }
 
-      .anti-brutal .hero-calculator-button {
-        margin-left: auto;
+      .anti-brutal .hero-top-actions {
+        justify-self: end;
       }
 
       .anti-brutal .hero-live-card {
         position: absolute;
-        top: clamp(28px, 4vw, 54px);
-        right: clamp(-18px, -1.2vw, -8px);
+        top: clamp(88px, 7.2vw, 118px);
+        right: 0;
         justify-self: auto;
       }
 
@@ -4781,7 +5175,7 @@
       .anti-brutal #builder {
         max-width: 1320px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
+        gap: 24px;
         align-items: start;
       }
 
@@ -4805,6 +5199,10 @@
       .anti-brutal .wide-tab-panels > .auto-status {
         grid-column: 1 / -1;
         order: 3;
+      }
+
+      .anti-brutal .info-panel {
+        margin-top: 0;
       }
     }
 
@@ -4846,32 +5244,28 @@
     <div class="wrap hero-inner">
       <div class="topline" aria-label="사이트 정보">
         <div class="brand"><span class="brand-mark" id="brandMark">J</span> <span id="brandName">Japan Route Guide</span></div>
-        <button class="hero-calculator-button" type="button" id="openCalculatorModal" aria-label="계산기 열기" title="계산기 열기">
-          <span class="calculator-glyph" aria-hidden="true"></span>
-        </button>
+        <div class="hero-top-actions" aria-label="상단 빠른 실행">
+          <button class="hero-calculator-button" type="button" id="openCalculatorModal" aria-label="계산기 열기" title="계산기 열기">
+            <span class="calculator-glyph" aria-hidden="true"></span>
+          </button>
+          <button class="destination-picker-button" type="button" id="openDestinationModal" aria-label="여행지 고르기">
+            <span aria-hidden="true">✈</span>
+            <span>여행지 고르기</span>
+          </button>
+        </div>
       </div>
       <div class="hero-live-card" id="heroLiveCard" aria-live="polite">
         <div>
           <span class="hero-live-label">오늘의 환율</span>
-          <strong id="heroExchange">100엔 -> 계산 중</strong>
+          <strong id="heroExchange">100円 -> 계산 중</strong>
         </div>
         <div>
           <span class="hero-live-label">오늘의 날씨</span>
           <strong id="heroWeather">날씨 불러오는 중</strong>
         </div>
       </div>
-      <div>
-        <h1 id="heroTitle">일본 여행가기</h1>
-      </div>
-      <div class="city-switch" id="citySwitch" aria-label="여행 도시 선택">
-        <button class="city-button is-active" type="button" data-city="sapporo"><strong>삿포로</strong></button>
-        <button class="city-button" type="button" data-city="tokyo"><strong>도쿄</strong></button>
-        <button class="city-button" type="button" data-city="osaka"><strong>오사카</strong></button>
-        <button class="city-button" type="button" data-city="fukuoka"><strong>후쿠오카</strong></button>
-        <button class="city-button" type="button" data-city="okinawa"><strong>오키나와</strong></button>
-        <button class="city-button" type="button" data-city="kyoto"><strong>교토</strong></button>
-        <button class="city-button" type="button" data-city="nagoya"><strong>나고야</strong></button>
-        <button class="city-button" type="button" data-city="kobe"><strong>고베</strong></button>
+      <div class="hero-title-row">
+        <h1 id="heroTitle">여행가기</h1>
       </div>
     </div>
   </header>
@@ -4897,31 +5291,31 @@
         <section class="tab-panel planner-tab-panel planner-step" id="conditionsPanelTab" data-panel="conditions">
           <h4>1. 기본 정보</h4>
           <div class="auto-controls">
+            <div class="trip-condition-row">
+              <label>
+                여행 기간
+                <div class="trip-day-stepper" aria-label="여행 일수 조절">
+                  <button type="button" data-action="adjust-trip-days" data-delta="-1" aria-label="여행 일수 줄이기">−</button>
+                  <input id="tripDays" type="number" min="1" max="30" step="1" value="4" inputmode="numeric" aria-label="총 여행 일수">
+                  <button type="button" data-action="adjust-trip-days" data-delta="1" aria-label="여행 일수 늘리기">+</button>
+                </div>
+              </label>
+              <label>
+                여행 강도
+                <select id="tripIntensity">
+                  <option value="5000">5천보 코스 · 하루 2곳</option>
+                  <option value="10000" selected>1만보 코스 · 하루 4곳</option>
+                  <option value="20000">2만보 코스 · 하루 8곳</option>
+                  <option value="30000">3만보 코스 · 하루 12곳</option>
+                </select>
+              </label>
+            </div>
             <label>
-              여행 기간
-              <select id="tripDays">
-                <option value="2">1박 2일</option>
-                <option value="3">2박 3일</option>
-                <option value="4" selected>3박 4일</option>
-                <option value="5">4박 5일</option>
-                <option value="6">5박 6일</option>
-              </select>
-            </label>
-            <label>
-              여행 강도
-              <select id="tripIntensity">
-                <option value="5000">5천보 코스 · 하루 2곳</option>
-                <option value="10000" selected>1만보 코스 · 하루 4곳</option>
-                <option value="20000">2만보 코스 · 하루 8곳</option>
-                <option value="30000">3만보 코스 · 하루 12곳</option>
-              </select>
-            </label>
-            <label>
-              숙소 기준 위치
+              <span class="field-label-line">숙소 위치 <small class="field-note">* 여행객들이 숙소로 많이 선택하는 위치에요!</small></span>
               <select id="hotelBaseSelect"></select>
             </label>
             <label>
-              숙소 주소 직접 입력
+              <span class="field-label-line">숙소 주소 직접 입력 <small class="field-note">* 숙소 주소를 입력하면 지도에 표시돼요!</small></span>
               <div class="hotel-address-row">
                 <input id="hotelAddressInput" type="search" placeholder="예: Sapporo Grand Hotel" autocomplete="street-address">
                 <button class="inline-action" type="button" id="locateHotelButton">숙소 위치 반영</button>
@@ -4929,6 +5323,9 @@
             </label>
           </div>
           <p class="hotel-status" id="hotelStatus">기준 위치를 고르거나 숙소 주소를 입력하면 지도에 숙소 핀이 표시됩니다.</p>
+          <div class="conditions-next-row" aria-label="다음 단계로 이동">
+            <button class="inline-action conditions-next-button" type="button" id="goCourseSelectFromConditions">→ 코스 선택</button>
+          </div>
         </section>
 
         <section class="tab-panel planner-tab-panel planner-step" id="courseSelectPanelTab" data-panel="course-select">
@@ -5016,7 +5413,7 @@
             </div>
             <div class="map-day-filters" id="mapDayFilters" aria-label="지도에 표시할 Day 선택"></div>
             <div class="map-tools">
-              <button class="map-tool-button" type="button" id="togglePinDetails">핀 설명 숨기기</button>
+              <button class="map-tool-button" type="button" id="togglePinDetails">핀 설명 보이기</button>
               <a class="map-tool-button" id="googleMapLink" href="https://www.google.com/maps?hl=ko&q=Sapporo%20Hokkaido%20Japan" target="_blank" rel="noreferrer">한국어 구글맵</a>
               <span class="map-tool-button" id="mapZoom">Zoom 11</span>
             </div>
@@ -5024,17 +5421,6 @@
               <div class="tileLayer" id="tileLayer" aria-hidden="true"></div>
               <div class="pinLayer" id="pinLayer"></div>
               <div class="map-attribution">OpenStreetMap</div>
-              <div class="map-nudge-pad" id="mapNudgePad" aria-label="지도 이동 및 확대 축소 조작">
-                <button class="map-nudge-button map-zoom-button" type="button" data-map-zoom="1" aria-label="지도 확대">+</button>
-                <button class="map-nudge-button" type="button" data-map-pan="north" aria-label="북쪽으로 이동">▲</button>
-                <button class="map-nudge-button map-zoom-button" type="button" data-map-zoom="-1" aria-label="지도 축소">-</button>
-                <button class="map-nudge-button" type="button" data-map-pan="west" aria-label="서쪽으로 이동">◀</button>
-                <span class="map-nudge-center" aria-hidden="true">●</span>
-                <button class="map-nudge-button" type="button" data-map-pan="east" aria-label="동쪽으로 이동">▶</button>
-                <span></span>
-                <button class="map-nudge-button" type="button" data-map-pan="south" aria-label="남쪽으로 이동">▼</button>
-                <span></span>
-              </div>
             </div>
             <div class="map-legend" id="mapLegend"></div>
           </aside>
@@ -5052,7 +5438,7 @@
         <nav class="app-tabs reference-tabs" aria-label="일본 여행 확인 메뉴">
           <button class="tab-button" type="button" data-tab="attractions" aria-controls="attractionsPanelTab"><span>가 볼만한 곳</span><span class="tab-hint">사진·간단 정보</span></button>
           <button class="tab-button" type="button" data-tab="transport" aria-controls="transportPanelTab"><span>교통</span><span class="tab-hint">공항·대중교통</span></button>
-          <button class="tab-button" type="button" data-tab="budget" aria-controls="budgetPanelTab"><span>계산기(円)</span><span class="tab-hint">비용 정보</span></button>
+          <button class="tab-button" type="button" data-tab="budget" aria-controls="budgetPanelTab"><span id="budgetTabLabel">계산기(円)</span><span class="tab-hint">비용 정보</span></button>
           <button class="tab-button" type="button" data-tab="tips" aria-controls="tipsPanelTab"><span>여행 팁</span><span class="tab-hint">준비물·쇼핑·날씨</span></button>
         </nav>
       </div>
@@ -5113,19 +5499,19 @@
         <section class="tab-panel" id="budgetPanelTab" data-panel="budget" aria-labelledby="budget-title">
           <div class="section-head compact-head">
             <div>
-              <h2 id="budget-title">엔화 금액을 원화로 바로 계산하세요.</h2>
+              <h2 id="budget-title">현지 금액을 원화로 바로 계산하세요.</h2>
             </div>
             <p class="lead" id="budgetLead" hidden></p>
           </div>
           <div class="budget-calculator game-card" id="budgetCalculator">
             <div class="budget-input-row">
               <label class="budget-field">
-                금액(엔)
-                <input id="yenAmountInput" type="number" min="0" step="100" value="10000" inputmode="numeric" aria-label="엔화 금액">
+                <span id="amountCurrencyLabel">금액(円)</span>
+                <input id="yenAmountInput" type="number" min="0" step="100" value="10000" inputmode="numeric" aria-label="현지 통화 금액">
               </label>
               <label class="budget-field">
-                환율
-                <input id="exchangeRateInput" type="number" min="0" step="0.01" value="9.5" inputmode="decimal" aria-label="1엔당 원화 환율">
+                <span id="exchangeRateFieldLabel">환율</span>
+                <input id="exchangeRateInput" type="number" min="0" step="0.01" value="9.5" inputmode="decimal" aria-label="현지 통화 1단위당 원화 환율">
               </label>
               <label class="budget-field is-percent">
                 할인율(%)
@@ -5136,12 +5522,12 @@
                 <input id="taxRefundRateInput" type="number" min="0" max="100" step="1" value="" inputmode="decimal" placeholder="0" aria-label="Tax Refund 퍼센트">
               </label>
             </div>
-            <div class="quick-yen-row" id="quickYenButtons" aria-label="자주 쓰는 엔화 금액">
-              <button class="inline-action" type="button" data-yen="500">500엔</button>
-              <button class="inline-action" type="button" data-yen="1000">1,000엔</button>
-              <button class="inline-action" type="button" data-yen="3000">3,000엔</button>
-              <button class="inline-action" type="button" data-yen="5000">5,000엔</button>
-              <button class="inline-action" type="button" data-yen="10000">10,000엔</button>
+            <div class="quick-yen-row" id="quickYenButtons" aria-label="자주 쓰는 현지 통화 금액">
+              <button class="inline-action" type="button" data-amount="500">500円</button>
+              <button class="inline-action" type="button" data-amount="1000">1,000円</button>
+              <button class="inline-action" type="button" data-amount="3000">3,000円</button>
+              <button class="inline-action" type="button" data-amount="5000">5,000円</button>
+              <button class="inline-action" type="button" data-amount="10000">10,000円</button>
             </div>
             <p class="budget-result" id="exchangeResult"><strong>약 95,000원</strong></p>
             <div class="exchange-status-row">
@@ -5185,6 +5571,28 @@
       </div>
     </section>
 
+    <div class="modal" id="destinationModal" aria-hidden="true">
+      <div class="modal-panel">
+        <div class="modal-head">
+          <div>
+            <h3>여행지 고르기</h3>
+            <p class="destination-modal-note">국가와 권역을 먼저 고른 뒤, 도시 데이터가 준비된 곳은 바로 여행 계획을 만들 수 있어요.</p>
+          </div>
+          <button class="inline-action" type="button" data-action="close-destination">닫기</button>
+        </div>
+        <div class="destination-modal-body">
+          <section class="destination-modal-section" aria-label="국가와 권역">
+            <h4>국가·권역</h4>
+            <div class="country-switch" id="countrySwitch" aria-label="여행 국가와 권역 선택"></div>
+          </section>
+          <section class="destination-modal-section" aria-label="도시">
+            <h4 id="destinationCityTitle">도시</h4>
+            <div class="city-switch" id="citySwitch" aria-label="여행 도시 선택"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
     <div class="modal" id="galleryModal" aria-hidden="true">
       <div class="modal-panel">
         <div class="modal-head">
@@ -5226,8 +5634,8 @@
       <div class="modal-panel calculator-modal-panel">
         <div class="modal-head">
           <div>
-            <h3>계산기(円)</h3>
-            <p class="stop-picker-meta">엔화 금액, 할인율, Tax Refund를 바로 계산하세요.</p>
+            <h3 id="calculatorModalTitle">계산기(円)</h3>
+            <p class="stop-picker-meta" id="calculatorModalSubtitle">현지 금액, 할인율, Tax Refund를 바로 계산하세요.</p>
           </div>
           <button class="inline-action" type="button" data-action="close-calculator">닫기</button>
         </div>
@@ -5998,6 +6406,9 @@
         title: config.name,
         mark: config.mark,
         brand: `${config.englishName} Route Guide`,
+        country: config.country || "일본",
+        currency: config.currency || "엔",
+        currencyCode: config.currencyCode || "",
         heroImage: config.heroImage,
         mapQuery: config.mapQuery,
         mapCenter: config.mapCenter,
@@ -6055,6 +6466,355 @@
           }
         }
       ];
+    }
+
+    const travelRegions = [
+      {
+        key: "japan",
+        label: "일본",
+        mark: "J",
+        cities: [
+          { key: "sapporo", label: "삿포로" },
+          { key: "tokyo", label: "도쿄" },
+          { key: "osaka", label: "오사카" },
+          { key: "fukuoka", label: "후쿠오카" },
+          { key: "okinawa", label: "오키나와" },
+          { key: "kyoto", label: "교토" },
+          { key: "nagoya", label: "나고야" },
+          { key: "kobe", label: "고베" }
+        ]
+      },
+      {
+        key: "china",
+        label: "중국",
+        mark: "C",
+        cities: [
+          { key: "beijing", label: "베이징", pending: true },
+          { key: "shanghai", label: "상하이", pending: true },
+          { key: "xian", label: "시안", pending: true },
+          { key: "chengdu", label: "청두", pending: true },
+          { key: "qingdao", label: "칭다오", pending: true },
+          { key: "guangzhou", label: "광저우", pending: true }
+        ]
+      },
+      {
+        key: "taiwan",
+        label: "대만",
+        mark: "T",
+        cities: [
+          { key: "taipei", label: "타이베이", pending: true },
+          { key: "taichung", label: "타이중", pending: true },
+          { key: "tainan", label: "타이난", pending: true },
+          { key: "kaohsiung", label: "가오슝", pending: true },
+          { key: "hualien", label: "화롄", pending: true }
+        ]
+      },
+      {
+        key: "hongkong-macau",
+        label: "홍콩·마카오",
+        mark: "H",
+        standalone: true,
+        selectCity: "hongkong-macau-city",
+        cities: []
+      },
+      {
+        key: "thailand",
+        label: "태국",
+        mark: "T",
+        cities: [
+          { key: "bangkok", label: "방콕", pending: true },
+          { key: "chiangmai", label: "치앙마이", pending: true },
+          { key: "phuket", label: "푸켓", pending: true },
+          { key: "pattaya", label: "파타야", pending: true },
+          { key: "krabi", label: "끄라비", pending: true }
+        ]
+      },
+      {
+        key: "vietnam",
+        label: "베트남",
+        mark: "V",
+        cities: [
+          { key: "danang", label: "다낭", pending: true },
+          { key: "hanoi", label: "하노이", pending: true },
+          { key: "hochiminh", label: "호치민", pending: true },
+          { key: "nhatrang", label: "나트랑", pending: true },
+          { key: "hoian", label: "호이안", pending: true },
+          { key: "phuquoc", label: "푸꾸옥", pending: true }
+        ]
+      },
+      {
+        key: "singapore",
+        label: "싱가포르",
+        mark: "S",
+        standalone: true,
+        selectCity: "singapore-city",
+        cities: []
+      },
+      {
+        key: "malaysia",
+        label: "말레이시아",
+        mark: "M",
+        cities: [
+          { key: "kuala-lumpur", label: "쿠알라룸푸르", pending: true },
+          { key: "penang", label: "페낭", pending: true },
+          { key: "kotakinabalu", label: "코타키나발루", pending: true },
+          { key: "malacca", label: "말라카", pending: true },
+          { key: "langkawi", label: "랑카위", pending: true }
+        ]
+      }
+    ];
+
+    const deepAsiaGeneratedRecommendations = {};
+
+    const currencyProfiles = {
+      JPY: {
+        code: "JPY",
+        unit: "円",
+        name: "엔",
+        countryNames: ["일본"],
+        fallbackRate: 9.5,
+        quickAmounts: [500, 1000, 3000, 5000, 10000]
+      },
+      CNY: {
+        code: "CNY",
+        unit: "元",
+        name: "위안",
+        countryNames: ["중국"],
+        fallbackRate: 190,
+        quickAmounts: [10, 50, 100, 300, 500]
+      },
+      TWD: {
+        code: "TWD",
+        unit: "NT$",
+        name: "대만달러",
+        countryNames: ["대만"],
+        fallbackRate: 43,
+        quickAmounts: [100, 300, 500, 1000, 3000]
+      },
+      HKD: {
+        code: "HKD",
+        unit: "HK$",
+        name: "홍콩달러",
+        countryNames: ["홍콩·마카오"],
+        fallbackRate: 180,
+        quickAmounts: [50, 100, 300, 500, 1000]
+      },
+      THB: {
+        code: "THB",
+        unit: "฿",
+        name: "바트",
+        countryNames: ["태국"],
+        fallbackRate: 39,
+        quickAmounts: [100, 300, 500, 1000, 3000]
+      },
+      VND: {
+        code: "VND",
+        unit: "₫",
+        name: "동",
+        countryNames: ["베트남"],
+        fallbackRate: 0.055,
+        quickAmounts: [50000, 100000, 300000, 500000, 1000000]
+      },
+      SGD: {
+        code: "SGD",
+        unit: "S$",
+        name: "싱가포르달러",
+        countryNames: ["싱가포르"],
+        fallbackRate: 1050,
+        quickAmounts: [10, 30, 50, 100, 300]
+      },
+      MYR: {
+        code: "MYR",
+        unit: "RM",
+        name: "링깃",
+        countryNames: ["말레이시아"],
+        fallbackRate: 300,
+        quickAmounts: [10, 30, 50, 100, 300]
+      }
+    };
+
+    function getCurrencyProfileForCity(city) {
+      const values = Object.values(currencyProfiles);
+      return values.find(profile => profile.code === city.currencyCode)
+        || values.find(profile => profile.countryNames.includes(city.country))
+        || values.find(profile => profile.name === city.currency)
+        || currencyProfiles.JPY;
+    }
+
+    const deepAsiaAreaTemplates = [
+      ["walk", "대표 산책 루트", "🚶", "도심 산책", 3, 4200],
+      ["market", "로컬 시장", "🛍", "시장 음식", 4, 9800],
+      ["view", "전망 포인트", "🌃", "전망 야경", 4, 12500],
+      ["museum", "문화관", "🏛", "박물관 문화", 3, 5600],
+      ["park", "공원", "🌿", "공원 자연", 4, 8700],
+      ["food", "푸드 스트리트", "🍜", "음식 거리", 4, 14200],
+      ["shopping", "쇼핑 거리", "🎁", "쇼핑 기념품", 3, 7600],
+      ["landmark", "랜드마크 광장", "📍", "랜드마크", 4, 11800]
+    ];
+
+    const deepAsiaCityDefinitions = [
+      { key: "beijing", name: "베이징", englishName: "Beijing", mark: "B", mapQuery: "Beijing China", mapCenter: { lat: 39.9042, lng: 116.4074 }, mapZoom: 11, country: "중국", airport: "베이징 수도공항/다싱공항", currency: "위안", foodExamples: ["베이징 카오야", "자장면", "훠궈"], souvenirExamples: ["차, 전통 과자, 판다 굿즈"], areas: [["center", "천안문·왕푸징", 39.9087, 116.3975], ["north", "올림픽공원", 39.9929, 116.3964], ["west", "이화원·하이뎬", 39.9999, 116.2755], ["east", "싼리툰·차오양", 39.9336, 116.4540], ["greatwall", "만리장성 권역", 40.4319, 116.5704]], landmarks: ["자금성|🏯|궁궐 역사|center|5|98000", "천안문광장|🏛|역사 광장|center|5|85000", "이화원|🌿|왕실 정원|west|5|76000", "천단공원|⛩|세계유산|center|5|69000", "만리장성 무톈위|🏔|성벽 전망|greatwall|5|88000", "왕푸징 거리|🛍|쇼핑 거리|center|4|52000", "라마사원|🛕|전통 사찰|east|4|36000", "798 예술구|🎨|아트 거리|east|4|41000"] },
+      { key: "shanghai", name: "상하이", englishName: "Shanghai", mark: "S", mapQuery: "Shanghai China", mapCenter: { lat: 31.2304, lng: 121.4737 }, mapZoom: 11, country: "중국", airport: "푸둥공항/홍차오공항", currency: "위안", foodExamples: ["샤오룽바오", "상하이식 국수", "훙사오러우"], souvenirExamples: ["차, 실크 잡화, 상하이 과자"], areas: [["bund", "와이탄·난징동루", 31.2400, 121.4900], ["pudong", "푸둥·루자쭈이", 31.2355, 121.4998], ["oldtown", "예원·구시가지", 31.2272, 121.4921], ["french", "프랑스 조계지", 31.2145, 121.4581], ["west", "징안·쉬자후이", 31.2230, 121.4450]], landmarks: ["와이탄|🌉|강변 야경|bund|5|120000", "동방명주탑|🗼|전망|pudong|5|90000", "상하이타워|🏙|초고층 전망|pudong|5|76000", "예원|🌿|전통 정원|oldtown|5|68000", "난징동루|🛍|쇼핑 거리|bund|5|95000", "신천지|🍷|저녁 산책|french|4|54000", "티엔즈팡|🎨|골목 산책|french|4|43000", "징안사|🛕|도심 사찰|west|4|41000"] },
+      { key: "xian", name: "시안", englishName: "Xi'an", mark: "X", mapQuery: "Xi'an China", mapCenter: { lat: 34.3416, lng: 108.9398 }, mapZoom: 11, country: "중국", airport: "시안 셴양공항", currency: "위안", foodExamples: ["러우자모", "량피", "양러우파오모"], souvenirExamples: ["병마용 미니어처, 실크로드 기념품"], areas: [["center", "종루·고루", 34.2610, 108.9420], ["wall", "시안성벽", 34.2580, 108.9470], ["east", "병마용 권역", 34.3841, 109.2785], ["south", "대안탑·대당불야성", 34.2180, 108.9640], ["market", "회민가", 34.2650, 108.9400]], landmarks: ["병마용|🏺|세계유산|east|5|90000", "시안성벽|🏯|성곽 산책|wall|5|62000", "종루|🕰|도심 랜드마크|center|5|48000", "고루|🥁|역사 건축|center|4|36000", "회민가|🍜|음식 거리|market|5|74000", "대안탑|🛕|불교 유산|south|5|52000", "대당불야성|🌃|야경 거리|south|5|43000", "산시역사박물관|🏛|박물관|south|5|39000"] },
+      { key: "chengdu", name: "청두", englishName: "Chengdu", mark: "C", mapQuery: "Chengdu China", mapCenter: { lat: 30.5728, lng: 104.0668 }, mapZoom: 11, country: "중국", airport: "청두 톈푸/솽류공항", currency: "위안", foodExamples: ["마라훠궈", "단단면", "촨촨샹"], souvenirExamples: ["판다 굿즈, 차, 매운 소스"], areas: [["center", "춘시루·타이쿠리", 30.6570, 104.0800], ["panda", "판다기지", 30.7350, 104.1450], ["old", "콴자이샹즈", 30.6730, 104.0570], ["south", "진리·무후사", 30.6460, 104.0470], ["river", "두장옌 권역", 31.0010, 103.6050]], landmarks: ["청두 판다기지|🐼|판다 명소|panda|5|95000", "콴자이샹즈|🏮|전통 골목|old|5|72000", "진리 고거리|🏮|야경 거리|south|5|68000", "무후사|🛕|삼국지 유적|south|4|36000", "춘시루|🛍|쇼핑 거리|center|5|76000", "타이쿠리 청두|✨|복합 쇼핑|center|4|52000", "인민공원|🌿|차 문화|old|4|41000", "두장옌|🌊|세계유산|river|5|60000"] },
+      { key: "qingdao", name: "칭다오", englishName: "Qingdao", mark: "Q", mapQuery: "Qingdao China", mapCenter: { lat: 36.0671, lng: 120.3826 }, mapZoom: 11, country: "중국", airport: "칭다오 자오둥공항", currency: "위안", foodExamples: ["칭다오 맥주", "해산물", "바지락 요리"], souvenirExamples: ["맥주 굿즈, 해산물 스낵"], areas: [["old", "잔차오·구시가지", 36.0620, 120.3200], ["beer", "맥주박물관·타이동", 36.0830, 120.3550], ["coast", "팔대관·해변", 36.0540, 120.3510], ["east", "5·4광장", 36.0615, 120.3840], ["laoshan", "라오산", 36.1900, 120.6200]], landmarks: ["잔차오|🌉|해변 랜드마크|old|5|62000", "칭다오 맥주박물관|🍺|맥주 역사|beer|5|56000", "팔대관|🏘|근대 건축|coast|5|43000", "5·4광장|🌊|해안 광장|east|4|39000", "제1해수욕장|🏖|해변|coast|4|36000", "성미카엘 성당|⛪|구시가지 건축|old|4|31000", "라오산|⛰|산과 바다|laoshan|5|52000", "타이동 야시장|🍢|음식 거리|beer|4|28000"] },
+      { key: "guangzhou", name: "광저우", englishName: "Guangzhou", mark: "G", mapQuery: "Guangzhou China", mapCenter: { lat: 23.1291, lng: 113.2644 }, mapZoom: 11, country: "중국", airport: "광저우 바이윈공항", currency: "위안", foodExamples: ["딤섬", "완탕면", "광둥식 바비큐"], souvenirExamples: ["차, 딤섬 과자, 광둥 디저트"], areas: [["tianhe", "톈허·주장신청", 23.1200, 113.3300], ["old", "상샤주·리완", 23.1160, 113.2500], ["river", "주강 야경", 23.1100, 113.3200], ["south", "창룽 권역", 22.9980, 113.3300], ["mountain", "바이윈산", 23.1850, 113.3000]], landmarks: ["광저우타워|🗼|전망|river|5|82000", "사몐다오|🏛|근대 건축|old|5|46000", "천가사|🏯|전통 건축|old|4|32000", "상샤주 보행가|🛍|쇼핑 거리|old|4|42000", "주장신청|🏙|도심 야경|tianhe|5|56000", "바이윈산|⛰|도심 자연|mountain|5|52000", "창룽 사파리파크|🦁|테마파크|south|5|74000", "베이징루|🛍|도심 쇼핑|old|4|39000"] },
+      { key: "taipei", name: "타이베이", englishName: "Taipei", mark: "T", mapQuery: "Taipei Taiwan", mapCenter: { lat: 25.0330, lng: 121.5654 }, mapZoom: 12, country: "대만", airport: "타오위안공항/쑹산공항", currency: "대만달러", foodExamples: ["우육면", "샤오룽바오", "버블티"], souvenirExamples: ["펑리수, 차, 누가크래커"], areas: [["xinyi", "신이·101", 25.0339, 121.5645], ["old", "시먼딩·용산사", 25.0420, 121.5070], ["north", "스린·베이터우", 25.0950, 121.5250], ["east", "융캉·다안", 25.0330, 121.5290], ["jiufen", "지우펀·근교", 25.1090, 121.8440]], landmarks: ["타이베이101|🏙|전망|xinyi|5|98000", "국립고궁박물원|🏛|박물관|north|5|76000", "시먼딩|🛍|번화가|old|5|72000", "용산사|⛩|사찰|old|5|52000", "중정기념당|🏛|광장|east|5|58000", "스린야시장|🍢|야시장|north|5|85000", "베이터우 온천|♨|온천|north|4|42000", "지우펀|🏮|근교 야경|jiufen|5|90000"] },
+      { key: "taichung", name: "타이중", englishName: "Taichung", mark: "T", mapQuery: "Taichung Taiwan", mapCenter: { lat: 24.1477, lng: 120.6736 }, mapZoom: 12, country: "대만", airport: "타이중공항", currency: "대만달러", foodExamples: ["버블티", "태양병", "야시장 간식"], souvenirExamples: ["태양병, 차, 버블티 굿즈"], areas: [["center", "타이중역·미야하라", 24.1370, 120.6860], ["west", "국립미술관·초오도", 24.1440, 120.6630], ["north", "펑지아", 24.1790, 120.6460], ["east", "가오메이·해안", 24.3100, 120.5490], ["south", "무지개마을", 24.1330, 120.6090]], landmarks: ["미야하라 안과|🍨|디저트 건축|center|5|52000", "펑지아 야시장|🍢|야시장|north|5|76000", "가오메이 습지|🌅|선셋 자연|east|5|68000", "무지개마을|🎨|벽화 마을|south|4|42000", "국립타이완미술관|🎨|미술관|west|4|24000", "초오도 녹원도|🌿|도심 산책|west|4|26000", "타이중 국가가극원|🏛|건축|north|4|31000", "심계신촌|☕|카페 골목|west|4|22000"] },
+      { key: "tainan", name: "타이난", englishName: "Tainan", mark: "T", mapQuery: "Tainan Taiwan", mapCenter: { lat: 22.9999, lng: 120.2270 }, mapZoom: 12, country: "대만", airport: "타이난공항/가오슝공항", currency: "대만달러", foodExamples: ["단짜이몐", "우육탕", "관차이반"], souvenirExamples: ["전통 과자, 새우과자, 차"], areas: [["center", "츠칸러우·중서구", 22.9970, 120.2020], ["anping", "안핑", 23.0010, 120.1600], ["market", "궈화제·시장", 22.9940, 120.1970], ["museum", "치메이·남부", 22.9350, 120.2260], ["salt", "치구·소금산", 23.1540, 120.0830]], landmarks: ["츠칸러우|🏯|역사 유적|center|5|42000", "안핑고보|🏰|역사 요새|anping|5|36000", "안핑수옥|🌳|나무집|anping|5|41000", "선농제|🏮|전통 거리|market|5|38000", "궈화제|🍜|음식 거리|market|5|52000", "치메이박물관|🏛|박물관|museum|5|48000", "공자묘|🛕|역사 사찰|center|4|26000", "치구 소금산|🧂|근교 체험|salt|4|22000"] },
+      { key: "kaohsiung", name: "가오슝", englishName: "Kaohsiung", mark: "K", mapQuery: "Kaohsiung Taiwan", mapCenter: { lat: 22.6273, lng: 120.3014 }, mapZoom: 12, country: "대만", airport: "가오슝공항", currency: "대만달러", foodExamples: ["해산물", "우육면", "야시장 간식"], souvenirExamples: ["파인애플 케이크, 차, 해산물 스낵"], areas: [["harbor", "보얼·항구", 22.6200, 120.2800], ["center", "메이리다오·류허", 22.6310, 120.3010], ["lotus", "연지담·좌영", 22.6850, 120.2940], ["cijin", "치진", 22.6110, 120.2700], ["fo", "불광산", 22.7550, 120.4460]], landmarks: ["보얼예술특구|🎨|항구 아트|harbor|5|56000", "메이리다오역|✨|역사 내부|center|5|42000", "류허야시장|🍢|야시장|center|5|62000", "연지담 용호탑|🐉|호수 전망|lotus|5|48000", "치진섬|🏖|해변 자전거|cijin|5|54000", "가오슝 85타워|🏙|전망|harbor|4|28000", "불광산 불타기념관|🛕|사찰 박물관|fo|5|50000", "아이허|🌉|강변 산책|center|4|30000"] },
+      { key: "hualien", name: "화롄", englishName: "Hualien", mark: "H", mapQuery: "Hualien Taiwan", mapCenter: { lat: 23.9872, lng: 121.6015 }, mapZoom: 10, country: "대만", airport: "화롄공항", currency: "대만달러", foodExamples: ["편식", "완탕", "모찌"], souvenirExamples: ["화롄 모찌, 대리석 소품"], areas: [["city", "화롄 시내", 23.9872, 121.6015], ["taroko", "타이루거", 24.1600, 121.6210], ["coast", "치싱탄", 24.0300, 121.6280], ["south", "리위탄", 23.9300, 121.5050], ["east", "동대문야시장", 23.9730, 121.6140]], landmarks: ["타이루거 협곡|🏔|국립공원|taroko|5|80000", "치싱탄|🌊|자갈 해변|coast|5|46000", "동대문야시장|🍢|야시장|east|5|42000", "청수단애|⛰|절벽 전망|taroko|5|50000", "장춘사|🛕|협곡 사찰|taroko|4|30000", "샤카당 트레일|🥾|계곡 산책|taroko|5|36000", "리위탄|🚲|호수 산책|south|4|21000", "화롄문화창의산업원구|🎨|문화 공간|city|4|18000"] },
+      { key: "hongkong-macau-city", name: "홍콩·마카오", englishName: "Hong Kong Macau", mark: "H", mapQuery: "Hong Kong Macau", mapCenter: { lat: 22.3193, lng: 114.1694 }, mapZoom: 10, country: "홍콩·마카오", airport: "홍콩국제공항/마카오국제공항", currency: "홍콩달러·마카오파타카", foodExamples: ["딤섬", "완탕면", "에그타르트"], souvenirExamples: ["제니쿠키, 에그롤, 포르투갈 과자"], areas: [["hkisland", "홍콩섬", 22.2790, 114.1580], ["kowloon", "침사추이·몽콕", 22.3000, 114.1720], ["lantau", "란타우섬", 22.2550, 113.9040], ["macau", "마카오 반도", 22.1987, 113.5439], ["taipa", "타이파·코타이", 22.1490, 113.5600]], landmarks: ["빅토리아 피크|🌃|야경 전망|hkisland|5|98000", "침사추이 산책로|🌉|항구 야경|kowloon|5|87000", "스타페리|⛴|항구 이동|kowloon|5|62000", "몽콕|🛍|시장 쇼핑|kowloon|5|76000", "란타우 빅부다|🛕|근교 사찰|lantau|5|64000", "세나도광장|🏛|마카오 역사|macau|5|52000", "성바울 성당 유적|⛪|마카오 랜드마크|macau|5|58000", "베네시안 마카오|✨|코타이 복합|taipa|5|70000"] },
+      { key: "bangkok", name: "방콕", englishName: "Bangkok", mark: "B", mapQuery: "Bangkok Thailand", mapCenter: { lat: 13.7563, lng: 100.5018 }, mapZoom: 11, country: "태국", airport: "수완나품/돈므앙공항", currency: "바트", foodExamples: ["팟타이", "똠얌꿍", "망고스티키라이스"], souvenirExamples: ["야돔, 코끼리 굿즈, 스파 제품"], areas: [["old", "왕궁·카오산", 13.7520, 100.4920], ["river", "차오프라야 강변", 13.7260, 100.5130], ["sukhumvit", "수쿰윗", 13.7370, 100.5600], ["siam", "시암·칫롬", 13.7460, 100.5350], ["market", "짜뚜짝·아리", 13.7990, 100.5500]], landmarks: ["왕궁|🏯|왕실 유산|old|5|100000", "왓포|🛕|사찰|old|5|85000", "왓아룬|🛕|강변 사찰|river|5|90000", "아이콘시암|🛍|강변 쇼핑|river|5|78000", "짜뚜짝시장|🛍|주말시장|market|5|74000", "시암파라곤|🛒|쇼핑|siam|5|72000", "카오산로드|🌃|밤거리|old|4|65000", "룸피니공원|🌿|도심 공원|sukhumvit|4|42000"] },
+      { key: "chiangmai", name: "치앙마이", englishName: "Chiang Mai", mark: "C", mapQuery: "Chiang Mai Thailand", mapCenter: { lat: 18.7883, lng: 98.9853 }, mapZoom: 11, country: "태국", airport: "치앙마이공항", currency: "바트", foodExamples: ["카오소이", "사이우아", "망고"], souvenirExamples: ["수공예품, 코끼리 굿즈, 커피"], areas: [["oldcity", "올드타운", 18.7880, 98.9870], ["nimman", "님만해민", 18.8000, 98.9670], ["doi", "도이수텝", 18.8050, 98.9210], ["river", "핑강·나이트바자", 18.7850, 99.0000], ["north", "매림", 18.9200, 98.9400]], landmarks: ["왓프라싱|🛕|올드타운 사찰|oldcity|5|52000", "왓체디루앙|🛕|유적 사찰|oldcity|5|48000", "도이수텝|⛰|전망 사찰|doi|5|76000", "님만해민|☕|카페 거리|nimman|5|44000", "치앙마이 나이트바자|🛍|야시장|river|5|58000", "타패게이트|🏯|성문|oldcity|5|46000", "징자이마켓|🎁|주말시장|north|4|28000", "매사 코끼리 캠프 권역|🐘|근교 체험|north|4|32000"] },
+      { key: "phuket", name: "푸켓", englishName: "Phuket", mark: "P", mapQuery: "Phuket Thailand", mapCenter: { lat: 7.8804, lng: 98.3923 }, mapZoom: 10, country: "태국", airport: "푸켓공항", currency: "바트", foodExamples: ["똠얌", "푸켓식 국수", "해산물"], souvenirExamples: ["코코넛 제품, 스파 제품, 비치웨어"], areas: [["patong", "파통", 7.8960, 98.2960], ["oldtown", "푸켓 올드타운", 7.8840, 98.3890], ["kata", "카타·카론", 7.8190, 98.3000], ["south", "프롬텝곶", 7.7620, 98.3060], ["island", "피피·섬투어", 7.7400, 98.7700]], landmarks: ["파통비치|🏖|해변 번화가|patong|5|82000", "방라로드|🌃|밤거리|patong|4|62000", "푸켓 올드타운|🏘|컬러풀 거리|oldtown|5|54000", "빅부다 푸켓|🛕|전망 사찰|kata|5|70000", "카타비치|🏖|해변|kata|5|50000", "프롬텝곶|🌅|선셋 전망|south|5|56000", "왓찰롱|🛕|사찰|south|4|42000", "피피섬 투어|⛵|섬 투어|island|5|90000"] },
+      { key: "pattaya", name: "파타야", englishName: "Pattaya", mark: "P", mapQuery: "Pattaya Thailand", mapCenter: { lat: 12.9236, lng: 100.8825 }, mapZoom: 11, country: "태국", airport: "수완나품공항/우타파오공항", currency: "바트", foodExamples: ["해산물", "똠얌", "망고 디저트"], souvenirExamples: ["비치웨어, 코끼리 굿즈, 스파 제품"], areas: [["beach", "파타야 비치", 12.9350, 100.8830], ["jomtien", "좀티엔", 12.8900, 100.8750], ["north", "북부 파타야", 12.9650, 100.8900], ["south", "워킹스트리트", 12.9270, 100.8720], ["island", "꼬란", 12.9200, 100.7800]], landmarks: ["파타야 비치|🏖|해변|beach|5|62000", "워킹스트리트|🌃|밤거리|south|4|70000", "진리의 성전|🏯|목조 건축|north|5|56000", "농눅빌리지|🌿|정원|jomtien|5|46000", "좀티엔비치|🏖|해변|jomtien|4|38000", "꼬란|🌊|섬 투어|island|5|62000", "파타야 전망대|🌃|전망|south|4|26000", "터미널21 파타야|🛍|쇼핑|north|4|34000"] },
+      { key: "krabi", name: "끄라비", englishName: "Krabi", mark: "K", mapQuery: "Krabi Thailand", mapCenter: { lat: 8.0863, lng: 98.9063 }, mapZoom: 10, country: "태국", airport: "끄라비공항", currency: "바트", foodExamples: ["해산물", "커리", "로티"], souvenirExamples: ["비치웨어, 코코넛 제품"], areas: [["aonang", "아오낭", 8.0320, 98.8220], ["railay", "라일레이", 8.0110, 98.8370], ["town", "끄라비타운", 8.0630, 98.9160], ["island", "피피·홍섬", 7.7400, 98.7700], ["nature", "에메랄드풀", 7.9200, 99.2700]], landmarks: ["아오낭비치|🏖|해변 거점|aonang|5|52000", "라일레이비치|⛰|절벽 해변|railay|5|76000", "프라낭동굴해변|🌊|해변 사진|railay|5|62000", "끄라비타운 야시장|🍢|야시장|town|4|30000", "호랑이동굴사원|🛕|전망 사찰|town|5|42000", "에메랄드풀|💧|자연 풀|nature|5|50000", "홍섬 투어|⛵|섬 투어|island|5|54000", "피피섬 투어|⛵|섬 투어|island|5|80000"] },
+      { key: "danang", name: "다낭", englishName: "Da Nang", mark: "D", mapQuery: "Da Nang Vietnam", mapCenter: { lat: 16.0544, lng: 108.2022 }, mapZoom: 11, country: "베트남", airport: "다낭공항", currency: "동", foodExamples: ["미꽝", "반쎄오", "해산물"], souvenirExamples: ["커피, 라탄 소품, 코코넛 과자"], areas: [["beach", "미케비치", 16.0610, 108.2470], ["city", "한강·용다리", 16.0670, 108.2240], ["sontra", "선짜반도", 16.1100, 108.2800], ["banahills", "바나힐", 15.9950, 107.9950], ["hoian", "호이안 근교", 15.8800, 108.3380]], landmarks: ["미케비치|🏖|해변|beach|5|74000", "용다리|🐉|야경|city|5|62000", "한시장|🛍|시장 쇼핑|city|5|58000", "바나힐 골든브릿지|🌉|근교 전망|banahills|5|90000", "영흥사|🛕|선짜 사찰|sontra|5|52000", "마블마운틴|⛰|동굴 사찰|hoian|5|60000", "선짜반도|🌿|자연 전망|sontra|4|42000", "호이안 올드타운|🏮|근교 야경|hoian|5|95000"] },
+      { key: "hanoi", name: "하노이", englishName: "Hanoi", mark: "H", mapQuery: "Hanoi Vietnam", mapCenter: { lat: 21.0278, lng: 105.8342 }, mapZoom: 12, country: "베트남", airport: "노이바이공항", currency: "동", foodExamples: ["쌀국수", "분짜", "에그커피"], souvenirExamples: ["커피, 자수 소품, 도자기"], areas: [["old", "올드쿼터", 21.0350, 105.8500], ["lake", "호안끼엠", 21.0287, 105.8520], ["west", "서호", 21.0580, 105.8200], ["history", "호찌민묘·문묘", 21.0360, 105.8350], ["bay", "하롱베이 투어", 20.9100, 107.1830]], landmarks: ["호안끼엠호수|🌿|도심 호수|lake|5|82000", "올드쿼터|🏮|골목 산책|old|5|90000", "성요셉성당|⛪|프렌치 건축|lake|5|52000", "문묘|🏛|역사 유적|history|5|46000", "호찌민묘|🏛|역사|history|4|38000", "서호|🌅|호수 산책|west|4|36000", "동쑤언시장|🛍|시장|old|4|34000", "하롱베이 투어|⛵|근교 자연|bay|5|100000"] },
+      { key: "hochiminh", name: "호치민", englishName: "Ho Chi Minh City", mark: "H", mapQuery: "Ho Chi Minh City Vietnam", mapCenter: { lat: 10.8231, lng: 106.6297 }, mapZoom: 12, country: "베트남", airport: "떤선녓공항", currency: "동", foodExamples: ["반미", "쌀국수", "껌땀"], souvenirExamples: ["커피, 캐슈넛, 라탄 소품"], areas: [["district1", "1군 중심", 10.7760, 106.7000], ["market", "벤탄시장", 10.7720, 106.6980], ["river", "사이공강", 10.7730, 106.7070], ["chinatown", "초롱", 10.7540, 106.6630], ["tunnel", "꾸찌터널", 11.1430, 106.4640]], landmarks: ["벤탄시장|🛍|시장 쇼핑|market|5|78000", "중앙우체국|🏛|프렌치 건축|district1|5|62000", "노트르담성당|⛪|랜드마크|district1|5|56000", "전쟁박물관|🏛|박물관|district1|5|52000", "부이비엔거리|🌃|밤거리|district1|4|65000", "사이공 스카이덱|🏙|전망|river|4|34000", "초롱 차이나타운|🏮|로컬 거리|chinatown|4|28000", "꾸찌터널|🕳|근교 역사|tunnel|5|58000"] },
+      { key: "nhatrang", name: "나트랑", englishName: "Nha Trang", mark: "N", mapQuery: "Nha Trang Vietnam", mapCenter: { lat: 12.2388, lng: 109.1967 }, mapZoom: 11, country: "베트남", airport: "깜라인공항", currency: "동", foodExamples: ["해산물", "분짜까", "반쎄오"], souvenirExamples: ["커피, 진주 소품, 건망고"], areas: [["beach", "나트랑 해변", 12.2380, 109.1960], ["city", "시내·담시장", 12.2500, 109.1900], ["north", "포나가르·혼총", 12.2650, 109.1950], ["island", "빈원더스", 12.2160, 109.2400], ["mud", "머드온천", 12.2800, 109.1600]], landmarks: ["나트랑 해변|🏖|해변|beach|5|62000", "포나가르 참탑|🛕|참파 유적|north|5|52000", "혼총곶|🌊|해안 전망|north|4|30000", "담시장|🛍|시장 쇼핑|city|4|36000", "롱선사|🛕|사찰|city|4|28000", "빈원더스 나트랑|🎢|섬 테마파크|island|5|64000", "탑바 머드온천|♨|온천 체험|mud|4|34000", "나트랑 대성당|⛪|건축|city|4|24000"] },
+      { key: "hoian", name: "호이안", englishName: "Hoi An", mark: "H", mapQuery: "Hoi An Vietnam", mapCenter: { lat: 15.8801, lng: 108.3380 }, mapZoom: 12, country: "베트남", airport: "다낭공항", currency: "동", foodExamples: ["까오라우", "화이트로즈", "반미"], souvenirExamples: ["등불, 라탄 소품, 맞춤 의류"], areas: [["oldtown", "호이안 올드타운", 15.8800, 108.3380], ["river", "투본강", 15.8770, 108.3260], ["beach", "안방비치", 15.9140, 108.3370], ["craft", "트라퀘·공예마을", 15.9000, 108.3500], ["myson", "미선 유적", 15.7650, 108.1200]], landmarks: ["호이안 올드타운|🏮|세계유산|oldtown|5|95000", "일본교|🌉|역사 랜드마크|oldtown|5|62000", "투본강 소원배|⛵|야경 체험|river|5|56000", "호이안 야시장|🛍|야시장|oldtown|5|68000", "안방비치|🏖|해변|beach|4|36000", "트라퀘 채소마을|🌿|로컬 체험|craft|4|26000", "탄하 도자기마을|🏺|공예마을|craft|3|18000", "미선 유적|🛕|참파 유적|myson|5|42000"] },
+      { key: "phuquoc", name: "푸꾸옥", englishName: "Phu Quoc", mark: "P", mapQuery: "Phu Quoc Vietnam", mapCenter: { lat: 10.2899, lng: 103.9840 }, mapZoom: 10, country: "베트남", airport: "푸꾸옥공항", currency: "동", foodExamples: ["해산물", "분꿰이", "후추 요리"], souvenirExamples: ["후추, 피시소스, 진주"], areas: [["duongdong", "즈엉동", 10.2180, 103.9580], ["longbeach", "롱비치", 10.1900, 103.9650], ["north", "북부 빈원더스", 10.3400, 103.8600], ["south", "혼똠·남부", 10.0300, 104.0200], ["east", "사오비치", 10.0550, 104.0300]], landmarks: ["푸꾸옥 야시장|🍢|야시장|duongdong|5|52000", "롱비치|🏖|해변|longbeach|5|50000", "사오비치|🏖|화이트비치|east|5|46000", "혼똠 케이블카|🚡|바다 전망|south|5|42000", "빈원더스 푸꾸옥|🎢|테마파크|north|5|52000", "그랜드월드|🏮|복합거리|north|4|38000", "딘꺼우 사원|🛕|해변 사원|duongdong|4|22000", "후추농장|🌿|로컬 체험|east|3|18000"] },
+      { key: "singapore-city", name: "싱가포르", englishName: "Singapore", mark: "S", mapQuery: "Singapore", mapCenter: { lat: 1.3521, lng: 103.8198 }, mapZoom: 11, country: "싱가포르", airport: "창이공항", currency: "싱가포르달러", foodExamples: ["치킨라이스", "락사", "칠리크랩"], souvenirExamples: ["TWG 차, 카야잼, 머라이언 굿즈"], areas: [["marina", "마리나베이", 1.2830, 103.8600], ["orchard", "오차드", 1.3040, 103.8320], ["sentosa", "센토사", 1.2494, 103.8303], ["chinatown", "차이나타운·텔록아이어", 1.2835, 103.8430], ["garden", "보타닉·뎀시", 1.3138, 103.8159]], landmarks: ["마리나베이샌즈|🏙|전망|marina|5|120000", "가든스바이더베이|🌿|정원|marina|5|110000", "머라이언파크|🦁|랜드마크|marina|5|90000", "센토사섬|🏖|리조트|sentosa|5|86000", "유니버설 스튜디오 싱가포르|🎢|테마파크|sentosa|5|100000", "차이나타운|🏮|문화 거리|chinatown|5|62000", "오차드로드|🛍|쇼핑 거리|orchard|5|76000", "싱가포르 보타닉가든|🌿|세계유산|garden|5|58000"] },
+      { key: "kuala-lumpur", name: "쿠알라룸푸르", englishName: "Kuala Lumpur", mark: "K", mapQuery: "Kuala Lumpur Malaysia", mapCenter: { lat: 3.1390, lng: 101.6869 }, mapZoom: 11, country: "말레이시아", airport: "KLIA", currency: "링깃", foodExamples: ["나시르막", "사테", "락사"], souvenirExamples: ["BOH 차, 카야잼, 바틱"], areas: [["klcc", "KLCC", 3.1579, 101.7120], ["bukit", "부킷빈탕", 3.1478, 101.7080], ["old", "메르데카·차이나타운", 3.1450, 101.6950], ["batu", "바투동굴", 3.2379, 101.6841], ["garden", "레이크가든", 3.1420, 101.6860]], landmarks: ["페트로나스 트윈타워|🏙|전망|klcc|5|100000", "KLCC 공원|🌿|도심 공원|klcc|5|52000", "부킷빈탕|🛍|쇼핑 거리|bukit|5|76000", "잘란알로 야시장|🍢|음식 거리|bukit|5|68000", "바투동굴|🛕|동굴 사원|batu|5|90000", "메르데카광장|🏛|역사 광장|old|4|42000", "중앙시장|🎁|기념품|old|4|38000", "KL 타워|🗼|전망|klcc|5|62000"] },
+      { key: "penang", name: "페낭", englishName: "Penang", mark: "P", mapQuery: "Penang Malaysia", mapCenter: { lat: 5.4141, lng: 100.3288 }, mapZoom: 11, country: "말레이시아", airport: "페낭공항", currency: "링깃", foodExamples: ["아삼락사", "차퀘이테오", "나시칸다르"], souvenirExamples: ["화이트커피, 벽화 굿즈, 과자"], areas: [["georgetown", "조지타운", 5.4145, 100.3292], ["gurney", "거니·해안", 5.4370, 100.3090], ["hill", "페낭힐", 5.4240, 100.2690], ["temple", "케크록시", 5.3990, 100.2730], ["beach", "바투페링기", 5.4700, 100.2460]], landmarks: ["조지타운 벽화거리|🎨|세계유산 거리|georgetown|5|76000", "콘월리스 요새|🏰|역사 유적|georgetown|4|32000", "쿠콩시|🏛|중국식 건축|georgetown|4|28000", "페낭힐|⛰|전망|hill|5|68000", "케크록시 사원|🛕|사찰|temple|5|62000", "거니드라이브|🍜|해안 음식|gurney|4|44000", "바투페링기|🏖|해변|beach|4|38000", "청팟쩨 맨션|🏠|블루맨션|georgetown|4|26000"] },
+      { key: "kotakinabalu", name: "코타키나발루", englishName: "Kota Kinabalu", mark: "K", mapQuery: "Kota Kinabalu Malaysia", mapCenter: { lat: 5.9804, lng: 116.0735 }, mapZoom: 10, country: "말레이시아", airport: "코타키나발루공항", currency: "링깃", foodExamples: ["해산물", "락사", "사테"], souvenirExamples: ["사바티, 코코아, 라탄 소품"], areas: [["city", "시내·워터프론트", 5.9800, 116.0730], ["island", "툰쿠압둘라만 해양공원", 6.0100, 116.0200], ["sunset", "탄중아루", 5.9470, 116.0410], ["mountain", "키나발루산", 6.0750, 116.5580], ["market", "필리피노마켓", 5.9840, 116.0750]], landmarks: ["탄중아루 해변|🌅|선셋|sunset|5|62000", "시그널힐 전망대|🌃|전망|city|4|22000", "사바 주립 모스크|🕌|건축|city|4|28000", "필리피노마켓|🛍|시장|market|4|36000", "가야스트리트 선데이마켓|🎁|주말시장|city|4|30000", "마누칸섬|🏖|섬 투어|island|5|52000", "사피섬|🏖|섬 투어|island|5|48000", "키나발루산 국립공원|⛰|자연|mountain|5|64000"] },
+      { key: "malacca", name: "말라카", englishName: "Malacca", mark: "M", mapQuery: "Malacca Malaysia", mapCenter: { lat: 2.1896, lng: 102.2501 }, mapZoom: 12, country: "말레이시아", airport: "쿠알라룸푸르공항 연계", currency: "링깃", foodExamples: ["치킨라이스볼", "뇨냐요리", "첸돌"], souvenirExamples: ["뇨냐 과자, 공예품, 커피"], areas: [["old", "존커스트리트", 2.1950, 102.2480], ["river", "말라카강", 2.1930, 102.2500], ["dutch", "더치스퀘어", 2.1940, 102.2490], ["hill", "세인트폴 언덕", 2.1930, 102.2505], ["coast", "해협 모스크", 2.1800, 102.2490]], landmarks: ["존커스트리트|🏮|야시장 거리|old|5|62000", "더치스퀘어|🏛|역사 광장|dutch|5|52000", "세인트폴 언덕|⛪|유적 전망|hill|5|42000", "아파모사|🏰|요새 유적|hill|4|36000", "말라카강 크루즈|⛵|강변 야경|river|5|50000", "해협 모스크|🕌|선셋 건축|coast|5|38000", "바바뇨냐 박물관|🏛|문화 박물관|old|4|22000", "쳉훈텡 사원|🛕|전통 사찰|old|4|24000"] },
+      { key: "langkawi", name: "랑카위", englishName: "Langkawi", mark: "L", mapQuery: "Langkawi Malaysia", mapCenter: { lat: 6.3500, lng: 99.8000 }, mapZoom: 10, country: "말레이시아", airport: "랑카위공항", currency: "링깃", foodExamples: ["해산물", "말레이 커리", "사테"], souvenirExamples: ["초콜릿, 면세 주류, 라탄 소품"], areas: [["cenang", "체낭비치", 6.2910, 99.7280], ["cable", "스카이브리지", 6.3710, 99.6710], ["kuah", "쿠아타운", 6.3200, 99.8500], ["nature", "킬림 지오파크", 6.4200, 99.8600], ["north", "탄중루", 6.4550, 99.8200]], landmarks: ["체낭비치|🏖|해변|cenang|5|62000", "랑카위 스카이브리지|🌉|전망|cable|5|76000", "랑카위 케이블카|🚡|산악 전망|cable|5|70000", "킬림 지오파크|🛶|맹그로브 투어|nature|5|54000", "탄중루 비치|🏖|북부 해변|north|5|42000", "독수리광장|🦅|랜드마크|kuah|4|38000", "체낭몰|🛍|쇼핑|cenang|3|18000", "템우룬 폭포|🏞|자연|north|4|24000"] }
+    ];
+
+    function parseDeepAsiaLandmark(def, entry, index) {
+      const [name, icon, tag, areaKey, scoreText, reviewText] = entry.split("|");
+      const area = def.areas.find(item => item[0] === areaKey) || def.areas[index % def.areas.length];
+      const offset = ((index % 5) - 2) * 0.0035;
+      return {
+        id: `${def.key}-landmark-${index + 1}`,
+        name,
+        lat: area[2] + offset,
+        lng: area[3] - offset,
+        icon,
+        tag,
+        area: area[0],
+        recommendScore: Number(scoreText) || 4,
+        reviewCount: Number(reviewText) || 8000
+      };
+    }
+
+    function createDeepAsiaGeneratedSpot(def, area, template, index) {
+      const [templateId, label, icon, tag, score, reviewBase] = template;
+      const ring = Math.floor(index / deepAsiaAreaTemplates.length) + 1;
+      const step = index % deepAsiaAreaTemplates.length;
+      return {
+        id: `${def.key}-${area[0]}-${templateId}`,
+        name: `${area[1]} ${label}`,
+        lat: area[2] + (step - 3.5) * 0.0028 * ring,
+        lng: area[3] + ((step % 4) - 1.5) * 0.0034 * ring,
+        icon,
+        tag,
+        area: area[0],
+        recommendScore: score,
+        reviewCount: reviewBase + (def.name.length * 700) + (step * 900)
+      };
+    }
+
+    function makeDeepAsiaFood(def, tag) {
+      const base = def.foodExamples || ["로컬 음식", "카페", "디저트"];
+      if (/시장|음식|야시장|푸드/.test(tag)) return base.slice(0, 3);
+      if (/해변|자연|공원|산책/.test(tag)) return [base[0], "근처 카페", "가벼운 간식"];
+      return [base[0], base[1] || "로컬 맛집", "카페"];
+    }
+
+    function makeDeepAsiaPlace(def, seed) {
+      const food = makeDeepAsiaFood(def, seed.tag);
+      const photo = placeThumbnail(def.key, seed.id, seed.name, seed.tag, seed.icon);
+      return {
+        name: seed.name,
+        lat: Number(seed.lat.toFixed(5)),
+        lng: Number(seed.lng.toFixed(5)),
+        icon: seed.icon,
+        tag: seed.tag,
+        area: seed.area,
+        themes: inferredThemes(seed.tag),
+        food,
+        recommendations: food.map(item => `${seed.name} 주변 ${item}`),
+        address: `${seed.name}, ${def.name}, ${def.country}`,
+        photo,
+        summary: `${def.name} ${seed.area} 권역에서 ${seed.tag} 성격이 뚜렷한 여행 후보입니다.`,
+        highlight: `${seed.name}은 ${def.name} 일정에서 주변 권역과 묶어 이동 부담을 줄이기 좋은 장소입니다.`,
+        duration: seed.recommendScore >= 5 ? "약 1시간~2시간" : "약 40분~1시간 30분",
+        durationMinutes: seed.recommendScore >= 5 ? 100 : 75
+      };
+    }
+
+    function createDeepAsiaCourses(def, places) {
+      const areaStops = def.areas.map(area => Object.entries(places)
+        .filter(([, place]) => place.area === area[0])
+        .map(([id]) => id));
+      const courseLabels = [
+        ["area", "권역 집중 코스", "📍", "가까운 동선"],
+        ["classic", "대표 명소 코스", "⭐", "처음 가는 여행"],
+        ["food", "음식&시장 코스", "🍜", "음식"],
+        ["nature", "자연&전망 코스", "🌿", "산책"],
+        ["night", "야경&저녁 코스", "🌃", "야경"]
+      ];
+      return courseLabels.map(([suffix, label, icon, tag], index) => {
+        const primary = areaStops[index % areaStops.length] || [];
+        const secondary = areaStops[(index + 1) % areaStops.length] || [];
+        const merged = [...new Set([...primary, ...secondary])];
+        const fallbackStops = Object.keys(places).slice(index * 4, index * 4 + 8);
+        const source = merged.length >= 4 ? merged : fallbackStops;
+        const dayStops = Array.from({ length: 6 }, (_, dayIndex) => {
+          const rotated = source.slice(dayIndex).concat(source.slice(0, dayIndex));
+          return rotated.slice(0, 5);
+        });
+        return {
+          id: `${def.key}-${suffix}`,
+          name: `${def.name} ${label}`,
+          short: index === 0 ? "近" : index === 1 ? "核" : index === 2 ? "食" : index === 3 ? "景" : "夜",
+          icon,
+          tag,
+          desc: `${def.name}의 가까운 권역을 우선으로 묶어 이동 소요를 줄이는 ${label}입니다.`,
+          days: dayStops.map((stops, dayIndex) => ({ title: `${label} ${dayIndex + 1}`, stops })),
+          reserves: [`${def.name} 카페 휴식`, "비 오는 날 실내 대체", "저녁 식사 예약", "교통 시간 확인"]
+        };
+      });
+    }
+
+    function createDeepAsiaCityData(def) {
+      const seeds = [
+        ...def.landmarks.map((entry, index) => parseDeepAsiaLandmark(def, entry, index)),
+        ...def.areas.flatMap(area => deepAsiaAreaTemplates.map((template, index) => createDeepAsiaGeneratedSpot(def, area, template, index)))
+      ];
+      const places = {};
+      const reviews = {};
+      seeds.forEach(seed => {
+        places[seed.id] = makeDeepAsiaPlace(def, seed);
+        reviews[seed.id] = { reviewCount: seed.reviewCount, recommendScore: seed.recommendScore };
+      });
+      const courseIds = {
+        city: `${def.key}-area`,
+        culture: `${def.key}-classic`,
+        nature: `${def.key}-nature`,
+        night: `${def.key}-night`,
+        food: `${def.key}-food`
+      };
+      deepAsiaGeneratedRecommendations[def.key] = reviews;
+      return createCityData({
+        key: def.key,
+        name: def.name,
+        englishName: def.englishName,
+        mark: def.mark,
+        heroImage: def.heroImage || placeThumbnail(def.key, "hero", def.name, `${def.country} 여행`, def.mark),
+        mapQuery: def.mapQuery,
+        mapCenter: def.mapCenter,
+        mapZoom: def.mapZoom || 11,
+        country: def.country,
+        currency: def.currency,
+        places,
+        courses: createDeepAsiaCourses(def, places),
+        packages: makeStandardPackages(def.name, courseIds)
+      });
     }
 
     const cityData = {
@@ -6262,6 +7022,10 @@
         packages: makeStandardPackages("고베", { city: "kobe-city", culture: "kobe-culture", nature: "kobe-nature", night: "kobe-night", food: "kobe-food" })
       })
     };
+
+    Object.assign(cityData, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [def.key, createDeepAsiaCityData(def)])
+    ));
 
     const locationFirstCourses = {
       sapporo: [
@@ -6731,6 +7495,8 @@
       }
     };
 
+    Object.assign(reviewBasedRecommendations, deepAsiaGeneratedRecommendations);
+
     const supplementalPlaceSeeds = {
       sapporo: [
         ["clockTower", "삿포로 시계탑", 43.0626, 141.3536, "🕰", "도심 역사", "center", 5, 11500],
@@ -7195,13 +7961,21 @@
 
     normalizeAttractionImages();
 
-    const ATTRACTION_PHOTO_CACHE_KEY = "japan-route-guide-attraction-photos-v2";
+    const ATTRACTION_PHOTO_CACHE_KEY = "japan-route-guide-attraction-photos-v3";
+    const CITY_HERO_PHOTO_CACHE_KEY = "japan-route-guide-city-hero-photos-v1";
     const photoHydrationQueue = new Set();
+    const heroPhotoHydrationQueue = new Set();
     let attractionPhotoCache = {};
+    let cityHeroPhotoCache = {};
     try {
       attractionPhotoCache = JSON.parse(localStorage.getItem(ATTRACTION_PHOTO_CACHE_KEY) || "{}");
     } catch (error) {
       attractionPhotoCache = {};
+    }
+    try {
+      cityHeroPhotoCache = JSON.parse(localStorage.getItem(CITY_HERO_PHOTO_CACHE_KEY) || "{}");
+    } catch (error) {
+      cityHeroPhotoCache = {};
     }
 
     const cityEnglishNames = {
@@ -7214,6 +7988,10 @@
       nagoya: "Nagoya",
       kobe: "Kobe"
     };
+
+    Object.assign(cityEnglishNames, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [def.key, def.englishName])
+    ));
 
     const attractionPhotoSearchAliases = {
       sapporo: {
@@ -7316,6 +8094,14 @@
       }
     }
 
+    function saveCityHeroPhotoCache() {
+      try {
+        localStorage.setItem(CITY_HERO_PHOTO_CACHE_KEY, JSON.stringify(cityHeroPhotoCache));
+      } catch (error) {
+        // Hero photos still update for this session when storage is unavailable.
+      }
+    }
+
     function splitCamelCase(value) {
       return String(value)
         .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
@@ -7329,10 +8115,33 @@
       const aliases = attractionPhotoSearchAliases[cityKey]?.[attraction.id] || [];
       return [...new Set([
         ...aliases,
+        attraction.name,
+        `${attraction.name} ${cityEnglish}`,
+        `${attraction.name} ${city.country || city.name}`,
         `${splitCamelCase(attraction.id)} ${cityEnglish}`,
         `${attraction.name} ${city.name}`,
-        `${attraction.name} Japan`
+        city.mapQuery
       ].filter(Boolean))];
+    }
+
+    function getCityHeroPhotoQueries(cityKey) {
+      const city = cityData[cityKey] || cityData.sapporo;
+      const cityEnglish = cityEnglishNames[cityKey] || city.brand?.replace(/\s*Route Guide$/, "") || city.name;
+      const firstLandmark = city.attractions?.[0]?.name || "";
+      return [...new Set([
+        cityEnglish,
+        city.mapQuery,
+        `${cityEnglish} skyline`,
+        `${cityEnglish} travel`,
+        firstLandmark ? `${firstLandmark} ${cityEnglish}` : ""
+      ].filter(Boolean))];
+    }
+
+    async function fetchWikipediaPhoto(query, language = "ko") {
+      const response = await fetch(`https://${language}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`);
+      if (!response.ok) return "";
+      const data = await response.json();
+      return data?.thumbnail?.source || data?.originalimage?.source || "";
     }
 
     async function fetchWikimediaPhoto(query) {
@@ -7358,6 +8167,51 @@
       return image?.thumburl || "";
     }
 
+    async function fetchBestPublicPhoto(queries) {
+      for (const query of queries) {
+        const koPhoto = await fetchWikipediaPhoto(query, "ko").catch(() => "");
+        if (koPhoto) return koPhoto;
+        const enPhoto = await fetchWikipediaPhoto(query, "en").catch(() => "");
+        if (enPhoto) return enPhoto;
+        const commonsPhoto = await fetchWikimediaPhoto(query).catch(() => "");
+        if (commonsPhoto) return commonsPhoto;
+      }
+      return "";
+    }
+
+    function renderHeroBackground(city) {
+      const cachedHero = cityHeroPhotoCache[city.key];
+      const image = cachedHero && cachedHero !== "missing" ? cachedHero : city.heroImage;
+      hero.style.background = `linear-gradient(135deg, rgba(234, 246, 255, 0.86), rgba(196, 230, 255, 0.72)), url("${image}") center/cover`;
+    }
+
+    async function hydrateCityHeroPhoto(cityKey) {
+      if (heroPhotoHydrationQueue.has(cityKey)) return false;
+      const city = cityData[cityKey] || cityData.sapporo;
+      if (cityHeroPhotoCache[cityKey]) {
+        if (cityHeroPhotoCache[cityKey] === "missing") return false;
+        if (cityKey === currentCityKey) renderHeroBackground(city);
+        return true;
+      }
+      heroPhotoHydrationQueue.add(cityKey);
+      try {
+        const src = await fetchBestPublicPhoto(getCityHeroPhotoQueries(cityKey));
+        if (src) {
+          cityHeroPhotoCache[cityKey] = src;
+          saveCityHeroPhotoCache();
+          if (cityKey === currentCityKey) renderHeroBackground(city);
+          return true;
+        }
+        cityHeroPhotoCache[cityKey] = "missing";
+        saveCityHeroPhotoCache();
+      } catch (error) {
+        return false;
+      } finally {
+        heroPhotoHydrationQueue.delete(cityKey);
+      }
+      return false;
+    }
+
     async function hydrateAttractionPhoto(cityKey, attraction) {
       const cacheKey = `${cityKey}:${attraction.id}`;
       if (photoHydrationQueue.has(cacheKey)) return false;
@@ -7367,18 +8221,15 @@
         cityData[cityKey].actualPlacePhotos[attraction.id] = { label: attraction.name, src: attraction.image };
         return true;
       }
-      if (!isGeneratedAttractionImage(attraction.image)) return false;
       photoHydrationQueue.add(cacheKey);
       try {
-        for (const query of getAttractionPhotoQueries(cityKey, attraction)) {
-          const src = await fetchWikimediaPhoto(query);
-          if (src) {
-            attractionPhotoCache[cacheKey] = src;
-            attraction.image = src;
-            cityData[cityKey].actualPlacePhotos[attraction.id] = { label: attraction.name, src };
-            saveAttractionPhotoCache();
-            return true;
-          }
+        const src = await fetchBestPublicPhoto(getAttractionPhotoQueries(cityKey, attraction));
+        if (src) {
+          attractionPhotoCache[cacheKey] = src;
+          attraction.image = src;
+          cityData[cityKey].actualPlacePhotos[attraction.id] = { label: attraction.name, src };
+          saveAttractionPhotoCache();
+          return true;
         }
         attractionPhotoCache[cacheKey] = "missing";
         saveAttractionPhotoCache();
@@ -7391,7 +8242,17 @@
     }
 
     function hydrateVisibleAttractionPhotos(pagedAttractions) {
-      return;
+      const cityKey = currentCityKey;
+      const targets = pagedAttractions.slice(0, 6);
+      if (!targets.length) return;
+      Promise.all(targets.map(attraction => hydrateAttractionPhoto(cityKey, attraction)))
+        .then(results => {
+          if (cityKey === currentCityKey && results.some(Boolean)) {
+            renderAttractions();
+            renderRoute();
+          }
+        })
+        .catch(() => {});
     }
 
     const cityTips = {
@@ -7488,6 +8349,41 @@
       }
     };
 
+    function createDeepAsiaTips(def) {
+      const isTropical = /태국|베트남|싱가포르|말레이시아/.test(def.country);
+      const isChina = def.country === "중국";
+      const isTaiwan = def.country === "대만";
+      return {
+        weather: isTropical
+          ? `${def.name}은 더위와 스콜 변수에 맞춰 실내 휴식과 해변/야외 시간을 섞는 편이 좋습니다. 우기에는 하루 일정 안에 실내 대체지를 꼭 넣으세요.`
+          : isChina
+            ? `${def.name}은 계절별 온도 차와 미세먼지, 이동 거리를 함께 고려해야 합니다. 권역을 나눠 잡으면 긴 이동을 줄일 수 있습니다.`
+            : isTaiwan
+              ? `${def.name}은 습도와 비 변수가 있어 우산과 가벼운 겉옷이 유용합니다. 야시장과 근교 일정을 같은 날 과하게 섞지 않는 편이 좋습니다.`
+              : `${def.name}은 도심과 근교 성격이 뚜렷해 권역별로 하루를 나누면 일정 피로가 줄어듭니다.`,
+        weatherRows: isTropical
+          ? [["1-2월", "24~32°C · 비교적 건기"], ["3-4월", "26~35°C · 더위 강함"], ["5-6월", "26~34°C · 스콜 대비"], ["7-8월", "25~33°C · 우기 가능"], ["9-10월", "25~32°C · 비와 습도"], ["11-12월", "24~31°C · 여행 적기"]]
+          : [["1-2월", "0~12°C · 겨울 겉옷"], ["3-4월", "8~22°C · 봄 산책"], ["5-6월", "16~28°C · 초여름"], ["7-8월", "24~35°C · 더위 대비"], ["9-10월", "17~29°C · 비/태풍 변수"], ["11-12월", "5~18°C · 일교차"]],
+        packing: isTropical
+          ? ["접이식 우산과 얇은 바람막이", "선크림, 선글라스, 모자", "땀 닦는 손수건과 보조배터리", "해변 도시는 방수팩과 샌들"]
+          : ["걷기 좋은 신발", "보조배터리와 여권 사본", "계절에 맞는 얇은 겉옷", "현지 결제용 카드와 소액 현금"],
+        shopping: [
+          ...(def.souvenirExamples || ["지역 과자", "차", "로컬 굿즈"]),
+          `${def.name} 로컬 마켓 간식`,
+          "드럭스토어/마트 생활용품"
+        ],
+        local: [
+          `${def.name}은 권역별로 하루를 나누면 이동 피로가 줄어듭니다.`,
+          "인기 전망대와 투어형 명소는 사전 예약 가능 여부를 확인하세요.",
+          "시장과 야시장 일정은 저녁 식사 동선과 함께 잡으면 효율적입니다."
+        ]
+      };
+    }
+
+    Object.assign(cityTips, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [def.key, createDeepAsiaTips(def)])
+    ));
+
     const cityHotelBases = {
       sapporo: [
         { id: "sapporoStation", label: "삿포로역 주변", lat: 43.0687, lng: 141.3508 },
@@ -7534,6 +8430,18 @@
       ]
     };
 
+    Object.assign(cityHotelBases, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [
+        def.key,
+        def.areas.slice(0, 4).map(area => ({
+          id: area[0],
+          label: `${area[1]} 주변`,
+          lat: area[2],
+          lng: area[3]
+        }))
+      ])
+    ));
+
     const cityTransportGuides = {
       sapporo: {
         airport: "신치토세공항에서 JR 쾌속 에어포트로 삿포로역까지 약 40분 전후입니다.",
@@ -7578,6 +8486,21 @@
       kobe: { food: "식사 1끼 1,200~3,500엔", transit: "시내 이동 1일 700~1,500엔", entry: "전망/온천 800~3,000엔", shopping: "항구 잡화/디저트 2,000~6,000엔" }
     };
 
+    function createDeepAsiaBudgetGuide(def) {
+      const currency = def.currency || "현지통화";
+      const isPremium = /싱가포르|홍콩|마카오/.test(def.name);
+      return {
+        food: isPremium ? `식사 1끼 12~35 ${currency}` : `식사 1끼 40~180 ${currency}`,
+        transit: isPremium ? `시내 이동 1일 8~20 ${currency}` : `시내 이동 1일 20~120 ${currency}`,
+        entry: isPremium ? `전망대/입장 10~40 ${currency}` : `전망대/입장 30~250 ${currency}`,
+        shopping: `${def.souvenirExamples?.[0] || "기념품"} 중심 50 ${currency} 이상`
+      };
+    }
+
+    Object.assign(cityBudgetGuides, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [def.key, createDeepAsiaBudgetGuide(def)])
+    ));
+
     const cityPriceGuides = {
       sapporo: {
         menus: ["스프카레 1,300~2,000엔", "징기스칸 2,500~4,500엔", "해산물덮밥 2,000~4,000엔", "삿포로 라멘 900~1,400엔"],
@@ -7612,6 +8535,21 @@
         souvenirs: ["고베 프린 800~1,800엔", "고베 과자 700~2,000엔", "탄산센베이 600~1,500엔", "항구 잡화 1,000엔 이상"]
       }
     };
+
+    function createDeepAsiaPriceGuide(def) {
+      const currency = def.currency || "현지통화";
+      const menus = (def.foodExamples || ["로컬 음식", "카페", "간식"]).map((item, index) =>
+        `${item} ${index === 0 ? "중간 가격대" : "가벼운 식사"}`
+      );
+      const souvenirs = (def.souvenirExamples || ["지역 과자", "차", "기념품"]).map(item =>
+        `${item} · ${currency} 기준 현장가 확인`
+      );
+      return { menus, souvenirs };
+    }
+
+    Object.assign(cityPriceGuides, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [def.key, createDeepAsiaPriceGuide(def)])
+    ));
 
     const cityTransportDetails = {
       sapporo: {
@@ -7742,6 +8680,35 @@
       }
     };
 
+    function createDeepAsiaTransportDetails(def) {
+      const cardHint = /중국/.test(def.country)
+        ? "지하철 QR/교통카드/모바일 결제 사용 범위가 넓지만 외국인 결제 가능 여부는 앱과 현장 조건을 확인하세요."
+        : /대만/.test(def.country)
+          ? "EasyCard/iPASS 등 교통카드 사용이 편하고, 편의점 충전과 소액 결제에 유용합니다."
+          : /싱가포르/.test(def.country)
+            ? "MRT와 버스는 SimplyGo, EZ-Link, 해외 카드 터치 결제 사용이 편리합니다."
+            : "도시별 교통카드, 그랩/택시, 현금 결제 가능 범위를 함께 확인하세요.";
+      return {
+        airport: [
+          `${def.airport}에서 도심까지는 공항철도, 지하철, 공항버스, 택시/차량호출 중 숙소 위치 기준으로 선택하세요.`,
+          `${def.name}은 도심과 근교 권역의 이동 시간이 달라 첫날과 마지막 날은 숙소 주변 권역 위주가 안정적입니다.`
+        ],
+        passes: [
+          "시내 대중교통 패스는 하루 이동 횟수가 많을 때만 유리합니다.",
+          "근교 투어나 섬 이동은 별도 투어/페리/차량 비용이 붙을 수 있어 일정별로 따로 계산하세요."
+        ],
+        cards: [
+          cardHint,
+          "신용카드 터치 결제는 도시와 노선별로 차이가 크므로 현장 안내와 공식 운영기관 정보를 확인하세요."
+        ],
+        official: `${def.airport}, ${def.name} 도시 교통 운영기관, 공항 공식 안내 기준으로 재확인 권장`
+      };
+    }
+
+    Object.assign(cityTransportDetails, Object.fromEntries(
+      deepAsiaCityDefinitions.map(def => [def.key, createDeepAsiaTransportDetails(def)])
+    ));
+
     const dayColors = ["var(--day-1)", "var(--day-2)", "var(--day-3)", "var(--day-4)", "var(--day-5)", "var(--day-6)"];
     const courseTonePalette = [
       { accent: "#2f6df6", soft: "rgba(47, 109, 246, 0.13)" },
@@ -7786,14 +8753,15 @@
     let mapVisibleDays = new Set();
     let knownMapDayCount = 0;
     let mapZoomLevel = 11;
-    let showPinDetails = true;
+    let showPinDetails = false;
     const hiddenPinDetails = new Set();
     const forcedPinDetails = new Set();
     let mapCenter = { lat: 43.0621, lng: 141.3544 };
     let hotelLocation = null;
     let hotelSearchTimer = null;
     let hotelSearchController = null;
-    let exchangeRate = 9.5;
+    let currentCurrencyProfile = currencyProfiles.JPY;
+    let exchangeRate = currentCurrencyProfile.fallbackRate;
     let exchangeRateLabel = "임시 기준";
     let todayWeatherSummary = null;
     let weatherController = null;
@@ -7826,7 +8794,6 @@
     const mapDayFilters = document.querySelector("#mapDayFilters");
     const mapZoom = document.querySelector("#mapZoom");
     const googleMapLink = document.querySelector("#googleMapLink");
-    const mapNudgePad = document.querySelector("#mapNudgePad");
     const togglePinDetails = document.querySelector("#togglePinDetails");
     const clearRoute = document.querySelector("#clearRoute");
     const galleryModal = document.querySelector("#galleryModal");
@@ -7838,6 +8805,8 @@
     const imageModalMeta = document.querySelector("#imageModalMeta");
     const calculatorModal = document.querySelector("#calculatorModal");
     const calculatorModalMount = document.querySelector("#calculatorModalMount");
+    const calculatorModalTitle = document.querySelector("#calculatorModalTitle");
+    const calculatorModalSubtitle = document.querySelector("#calculatorModalSubtitle");
     const favoriteAttractionModal = document.querySelector("#favoriteAttractionModal");
     const favoriteAttractionMeta = document.querySelector("#favoriteAttractionMeta");
     const favoriteAttractionGrid = document.querySelector("#favoriteAttractionGrid");
@@ -7874,6 +8843,7 @@
     const hotelBaseSelect = document.querySelector("#hotelBaseSelect");
     const hotelAddressInput = document.querySelector("#hotelAddressInput");
     const locateHotelButton = document.querySelector("#locateHotelButton");
+    const goCourseSelectFromConditions = document.querySelector("#goCourseSelectFromConditions");
     const hotelStatus = document.querySelector("#hotelStatus");
     const autoRouteStatus = document.querySelector("#autoRouteStatus");
     const tipsTitle = document.querySelector("#tips-title");
@@ -7884,11 +8854,14 @@
     const transportLead = document.querySelector("#transportLead");
     const transportGrid = document.querySelector("#transportGrid");
     const budgetTitle = document.querySelector("#budget-title");
+    const budgetTabLabel = document.querySelector("#budgetTabLabel");
     const budgetLead = document.querySelector("#budgetLead");
     const budgetGrid = document.querySelector("#budgetGrid");
     const budgetCalculator = document.querySelector("#budgetCalculator");
     const yenAmountInput = document.querySelector("#yenAmountInput");
+    const amountCurrencyLabel = document.querySelector("#amountCurrencyLabel");
     const exchangeRateInput = document.querySelector("#exchangeRateInput");
+    const exchangeRateFieldLabel = document.querySelector("#exchangeRateFieldLabel");
     const discountRateInput = document.querySelector("#discountRateInput");
     const taxRefundRateInput = document.querySelector("#taxRefundRateInput");
     const exchangeResult = document.querySelector("#exchangeResult");
@@ -7900,18 +8873,45 @@
     const weeklyWeatherStatus = document.querySelector("#weeklyWeatherStatus");
     const refreshWeeklyWeather = document.querySelector("#refreshWeeklyWeather");
     const hero = document.querySelector(".hero");
+
+    const MIN_TRIP_DAYS = 1;
+    const MAX_TRIP_DAYS = 30;
+
+    function clampNumber(value, min, max) {
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return min;
+      return Math.min(max, Math.max(min, Math.round(numeric)));
+    }
+
+    function getTripDayCount() {
+      return clampNumber(tripDays.value, MIN_TRIP_DAYS, MAX_TRIP_DAYS);
+    }
+
+    function setTripDayCount(value) {
+      const nextValue = clampNumber(value, MIN_TRIP_DAYS, MAX_TRIP_DAYS);
+      tripDays.value = String(nextValue);
+      Object.keys(pendingDays).forEach(courseId => {
+        pendingDays[courseId] = clampNumber(pendingDays[courseId] || 0, 0, nextValue);
+      });
+      return nextValue;
+    }
     const heroExchange = document.querySelector("#heroExchange");
     const heroWeather = document.querySelector("#heroWeather");
     const openCalculatorModalButton = document.querySelector("#openCalculatorModal");
     const heroTitle = document.querySelector("#heroTitle");
     const brandMark = document.querySelector("#brandMark");
     const brandName = document.querySelector("#brandName");
-    const cityButtons = document.querySelectorAll("[data-city]");
+    const openDestinationModalButton = document.querySelector("#openDestinationModal");
+    const destinationModal = document.querySelector("#destinationModal");
+    const destinationCityTitle = document.querySelector("#destinationCityTitle");
+    const countrySwitch = document.querySelector("#countrySwitch");
+    const citySwitch = document.querySelector("#citySwitch");
     const attractionsTitle = document.querySelector("#attractions-title");
     const openAttractions = new Set();
     const attractionFilters = { strength: "all", category: "all", area: "all", query: "" };
     let attractionsListOpen = true;
     let activeCourseMode = "places";
+    let currentRegionKey = "japan";
     let currentCityKey = "sapporo";
     const tabButtons = document.querySelectorAll("[data-tab]");
     const tabPanels = document.querySelectorAll("[data-panel]");
@@ -8033,7 +9033,7 @@
     }
 
     function buildRouteStackFromSelectedPlaces() {
-      const tripDayCount = Number(tripDays.value);
+      const tripDayCount = getTripDayCount();
       const targetTotal = Math.max(selectedPlaceStops.length, tripDayCount * getDailyStopLimit());
       const orderedStops = orderStopsForPlaceMode(selectedPlaceStops);
       const selectedCounts = getPlaceModeDistribution(orderedStops.length, tripDayCount);
@@ -8908,7 +9908,7 @@
       if (!plan || !plan.cityKey) return;
       isRestoringPlan = true;
       applyCity(plan.cityKey);
-      tripDays.value = plan.tripDays || tripDays.value;
+      setTripDayCount(plan.tripDays || getTripDayCount());
       tripIntensity.value = plan.tripIntensity || tripIntensity.value;
       pendingDays = { ...createPendingDays(), ...(plan.pendingDays || {}) };
       selectedPlaceStops = Array.isArray(plan.selectedPlaceStops) ? [...new Set(plan.selectedPlaceStops)] : [];
@@ -8925,7 +9925,7 @@
       knownMapDayCount = routeStack.length;
       mapCenter = plan.mapCenter || { ...cityData[currentCityKey].mapCenter };
       mapZoomLevel = plan.mapZoomLevel || cityData[currentCityKey].mapZoom;
-      showPinDetails = plan.showPinDetails !== false;
+      showPinDetails = typeof plan.showPinDetails === "boolean" ? plan.showPinDetails : false;
       hiddenPinDetails.clear();
       (plan.hiddenPinDetails || []).forEach(pinKey => hiddenPinDetails.add(pinKey));
       forcedPinDetails.clear();
@@ -9093,9 +10093,12 @@
                 </div>
               ` : `
                 <div class="days" aria-label="${course.name} 추가 일수 선택">
-                  ${Array.from({ length: Number(tripDays.value) + 1 }, (_, days) => `
-                    <button class="day-button ${pendingDays[course.id] === days ? "active" : ""}" type="button" data-action="set-days" data-course-id="${course.id}" data-days="${days}">${days}일</button>
-                  `).join("")}
+                  <div class="course-day-stepper" aria-label="${course.name} 추가 일수 조절">
+                    <button type="button" data-action="adjust-course-days" data-course-id="${course.id}" data-delta="-1" aria-label="${course.name} 일수 줄이기">−</button>
+                    <input type="number" min="0" max="${getTripDayCount()}" step="1" value="${selectedDayCount}" data-action="input-course-days" data-course-id="${course.id}" aria-label="${course.name} 선택 일수">
+                    <button type="button" data-action="adjust-course-days" data-course-id="${course.id}" data-delta="1" aria-label="${course.name} 일수 늘리기">+</button>
+                  </div>
+                  <span class="day-intensity-note">현재 ${selectedDayCount}일 선택</span>
                 </div>
               `}
             </div>
@@ -9126,7 +10129,7 @@
         if (metaB.recommendScore !== metaA.recommendScore) return metaB.recommendScore - metaA.recommendScore;
         return metaB.reviewCount - metaA.reviewCount;
       });
-      const targetDays = slotFillTargetIndex !== null ? 1 : Number(tripDays.value);
+      const targetDays = slotFillTargetIndex !== null ? 1 : getTripDayCount();
       const targetTotal = Math.max(selectedPlaceStops.length, targetDays * getDailyStopLimit());
       const aiFillCount = Math.max(0, targetTotal - selectedPlaceStops.length);
       const totalPages = Math.max(1, Math.ceil(rankedAttractions.length / PLACE_BUILDER_PAGE_SIZE));
@@ -9161,7 +10164,8 @@
     }
 
     function getTripLengthLabel() {
-      return tripDays.options[tripDays.selectedIndex].textContent;
+      const days = getTripDayCount();
+      return days > 1 ? `${days - 1}박 ${days}일` : "당일";
     }
 
     function getPendingDayTotal() {
@@ -9171,7 +10175,7 @@
     function renderCourseSelectionProgress() {
       if (activeCourseMode === "places") {
         const isSlotFillMode = slotFillTargetIndex !== null;
-        const maxDays = isSlotFillMode ? 1 : Number(tripDays.value);
+        const maxDays = isSlotFillMode ? 1 : getTripDayCount();
         const targetTotal = Math.max(selectedPlaceStops.length, maxDays * getDailyStopLimit());
         const aiFillCount = Math.max(0, targetTotal - selectedPlaceStops.length);
         const distribution = selectedPlaceStops.length ? getPlaceModeDistribution(targetTotal, maxDays) : [];
@@ -9193,7 +10197,7 @@
         return;
       }
 
-      const maxDays = Number(tripDays.value);
+      const maxDays = getTripDayCount();
       const confirmedDays = getConfirmedRouteDayCount();
       const occupiedSlots = routeStack.length;
       const pendingTotal = getPendingDayTotal();
@@ -9244,7 +10248,7 @@
         .map(([courseId, days]) => [courseId, Number(days || 0)])
         .filter(([, days]) => days > 0);
       const daysToAdd = pendingEntries.reduce((sum, [, days]) => sum + days, 0);
-      const maxDays = Number(tripDays.value);
+      const maxDays = getTripDayCount();
       const selectedTotal = routeStack.length + daysToAdd;
 
       if (selectedTotal < maxDays) {
@@ -9311,7 +10315,7 @@
       hiddenPinDetails.clear();
       forcedPinDetails.clear();
 
-      const tripDayCount = Number(tripDays.value);
+      const tripDayCount = getTripDayCount();
       const distribution = getPlaceModeDistribution(selectedPlaceStops.length, tripDayCount)
         .map((count, index) => `Day ${index + 1} ${count}곳`)
         .join(" · ");
@@ -9342,7 +10346,27 @@
     }
 
     function getPackageRawItems(packageItem) {
-      return packageItem.plans[Number(tripDays.value)] || packageItem.plans[4] || [];
+      return getExpandedPackageItems(packageItem, getTripDayCount());
+    }
+
+    function getExpandedPackageItems(packageItem, targetDays) {
+      const dayCount = clampNumber(targetDays, MIN_TRIP_DAYS, MAX_TRIP_DAYS);
+      const plans = packageItem.plans || {};
+      const directPlan = plans[dayCount];
+      if (Array.isArray(directPlan)) return directPlan.slice(0, dayCount);
+      const numericPlanKeys = Object.keys(plans).map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+      const baseKey = numericPlanKeys.reduce((best, key) => {
+        if (key <= dayCount) return key;
+        return best;
+      }, numericPlanKeys[0] || 4);
+      const basePlan = plans[baseKey] || plans[4] || Object.values(plans)[0] || [];
+      if (!basePlan.length) return [];
+      return Array.from({ length: dayCount }, (_, index) => {
+        const [courseId, baseDayIndex = 0] = basePlan[index % basePlan.length];
+        const course = getCourse(courseId);
+        const courseDayIndex = (baseDayIndex + Math.floor(index / basePlan.length)) % Math.max(1, course.days.length);
+        return [courseId, courseDayIndex];
+      });
     }
 
     function getCourseDayStops(courseId, dayIndex) {
@@ -9403,7 +10427,7 @@
         packageGrid.innerHTML = `<div class="empty-state">빈 DAY 슬롯은 패키지 대신 코스를 1일씩 골라 채워주세요.</div>`;
         return;
       }
-      const selectedDays = Number(tripDays.value);
+      const selectedDays = getTripDayCount();
       const packages = [...coursePackages].sort((a, b) => {
         const score = packageItem => {
           const dayFit = Math.max(0, 4 - Math.abs(getPackageItems(packageItem).length - selectedDays));
@@ -9439,6 +10463,13 @@
       courseModePanels.forEach(panel => {
         panel.classList.toggle("is-active", panel.dataset.coursePanel === mode);
       });
+    }
+
+    function getDayCardColumnCount(totalDays) {
+      const dayCount = Math.max(1, Number(totalDays || 1));
+      if (dayCount <= 2) return 2;
+      if (dayCount <= 6) return 3;
+      return Math.min(8, Math.ceil(dayCount / 2));
     }
 
     function renderRoute() {
@@ -9541,7 +10572,9 @@
           </div>
         `;
       })() : "";
-      dayList.innerHTML = days.length ? `<div class="day-tab-grid">${dayCards}</div>${activeDayDetail}` : `<div class="empty-state">위 코스에서 일수를 고른 뒤 루트에 추가하세요.</div>`;
+      const dayColumnCount = getDayCardColumnCount(days.length);
+      const compactClass = days.length > 6 ? " is-compact" : "";
+      dayList.innerHTML = days.length ? `<div class="day-tab-grid${compactClass}" style="--day-card-columns:${dayColumnCount}">${dayCards}</div>${activeDayDetail}` : `<div class="empty-state">위 코스에서 일수를 고른 뒤 루트에 추가하세요.</div>`;
     }
 
     function latLngToPixel(lat, lng, zoom) {
@@ -9692,9 +10725,6 @@
     }
 
     function syncMapVisibleDays(dayCount) {
-      for (let index = 0; index < dayCount; index += 1) {
-        if (index >= knownMapDayCount) mapVisibleDays.add(index);
-      }
       [...mapVisibleDays].forEach(index => {
         if (index >= dayCount) mapVisibleDays.delete(index);
       });
@@ -9748,9 +10778,40 @@
       return `${Math.round(value).toLocaleString("ko-KR")}원`;
     }
 
+    function getCurrencyProfile() {
+      const city = cityData[currentCityKey] || cityData.sapporo;
+      return getCurrencyProfileForCity(city);
+    }
+
+    function getHeroExchangeBaseAmount(profile = currentCurrencyProfile) {
+      return profile.code === "VND" ? 100000 : 100;
+    }
+
+    function formatCurrencyAmount(value, profile = currentCurrencyProfile) {
+      const amount = Math.round(Number(value || 0)).toLocaleString("ko-KR");
+      if (["円", "元", "₫", "฿"].includes(profile.unit)) return `${amount}${profile.unit}`;
+      return `${profile.unit}${amount}`;
+    }
+
+    function renderCurrencyCalculatorUi() {
+      const profile = currentCurrencyProfile;
+      budgetTabLabel.textContent = `계산기(${profile.unit})`;
+      amountCurrencyLabel.textContent = `금액(${profile.unit})`;
+      exchangeRateFieldLabel.textContent = `환율`;
+      yenAmountInput.setAttribute("aria-label", `${profile.name} 금액`);
+      exchangeRateInput.setAttribute("aria-label", `1${profile.unit}당 원화 환율`);
+      calculatorModalTitle.textContent = `계산기(${profile.unit})`;
+      calculatorModalSubtitle.textContent = `${profile.name} 금액, 할인율, Tax Refund를 바로 계산하세요.`;
+      quickYenButtons.setAttribute("aria-label", `자주 쓰는 ${profile.name} 금액`);
+      quickYenButtons.innerHTML = profile.quickAmounts.map(amount => (
+        `<button class="inline-action" type="button" data-amount="${amount}">${formatCurrencyAmount(amount, profile)}</button>`
+      )).join("");
+    }
+
     function renderHeroLiveInfo() {
       const rate = Math.max(0, Number(exchangeRateInput.value || exchangeRate));
-      heroExchange.textContent = `100엔 -> ${formatKRW(rate * 100)}`;
+      const baseAmount = getHeroExchangeBaseAmount();
+      heroExchange.textContent = `${formatCurrencyAmount(baseAmount)} -> ${formatKRW(rate * baseAmount)}`;
       if (todayWeatherSummary) {
         heroWeather.textContent = `${todayWeatherSummary.icon} ${todayWeatherSummary.text} · ${todayWeatherSummary.maxTemp}°/${todayWeatherSummary.minTemp}° · 강수 ${todayWeatherSummary.rainChance}%`;
       } else {
@@ -9764,8 +10825,8 @@
       return Math.max(0, Math.min(100, percent));
     }
 
-    function calculateAdjustedYen(yen, discountPercent, taxRefundPercent) {
-      const amount = Math.max(0, Number(yen || 0));
+    function calculateAdjustedLocalAmount(localAmount, discountPercent, taxRefundPercent) {
+      const amount = Math.max(0, Number(localAmount || 0));
       const readPercent = value => {
         const percent = Number(value || 0);
         if (!Number.isFinite(percent)) return 0;
@@ -9782,19 +10843,19 @@
     }
 
     function updateExchangeCalculator() {
-      const yen = Math.max(0, Number(yenAmountInput.value || 0));
+      const localAmount = Math.max(0, Number(yenAmountInput.value || 0));
       const rate = Math.max(0, Number(exchangeRateInput.value || exchangeRate));
       const discount = normalizePercent(discountRateInput.value);
       const taxRefund = normalizePercent(taxRefundRateInput.value);
-      const adjustedYen = calculateAdjustedYen(yen, discount, taxRefund);
+      const adjustedLocalAmount = calculateAdjustedLocalAmount(localAmount, discount, taxRefund);
       const adjustmentNotes = [];
       if (discount > 0) adjustmentNotes.push(`할인 ${formatPercentText(discount)}% 적용`);
       if (taxRefund > 0) adjustmentNotes.push(`Tax Refund ${formatPercentText(taxRefund)}% 적용`);
       exchangeResult.innerHTML = `
-        <strong>약 ${formatKRW(adjustedYen * rate)}</strong>
+        <strong>약 ${formatKRW(adjustedLocalAmount * rate)}</strong>
         ${adjustmentNotes.length ? `<span class="budget-adjustment-note">${adjustmentNotes.join(" / ")}</span>` : ""}
       `;
-      exchangeStatus.textContent = `1엔 = ${rate.toFixed(2)}원 · ${exchangeRateLabel}`;
+      exchangeStatus.textContent = `1${currentCurrencyProfile.unit} = ${rate.toFixed(2)}원 · ${exchangeRateLabel}`;
       renderHeroLiveInfo();
     }
 
@@ -9821,6 +10882,17 @@
       }
       calculatorModal.classList.remove("is-open");
       calculatorModal.setAttribute("aria-hidden", "true");
+    }
+
+    function openDestinationModal() {
+      renderTravelSelectors();
+      destinationModal.classList.add("is-open");
+      destinationModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeDestinationModal() {
+      destinationModal.classList.remove("is-open");
+      destinationModal.setAttribute("aria-hidden", "true");
     }
 
     function describeWeatherCode(code) {
@@ -9946,14 +11018,20 @@
     }
 
     async function fetchExchangeRate() {
+      const requestedCityKey = currentCityKey;
+      const profile = getCurrencyProfile();
+      currentCurrencyProfile = profile;
+      renderCurrencyCalculatorUi();
+      exchangeRate = profile.fallbackRate;
+      exchangeRateInput.value = exchangeRate.toFixed(profile.code === "VND" ? 4 : 2);
       exchangeStatus.textContent = "실시간 환율을 불러오는 중입니다.";
       const endpoints = [
         {
-          url: "https://open.er-api.com/v6/latest/JPY",
+          url: `https://open.er-api.com/v6/latest/${profile.code}`,
           parse: data => data?.rates?.KRW
         },
         {
-          url: "https://api.frankfurter.app/latest?from=JPY&to=KRW",
+          url: `https://api.frankfurter.app/latest?from=${profile.code}&to=KRW`,
           parse: data => data?.rates?.KRW
         }
       ];
@@ -9964,9 +11042,10 @@
           const data = await response.json();
           const nextRate = Number(endpoint.parse(data));
           if (Number.isFinite(nextRate) && nextRate > 0) {
+            if (requestedCityKey !== currentCityKey) return;
             exchangeRate = nextRate;
-            exchangeRateLabel = `실시간 API 기준 · ${new Date().toLocaleString("ko-KR", { dateStyle: "short", timeStyle: "short" })}`;
-            exchangeRateInput.value = exchangeRate.toFixed(2);
+            exchangeRateLabel = `${profile.code}/KRW 실시간 API 기준 · ${new Date().toLocaleString("ko-KR", { dateStyle: "short", timeStyle: "short" })}`;
+            exchangeRateInput.value = exchangeRate.toFixed(profile.code === "VND" ? 4 : 2);
             updateExchangeCalculator();
             return;
           }
@@ -9974,16 +11053,19 @@
           // Try the next public endpoint, then fall back to manual input.
         }
       }
-      exchangeRateLabel = "실시간 환율 연결 실패 · 수동 입력 기준";
+      if (requestedCityKey !== currentCityKey) return;
+      exchangeRateLabel = `${profile.code}/KRW 실시간 환율 연결 실패 · 임시 기준`;
       updateExchangeCalculator();
     }
 
     function renderBudget() {
       const city = cityData[currentCityKey] || cityData.sapporo;
+      currentCurrencyProfile = getCurrencyProfileForCity(city);
       const guide = cityBudgetGuides[currentCityKey] || cityBudgetGuides.sapporo;
       const priceGuide = cityPriceGuides[currentCityKey] || cityPriceGuides.sapporo;
       budgetTitle.textContent = `${city.name} 여행 예산 감 잡기`;
       budgetLead.textContent = "";
+      renderCurrencyCalculatorUi();
       budgetGrid.innerHTML = `
         <article class="tip-card game-card">
           <h3>식비</h3>
@@ -10029,7 +11111,7 @@
       tipsGrid.innerHTML = `
         <article class="tip-card game-card">
           <h3>환율 계산 팁</h3>
-          <p><strong>엔화 결제는 실시간 고시가가 달라질 수 있습니다.</strong> 예산은 10,000엔 단위로 어림 계산하고, 결제 전 카드사/환전소 기준을 확인하세요.</p>
+          <p><strong>${currentCurrencyProfile.name} 결제는 실시간 고시가가 달라질 수 있습니다.</strong> 예산은 ${formatCurrencyAmount(getHeroExchangeBaseAmount() * 10)} 단위로 어림 계산하고, 결제 전 카드사/환전소 기준을 확인하세요.</p>
           <ul class="checklist">
             ${checklistItems(["교통/소형 식당용 소액 현금 준비", "카드는 해외 결제 수수료와 원화 결제 차단 확인", "동전이 생기기 쉬우니 작은 지갑이나 파우치 준비"])}
           </ul>
@@ -10077,8 +11159,70 @@
       schedulePlanAutoSave();
     }
 
+    function getRegionByKey(regionKey) {
+      return travelRegions.find(region => region.key === regionKey) || travelRegions[0];
+    }
+
+    function getRegionForCity(cityKey) {
+      return travelRegions.find(region => region.selectCity === cityKey || region.cities.some(city => city.key === cityKey)) || travelRegions[0];
+    }
+
+    function regionHasReadyCity(region) {
+      if (region.selectCity) return Boolean(cityData[region.selectCity]);
+      return region.cities.some(city => cityData[city.key]);
+    }
+
+    function renderTravelSelectors() {
+      countrySwitch.innerHTML = travelRegions.map(region => {
+        const isActive = region.key === currentRegionKey;
+        const isReady = regionHasReadyCity(region);
+        const pendingClass = isReady ? "" : " is-pending";
+        return `
+          <button class="country-button ${isActive ? "is-active" : ""}${pendingClass}" type="button" data-region="${region.key}" aria-pressed="${isActive}">
+            <strong>${region.label}</strong>
+            ${isReady ? "" : "<small>준비 중</small>"}
+          </button>
+        `;
+      }).join("");
+
+      const region = getRegionByKey(currentRegionKey);
+      if (region.standalone) {
+        destinationCityTitle.textContent = "도시";
+        citySwitch.innerHTML = `<p class="destination-modal-note">${region.label}은 별도 하위 도시 선택 없이 권역 단위로 준비합니다.</p>`;
+        return;
+      }
+      destinationCityTitle.textContent = `${region.label} 도시`;
+      citySwitch.innerHTML = region.cities.map(city => {
+        const isReady = Boolean(cityData[city.key]);
+        const isActive = isReady && city.key === currentCityKey;
+        return `
+          <button class="city-button ${isActive ? "is-active" : ""}${isReady ? "" : " is-pending"}" type="button" data-city="${city.key}" ${isReady ? "" : "disabled"} aria-pressed="${isActive}">
+            <strong>${city.label}</strong>
+            ${isReady ? "" : "<small>준비 중</small>"}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function applyRegion(regionKey) {
+      const region = getRegionByKey(regionKey);
+      currentRegionKey = region.key;
+      renderTravelSelectors();
+      if (region.selectCity && cityData[region.selectCity]) {
+        applyCity(region.selectCity);
+        return;
+      }
+      if (region.cities.some(city => cityData[city.key])) return;
+      document.title = "여행가기";
+      heroTitle.textContent = "여행가기";
+      brandMark.textContent = region.mark;
+      brandName.textContent = `${region.label} Route Guide`;
+      autoRouteStatus.textContent = `${region.label} 도시는 다음 단계에서 상세 코스와 명승지 데이터를 붙일 예정입니다.`;
+    }
+
     function applyCity(cityKey) {
       const city = cityData[cityKey] || cityData.sapporo;
+      currentRegionKey = getRegionForCity(city.key).key;
       currentCityKey = city.key;
       locations = city.locations;
       locationAddresses = city.locationAddresses;
@@ -10115,23 +11259,21 @@
       mapCenter = { ...city.mapCenter };
       mapZoomLevel = city.mapZoom;
       hotelAddressInput.value = "";
-      document.title = "일본 여행가기";
-      heroTitle.textContent = "일본 여행가기";
+      document.title = "여행가기";
+      heroTitle.textContent = "여행가기";
       brandMark.textContent = city.mark;
       brandName.textContent = city.brand;
-      hero.style.background = `linear-gradient(135deg, rgba(234, 246, 255, 0.86), rgba(196, 230, 255, 0.72)), url("${city.heroImage}") center/cover`;
+      renderHeroBackground(city);
       courseGrid.setAttribute("aria-label", `${city.name} 여행 코스 목록`);
       attractionsTitle.innerHTML = `<span class="highlighter">${city.name} 명승지 리스트</span>`;
       autoRouteStatus.textContent = "";
       googleMapLink.href = `https://www.google.com/maps?hl=ko&q=${encodeURIComponent(city.mapQuery || `${city.name} Japan`)}`;
       renderHotelBaseOptions();
-      cityButtons.forEach(button => {
-        const isActive = button.dataset.city === currentCityKey;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
-      });
+      renderTravelSelectors();
       renderAll();
       fetchWeeklyWeather();
+      fetchExchangeRate();
+      hydrateCityHeroPhoto(city.key);
     }
 
     function switchTab(tabName, options = {}) {
@@ -10223,6 +11365,9 @@
         <span class="stop-picker-page-info">${attractionPage} / ${totalPages}</span>
         <button class="inline-action" type="button" data-action="change-attraction-page" data-page="${attractionPage + 1}" ${attractionPage === totalPages ? "disabled" : ""}>다음</button>
       ` : "";
+      if (attractionsListOpen && pagedAttractions.length) {
+        hydrateVisibleAttractionPhotos(pagedAttractions);
+      }
     }
 
     function syncAttractionListToggleMode() {
@@ -10424,18 +11569,18 @@
         const recommendationLabel = getRecommendationLabel(stopId);
         return `
           <article class="favorite-modal-card">
-            <img src="${attraction.image}" alt="${attraction.name}" loading="lazy" onerror="${imageFallbackHandler(attraction.name)}">
-            <div class="favorite-modal-info">
-              <strong>${attraction.name}</strong>
-              <span class="attraction-strength">${recommendationLabel}</span>
-              <p class="attraction-summary">${attraction.summary}</p>
-              <div class="favorite-modal-actions">
-                <button class="attraction-chip-action" type="button" data-action="open-favorite-photo" data-attraction-id="${escapeAttribute(attraction.id)}" data-address="${escapeAttribute(attraction.address)}" data-image-src="${escapeAttribute(attraction.image)}" data-image-label="${escapeAttribute(attraction.name)}">사진</button>
-                <button class="attraction-chip-action is-favorite" type="button" data-action="toggle-favorite-attraction" data-attraction-id="${escapeAttribute(attraction.id)}">
-                  <span class="favorite-heart" aria-hidden="true">♥</span>찜 해제
-                </button>
-              </div>
+            <div class="favorite-modal-media">
+              <img src="${attraction.image}" alt="${attraction.name}" loading="lazy" onerror="${imageFallbackHandler(attraction.name)}">
+              <button class="attraction-chip-action" type="button" data-action="open-favorite-photo" data-attraction-id="${escapeAttribute(attraction.id)}" data-address="${escapeAttribute(attraction.address)}" data-image-src="${escapeAttribute(attraction.image)}" data-image-label="${escapeAttribute(attraction.name)}">🔍 크게 보기</button>
             </div>
+            <div class="favorite-modal-title-row">
+              <strong>${attraction.name}</strong>
+              <button class="attraction-chip-action is-favorite" type="button" data-action="toggle-favorite-attraction" data-attraction-id="${escapeAttribute(attraction.id)}">
+                <span class="favorite-heart" aria-hidden="true">♥</span>찜 해제
+              </button>
+            </div>
+            <span class="attraction-strength favorite-modal-strength">${recommendationLabel}</span>
+            <p class="attraction-summary favorite-modal-summary">${attraction.summary}</p>
           </article>
         `;
       }).join("") : `<div class="empty-state">가 볼만한 곳에서 하트 찜을 눌러 관심 장소를 모아보세요.</div>`;
@@ -10589,8 +11734,9 @@
     }
 
     courseGrid.addEventListener("click", event => {
-      const action = event.target.dataset.action;
-      const courseId = event.target.dataset.courseId;
+      const actionTarget = event.target.closest("[data-action]");
+      const action = actionTarget?.dataset.action;
+      const courseId = actionTarget?.dataset.courseId;
       if (!action || !courseId) return;
 
       if (action === "fill-empty-slot") {
@@ -10608,8 +11754,9 @@
         return;
       }
 
-      if (action === "set-days") {
-        pendingDays[courseId] = Number(event.target.dataset.days);
+      if (action === "adjust-course-days") {
+        const delta = Number(actionTarget.dataset.delta || 0);
+        pendingDays[courseId] = clampNumber((pendingDays[courseId] || 0) + delta, 0, getTripDayCount());
       }
 
       if (action === "open-gallery") {
@@ -10617,6 +11764,22 @@
         return;
       }
 
+      renderAll();
+    });
+
+    courseGrid.addEventListener("input", event => {
+      const input = event.target.closest("[data-action='input-course-days']");
+      if (!input) return;
+      const courseId = input.dataset.courseId;
+      pendingDays[courseId] = clampNumber(input.value, 0, getTripDayCount());
+      renderCourseSelectionProgress();
+    });
+
+    courseGrid.addEventListener("change", event => {
+      const input = event.target.closest("[data-action='input-course-days']");
+      if (!input) return;
+      const courseId = input.dataset.courseId;
+      pendingDays[courseId] = clampNumber(input.value, 0, getTripDayCount());
       renderAll();
     });
 
@@ -10758,22 +11921,27 @@
       lookupHotelAddress(true);
     });
 
+    goCourseSelectFromConditions?.addEventListener("click", () => {
+      switchTab("course-select");
+    });
+
     yenAmountInput.addEventListener("input", updateExchangeCalculator);
     discountRateInput.addEventListener("input", updateExchangeCalculator);
     taxRefundRateInput.addEventListener("input", updateExchangeCalculator);
     resetExchangeCalculator?.addEventListener("click", resetCalculatorInputs);
     openCalculatorModalButton?.addEventListener("click", openCalculatorModal);
+    openDestinationModalButton?.addEventListener("click", openDestinationModal);
     exchangeRateInput.addEventListener("input", () => {
-      exchangeRateLabel = "수동 입력 기준";
+      exchangeRateLabel = `${currentCurrencyProfile.code}/KRW 수동 입력 기준`;
       updateExchangeCalculator();
     });
     refreshExchangeRate.addEventListener("click", fetchExchangeRate);
     refreshWeeklyWeather.addEventListener("click", fetchWeeklyWeather);
     quickYenButtons.addEventListener("click", event => {
-      const button = event.target.closest("[data-yen]");
+      const button = event.target.closest("[data-amount]");
       if (!button) return;
       const currentYen = Number(yenAmountInput.value || 0);
-      yenAmountInput.value = String(Math.max(0, currentYen) + Number(button.dataset.yen || 0));
+      yenAmountInput.value = String(Math.max(0, currentYen) + Number(button.dataset.amount || 0));
       updateExchangeCalculator();
     });
 
@@ -10802,8 +11970,21 @@
 
     openFavoriteAttractions?.addEventListener("click", openFavoriteAttractionsModal);
 
+    document.addEventListener("click", event => {
+      const tripDayControl = event.target.closest("[data-action='adjust-trip-days']");
+      if (!tripDayControl) return;
+      setTripDayCount(getTripDayCount() + Number(tripDayControl.dataset.delta || 0));
+      renderAll();
+    });
+
+    tripDays.addEventListener("input", () => {
+      tripDays.value = String(clampNumber(tripDays.value, MIN_TRIP_DAYS, MAX_TRIP_DAYS));
+      renderCourseSelectionProgress();
+    });
+
     [tripDays, tripIntensity].forEach(control => {
       control.addEventListener("change", () => {
+        setTripDayCount(getTripDayCount());
         renderAll();
       });
     });
@@ -10975,10 +12156,22 @@
       });
     });
 
-    cityButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        applyCity(button.dataset.city);
-      });
+    countrySwitch.addEventListener("click", event => {
+      const button = event.target.closest("[data-region]");
+      if (!button) return;
+      applyRegion(button.dataset.region);
+    });
+
+    citySwitch.addEventListener("click", event => {
+      const button = event.target.closest("[data-city]");
+      if (!button || button.disabled) return;
+      applyCity(button.dataset.city);
+    });
+
+    destinationModal.addEventListener("click", event => {
+      if (event.target.dataset.action === "close-destination") {
+        closeDestinationModal();
+      }
     });
 
     window.addEventListener("hashchange", syncTabWithHash);
@@ -11000,25 +12193,6 @@
       if (event.target.checked) mapVisibleDays.add(dayIndex);
       else mapVisibleDays.delete(dayIndex);
       renderMap();
-    });
-
-    mapNudgePad.addEventListener("click", event => {
-      const panButton = event.target.closest("[data-map-pan]");
-      if (panButton) {
-        panMapDirection(panButton.dataset.mapPan);
-        return;
-      }
-
-      const zoomButton = event.target.closest("[data-map-zoom]");
-      if (zoomButton) {
-        zoomMapBy(Number(zoomButton.dataset.mapZoom));
-      }
-    });
-
-    ["pointerdown", "touchstart"].forEach(eventName => {
-      mapNudgePad.addEventListener(eventName, event => {
-        event.stopPropagation();
-      }, { passive: true });
     });
 
     togglePinDetails.addEventListener("click", () => {
@@ -11372,7 +12546,6 @@
     applyCity("sapporo");
     initPlanVault();
     isPlanAutoSaveReady = true;
-    fetchExchangeRate();
     syncTabWithHash();
   </script>
 </body>
